@@ -61,8 +61,7 @@ while True:
         bye()
         break
 
-    # { ----- Problem ----- } Command
+    # { ----- Chat ----- } Command
     else:
-        problem()
-        pass
+        chat(q)
 input()
