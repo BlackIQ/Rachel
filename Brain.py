@@ -5,22 +5,25 @@ import random
 import requests
 import datetime
 from jdatetime import *
+from difflib import get_close_matches
+from config import username
+from chatDictionary import chatDict
 
 # Functions
 def start():
-    start_list = ['Welcome back Amir !', 'Hi Amir !', 'Hello Amir ! I missed U :)']
+    start_list = [f'Welcome back {username} !', f'Hi {username} !', f'Hello {username} ! I missed U :)']
     print(start_list[random.randint(1, 2)])
-    print('Today is : (', datetime.now().date().strftime("%Y , %m , %d"), ') Amir')
+    print(f'Today is : (', datetime.now().date().strftime("%Y , %m , %d"), ') {username}')
 
 def hello():
-    hello_list = ['Hello Amir !', 'Hi Darline !' , 'Hello my love !']
+    hello_list = [f'Hello {username} !', 'Hi Darline !' , 'Hello my love !']
     print(hello_list[random.randint(1, 2)])
 
 def bye():
-    print('Goodbye Amir !')
+    print(f'Goodbye {username} !')
 
 def Goodnight():
-    print('Have Good night Amir .')
+    print(f'Have Good night {username} .')
     print('I hope you sleep good !')
 
 def Sleep():
@@ -111,17 +114,24 @@ def Date():
         StarDate()
     if 'national' in ask_date:
         n_date = strftime("%Y-%m-%d" , localtime())
-        print('Today is : (' , n_date ,') Amir')
+        print(f'Today is : (' , n_date ,') {username}')
     if 'iran' in ask_date:
         i_date = datetime.now().date().strftime("%Y , %m , %d")
-        print('Today is : (' , i_date ,') Amir')
+        print(f'Today is : (' , i_date ,') {username}')
 
 def Time():
     ask_time = input('GMT Or Iran ? ')
 
     if 'gmt' in ask_time:
         gmt = strftime("%H : %M : %S" , gmtime())
-        print('Now is : (' , gmt ,') Amir')
+        print(f'Now is : (' , gmt ,') {username}')
     if 'iran' in ask_time:
         i_time = datetime.now().time().strftime("%H : %M : %S")
-        print('Now is : (' , i_time ,') Amir')
+        print(f'Now is : (' , i_time ,') {username}')
+def chat(text):
+    if text in chatDict:
+        return chatDict[text]
+    elif len( get_close_matches( text,chatDict ) ) > 0:
+        return get_close_matches( text,chatDict )[0]
+    else:
+        return ''
