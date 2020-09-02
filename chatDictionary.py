@@ -6,4 +6,5 @@ chatDict = {
         'im not good today':'im so sorry to hear that',
         'im so good today':'im so proud :)',
         'how you feeling today?':'im feeling good',
+        'what is your favorite movie?':'i love Matrix & Her'
     }
