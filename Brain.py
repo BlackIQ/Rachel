@@ -132,6 +132,11 @@ def chat(text):
     if text in chatDict:
         return chatDict[text]
     elif len( get_close_matches( text,chatDict ) ) > 0:
-        return get_close_matches( text,chatDict )[0]
+        closest_match = get_close_matches( text,chatDict )[0]
+        response = chatDict[closest_match]
+        if type(response) == str:
+            return response
+        elif type(response) == list:
+            return response[random.randint(0,len(response)-1)]
     else:
         return ''
