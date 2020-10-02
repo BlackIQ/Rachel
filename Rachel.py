@@ -23,7 +23,7 @@ while True:
     elif 'stardate' in q:
         StarDate()
     # { Date } Command
-    elif 'date'in q:
+    elif 'date' in q:
         Date()
     elif 'what date is today' in q:
         Date()
@@ -61,8 +61,7 @@ while True:
         bye()
         break
 
-    # { ----- Problem ----- } Command
+    # { ----- Chat ----- } Command
     else:
-        problem()
-        pass
+        print(chat(q))
 input()

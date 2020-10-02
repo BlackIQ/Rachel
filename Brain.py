@@ -1,35 +1,48 @@
-# Libraries
-from time import *
-from math import *
-import random
-import requests
 import datetime
+import random
+from difflib import get_close_matches
+from math import *
+from time import *
+
+import requests
 from jdatetime import *
+
+from chatDictionary import chatDict
+from config import username
+
 
 # Functions
 def start():
-    start_list = ['Welcome back Amir !', 'Hi Amir !', 'Hello Amir ! I missed U :)']
+    start_list = [f'Welcome back {username} !',
+                  f'Hi {username} !', f'Hello {username} ! I missed U :)']
     print(start_list[random.randint(1, 2)])
-    print('Today is : (', datetime.now().date().strftime("%Y , %m , %d"), ') Amir')
+    print(f'Today is : (', datetime.now().date().strftime(
+        "%Y , %m , %d"), f') {username}')
+
 
 def hello():
-    hello_list = ['Hello Amir !', 'Hi Darline !' , 'Hello my love !']
+    hello_list = [f'Hello {username} !', 'Hi Darline !', 'Hello my love !']
     print(hello_list[random.randint(1, 2)])
 
+
 def bye():
-    print('Goodbye Amir !')
+    print(f'Goodbye {username} !')
+
 
 def Goodnight():
-    print('Have Good night Amir .')
+    print(f'Have Good night {username} .')
     print('I hope you sleep good !')
+
 
 def Sleep():
     print('Oh , OK !')
     print('Goodbye Pal !')
 
+
 def problem():
     print('Oh sorry , Some thing went wrog :-(')
     print('Please try again !')
+
 
 def About():
     print('Hi ! I Am Rachel your Assistant .')
@@ -37,6 +50,7 @@ def About():
     print('My developer is Amirhossein Mohammadi :)')
     print('But the main Idea is for Erfan Saberi .')
     print('OK , For see Command list Enter (help) <3 .')
+
 
 def Help():
     print(' ----- { Commands List } -----')
@@ -64,6 +78,7 @@ def Help():
     print('List - Information Commands')
     print('about')
     print('help')
+
 
 def H_A_Y():
     print('At first you tell me how are you !')
@@ -98,11 +113,13 @@ def H_A_Y():
         a10 = input('Awesome !!!! , Why ? ')
         print('I love number 10 , because you are 10 !')
 
+
 def StarDate():
     YY = int(strftime("%Y", localtime())) - 1900
     MM = strftime("%m", localtime())
     DD = strftime("%d", localtime())
     print("Rachels Log , Stardate (", YY, MM, ".", DD, ") !")
+
 
 def Date():
     ask_date = input('Stardate Or National Or Iran ? ')
@@ -110,18 +127,33 @@ def Date():
     if 'stardate' in ask_date:
         StarDate()
     if 'national' in ask_date:
-        n_date = strftime("%Y-%m-%d" , localtime())
-        print('Today is : (' , n_date ,') Amir')
+        n_date = strftime("%Y-%m-%d", localtime())
+        print(f'Today is : (', n_date, ') {username}')
     if 'iran' in ask_date:
         i_date = datetime.now().date().strftime("%Y , %m , %d")
-        print('Today is : (' , i_date ,') Amir')
+        print(f'Today is : (', i_date, ') {username}')
+
 
 def Time():
     ask_time = input('GMT Or Iran ? ')
 
     if 'gmt' in ask_time:
-        gmt = strftime("%H : %M : %S" , gmtime())
-        print('Now is : (' , gmt ,') Amir')
+        gmt = strftime("%H : %M : %S", gmtime())
+        print(f'Now is : (', gmt, ') {username}')
     if 'iran' in ask_time:
         i_time = datetime.now().time().strftime("%H : %M : %S")
-        print('Now is : (' , i_time ,') Amir')
+        print(f'Now is : (', i_time, ') {username}')
+
+
+def chat(text):
+    if text in chatDict:
+        return chatDict[text]
+    elif len(get_close_matches(text, chatDict.keys())) > 0:
+        closest_match = get_close_matches(text, chatDict)[0]
+        response = chatDict[closest_match]
+        if type(response) == str:
+            return response
+        elif type(response) == list:
+            return response[random.randint(0, len(response)-1)]
+    else:
+        return ''
