@@ -63,5 +63,14 @@ while True:
 
     # { ----- Chat ----- } Command
     else:
-        print(chat(q))
+        answer = chat(q)
+        if answer:
+            print(answer)
+        else:
+            print('Sorry, i didn\'t understand what you want from me, do you want me to search it in the internet?')
+            p = input('y/n: ')
+            if p == 'y':
+                print(search_in_net(q))
+            else:
+                pass
 input()
