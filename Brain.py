@@ -157,3 +157,7 @@ def chat(text):
             return response[random.randint(0, len(response)-1)]
     else:
         return ''
+
+def search_in_net(text):
+    #TODO: add this
+    return 'i didn\'n have "Search in internet" function yet.'
