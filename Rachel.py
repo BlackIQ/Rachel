@@ -6,10 +6,11 @@ start()
 
 while True:
 
-    q = input('What can I do for you Amir ? ')
-
+    q = input(f'What can I do for you {username} ? ')
+    if not q:
+        pass
     # { ----- Start ----- } Commands
-    if 'hello' in q:
+    elif 'hello' in q:
         hello()
     elif 'hi' in q:
         hello()
