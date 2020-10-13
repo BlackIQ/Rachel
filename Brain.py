@@ -1,13 +1,11 @@
 import datetime
 import random
-from difflib import get_close_matches
 from math import *
 from time import *
 
 import requests
 from jdatetime import *
 
-from chatDictionary import chatDict
 from config import username
 
 
@@ -146,6 +144,8 @@ def Time():
 
 
 def chat(text):
+    from difflib import get_close_matches
+    from chatDictionary import chatDict
     if text in chatDict:
         return chatDict[text]
     elif len(get_close_matches(text, chatDict.keys())) > 0:
@@ -158,9 +158,11 @@ def chat(text):
     else:
         return ''
 
-def search_in_net(text):    
-    import googlesearch
+
+def search_in_net(text):
     import webbrowser
+
+    import googlesearch
     results = googlesearch.search(text)
     i = 0
     for result in results:
