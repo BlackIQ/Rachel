@@ -158,6 +158,15 @@ def chat(text):
     else:
         return ''
 
-def search_in_net(text):
-    #TODO: add this
-    return 'i didn\'n have "Search in internet" function yet.'
+def search_in_net(text):    
+    import googlesearch
+    import webbrowser
+    results = googlesearch.search(text)
+    i = 0
+    for result in results:
+        print(f"[{i}]" + result)
+        i += 1
+    num = input('\n[?] Insert number to open url in browser: ')
+    if num:
+        webbrowser.open(results[int(num)])
+    return ''
