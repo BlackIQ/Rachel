@@ -17,38 +17,19 @@ while True:
     elif 'clear' in q:
         clear()
 
-    # { How are you ? } Command
-    elif 'how are you' in q:
-        H_A_Y()
-
-    # { ----- Doing ----- } Commands
     # { StarDate } Command
     elif 'stardate' in q:
         StarDate()
     # { Date } Command
-    elif 'date' in q:
-        Date()
-    elif 'what date is today' in q:
-        Date()
-    elif 'today' in q:
+    elif 'date' or 'what date is today' or 'today' in q:
         Date()
     # { Time } Command
-    elif 'time' in q:
+    elif 'time' or 'what time is it' or 'now' in q:
         Time()
-    elif 'what time is it' in q:
-        Time()
-    elif 'now' in q:
-        Time()
-
-    # { ----- Information ----- } Commands
-    elif 'about' in q:
-        About()
-    elif 'help' in q:
-        Help()
 
     # { ----- End  ----- } Commands
     # { Close } Command
-    elif 'close' in q:
+    elif 'close' or 'exit' in q:
         bye()
         break
     # { Sleep ) Command
