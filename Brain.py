@@ -2,12 +2,12 @@ import datetime
 import random
 from math import *
 from time import *
-
 import requests
 from jdatetime import *
-
 from config import username
-
+import webbrowser
+import googlesearch
+import os
 
 # Functions
 def start():
@@ -17,6 +17,8 @@ def start():
     print(f'Today is : (', datetime.now().date().strftime(
         "%Y , %m , %d"), f') {username}')
 
+def clear() :
+    os.system("clear")
 
 def hello():
     hello_list = [f'Hello {username} !', 'Hi Darline !', 'Hello my love !']
@@ -160,9 +162,6 @@ def chat(text):
 
 
 def search_in_net(text):
-    import webbrowser
-
-    import googlesearch
     results = googlesearch.search(text)
     i = 0
     for result in results:

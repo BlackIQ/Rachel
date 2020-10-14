@@ -14,6 +14,8 @@ while True:
         hello()
     elif 'hi' in q:
         hello()
+    elif 'clear' in q:
+        clear()
 
     # { How are you ? } Command
     elif 'how are you' in q:
