@@ -19,7 +19,7 @@ try:
     errors = 0
     for line in lines:
         try:
-            lineSplited = line.split('\t')
+            lineSplited = line.split('::')
             chatDict[lineSplited[1]] = lineSplited[2]
         except:
             errors += 1
