@@ -6,7 +6,7 @@
 		<p><u>There are some packages need to install on your system :</u></p>
 		<p>On linux , packages are <b>espeak</b> and <b>ffmpeg</b> .</p>
 		<p>Unfortunately , I have no idea what you need to install on <b>Windows</b> :(</p>
-		<p>The are some Python Modules you need to install . You can see them <a href="https://github.com/BlackIQ/Rachel/blob/master/req.txt">Here .</a></p>
+		<p>The are some Python Modules you need to install . You can see them <a href="https://github.com/BlackIQ/Rachel/blob/master/req.txt">Here</a> .</p>
 		<h3>How To Run :</h3>
 		<code>
 		    $ git clone https://github.com/BlackIQ/Rachel && cd Rachel
