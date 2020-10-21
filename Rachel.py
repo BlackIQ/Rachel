@@ -1,10 +1,18 @@
 # Import Brain
-from Brain import *
+from Core import *
+
+import pyttsx3
+
+engine = pyttsx3.init()
 
 # Start
 start()
 
 while True:
+
+    engine. setProperty("rate", 150)
+    engine.say("What Can I do for you ?")
+    engine.runAndWait()
 
     q = input(f'What can I do for you {username} ? ')
     if not q:
@@ -16,6 +24,8 @@ while True:
         hello()
     elif 'clear' in q:
         clear()
+    elif 'music' in q :
+        Music()
 
     # { StarDate } Command
     elif 'stardate' in q:
@@ -57,6 +67,8 @@ while True:
 
     # { ----- Chat ----- } Command
     else:
+        engine.say("Sorry, i didnt understand . do you want me to search it in the internet ?")
+        engine.runAndWait()
         print('Sorry, i didnt understand . do you want me to search it in the internet ?')
         p = input('[Y]es , [N]o : ')
         if p == 'y':
