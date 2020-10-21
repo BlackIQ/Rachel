@@ -9,7 +9,6 @@ import webbrowser
 import googlesearch
 import os
 from difflib import get_close_matches
-from chatDictionary import chatDict
 
 # Functions
 def start():
@@ -76,18 +75,18 @@ def Time():
         print(f'Now is : (', i_time, ') {username}')
 
 
-def chat(text):
-    if text in chatDict:
-        return chatDict[text]
-    elif len(get_close_matches(text, chatDict.keys())) > 0:
-        closest_match = get_close_matches(text, chatDict)[0]
-        response = chatDict[closest_match]
-        if type(response) == str:
-            return response
-        elif type(response) == list:
-            return response[random.randint(0, len(response)-1)]
-    else:
-        return ''
+# def chat(text):
+#     if text in chatDict:
+#         return chatDict[text]
+#     elif len(get_close_matches(text, chatDict.keys())) > 0:
+#         closest_match = get_close_matches(text, chatDict)[0]
+#         response = chatDict[closest_match]
+#         if type(response) == str:
+#             return response
+#         elif type(response) == list:
+#             return response[random.randint(0, len(response)-1)]
+#     else:
+#         return ''
 
 
 def search_in_net(text):

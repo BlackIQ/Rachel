@@ -21,15 +21,25 @@ while True:
     elif 'stardate' in q:
         StarDate()
     # { Date } Command
-    elif 'date' or 'what date is today' or 'today' in q:
+    elif 'date' in q :
+        Date()
+    elif 'what date is today' in q :
+        Date()
+    elif 'today' in q :
         Date()
     # { Time } Command
-    elif 'time' or 'what time is it' or 'now' in q:
+    elif 'time' in q :
         Time()
-
+    elif 'what time is it' in q :
+        Time()
+    elif 'now' in q :
+        Time()
     # { ----- End  ----- } Commands
     # { Close } Command
-    elif 'close' or 'exit' in q:
+    elif 'close' in q:
+        bye()
+        break
+    elif 'exit' in q :
         bye()
         break
     # { Sleep ) Command
@@ -47,14 +57,10 @@ while True:
 
     # { ----- Chat ----- } Command
     else:
-        answer = chat(q)
-        if answer:
-            print(answer)
+        print('Sorry, i didnt understand . do you want me to search it in the internet ?')
+        p = input('[Y]es , [N]o : ')
+        if p == 'y':
+            print(search_in_net(q))
         else:
-            print('Sorry, i didn\'t understand what you want from me, do you want me to search it in the internet?')
-            p = input('y/n: ')
-            if p == 'y':
-                print(search_in_net(q))
-            else:
-                pass
+            pass
 input()
