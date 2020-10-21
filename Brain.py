@@ -1,14 +1,23 @@
-import datetime
-import random
-from math import *
-from time import *
-import requests
-from jdatetime import *
+# Import Owns
 from config import username
+
+# Import System Libs
+import os
+
+# Import Net Libs
 import webbrowser
 import googlesearch
-import os
+import requests
+import bs4
+
+# Import Date and Time Libs
+import datetime
+from time import *
+from jdatetime import *
+
+# Import Text Libs
 from difflib import get_close_matches
+import random
 
 # Functions
 def start():
