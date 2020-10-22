@@ -1,53 +1,29 @@
 # Import Owns
 from config import username
-
 # Import System Libs
 import os
-
 # Import Net Libs
 import webbrowser
 import googlesearch
-import requests
-import bs4
-
 # Import Date and Time Libs
 import datetime
 from time import *
 from jdatetime import *
-
 # Import Text Libs
 from difflib import get_close_matches
 import random
 
-# Import Speech Libs
-import pyttsx3
-
-# Import App Libs
-from playsound import playsound
-
-engine = pyttsx3.init()
-
 # Functions
 def start():
-    engine. setProperty("rate", 150)
-    engine.say("Hi .")
-    sleep(1)
-    engine.say("I am Rachel !")
-    engine.runAndWait()
-    # start_list = [f'Welcome back {username} !',
-    #               f'Hi {username} !', f'Hello {username} ! I missed U :)']
-    # print(random.choice(start_list))
-    # print(f'Today is : (', datetime.now().date().strftime(
-    #     "%Y , %m , %d"), f') {username}')
+    start_list = [f'Welcome back {username} !',
+                  f'Hi {username} !', f'Hello {username} ! I missed U :)']
+    print(random.choice(start_list))
+    print(f'Today is : (', datetime.now().date().strftime(
+        "%Y , %m , %d"), f') {username}')
 
 def Music() :
-    engine.say("Ok , give me the address .")
-    engine.runAndWait()
     print("Ok , give me the address .")
-    engine.say("Address : ")
-    engine.runAndWait()
     address = input("Address : ")
-    playsound(address) 
 
 def clear() :
     os.system("clear")
@@ -57,28 +33,17 @@ def hello():
     print(random.choice(hello_list))
 
 def bye():
-    engine.say("GoodBye .")
-    engine.runAndWait()
     print(f'Goodbye {username} !')
 
 def Goodnight():
-    engine.say("Have a good night .")
-    engine.say("I Hope you sleep well .")
-    engine.runAndWait()
     print(f'Have a Good night {username} .')
     print('I hope you sleep well !')
 
 def Sleep():
-    engine.say("Oh , Ok !")
-    engine.say("Goodbye pal !")
-    engine.runAndWait()
     print('Oh , OK !')
     print('Goodbye Pal !')
 
 def problem():
-    engine.say("Oh sorry , Some thing went wrong .")
-    engine.say("Please try again !")
-    engine.runAndWait()
     print('Oh sorry , Some thing went wrong :-(')
     print('Please try again !')
 
@@ -116,8 +81,6 @@ def search_in_net(text):
     for result in results:
         print(f"[{i}]" + result)
         i += 1
-    engine.say("Insert number to open url in browser : ")
-    engine.runAndWait()
     num = input('\n[?] Insert number to open url in browser : ')
     if num:
         webbrowser.open(results[int(num)])
