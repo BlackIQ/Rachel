@@ -15,21 +15,33 @@ import random
 
 # Functions
 def start():
-    start_list = [f'Welcome back {username} !',
-                  f'Hi {username} !', f'Hello {username} ! I missed U :)']
+    start_list = [
+        f'Welcome back {username} !',
+        f'Hi {username} !',
+        f'Hello {username} ! I missed U :)'
+        f'Hi Honey !'
+    ]
     print(random.choice(start_list))
-    print(f'Today is : (', datetime.now().date().strftime(
-        "%Y , %m , %d"), f') {username}')
+    print(f'Today is : (', datetime.now().date().strftime("%Y , %m , %d"), f') {username}')
 
 def clear() :
     os.system("clear")
 
 def hello():
-    hello_list = [f'Hello {username} !', 'Hi Darline !', 'Hello my love !']
+    hello_list = [
+        f'Hello {username} !',
+        'Hi Darline !',
+        'Hello my love !' ,
+        f'Welcome Back {username} .'
+    ]
     print(random.choice(hello_list))
 
 def bye():
-    print(f'Goodbye {username} !')
+    bye_list = [
+        'bye sweetie .' ,
+        f'Bye {username}'
+    ]
+    print(random.choice(bye_list))
 
 def Goodnight():
     print(f'Have a Good night {username} .')
