@@ -6,9 +6,9 @@ import os
 import webbrowser
 import googlesearch
 # Import Date and Time Libs
+from jdatetime import *
 import datetime
 from time import *
-from jdatetime import *
 # Import Text Libs
 from difflib import get_close_matches
 import random
@@ -20,10 +20,6 @@ def start():
     print(random.choice(start_list))
     print(f'Today is : (', datetime.now().date().strftime(
         "%Y , %m , %d"), f') {username}')
-
-def Music() :
-    print("Ok , give me the address .")
-    address = input("Address : ")
 
 def clear() :
     os.system("clear")
