@@ -6,7 +6,7 @@ start()
 
 while True:
 
-    q = input(f'What can I do for you {username} ? ')
+    q = input(f'What can I do for you {config.firstname} ? ')
     if not q:
         pass
     # { ----- Start ----- } Commands
@@ -16,6 +16,10 @@ while True:
         hello()
     elif 'clear' in q:
         clear()
+
+    elif "how am I" in q :
+        how_am_i()
+
     # { StarDate } Command
     elif 'stardate' in q:
         StarDate()

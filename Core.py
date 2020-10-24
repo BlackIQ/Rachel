@@ -1,5 +1,6 @@
 # Import Owns
-from config import username
+import config
+
 # Import System Libs
 import os
 # Import Net Libs
@@ -16,35 +17,35 @@ import random
 # Functions
 def start():
     start_list = [
-        f'Welcome back {username} !',
-        f'Hi {username} !',
-        f'Hello {username} ! I missed U :)'
+        f'Welcome back {config.username} !',
+        f'Hi {config.username} !',
+        f'Hello {config.username} ! I missed U :)'
         f'Hi Honey !'
     ]
     print(random.choice(start_list))
-    print(f'Today is : (', datetime.now().date().strftime("%Y , %m , %d"), f') {username}')
+    print(f'Today is : (', strftime("%Y , %m , %d" , localtime()), f') {config.username}')
 
 def clear() :
     os.system("clear")
 
 def hello():
     hello_list = [
-        f'Hello {username} !',
+        f'Hello {config.username} !',
         'Hi Darline !',
         'Hello my love !' ,
-        f'Welcome Back {username} .'
+        f'Welcome Back {config.username} .'
     ]
     print(random.choice(hello_list))
 
 def bye():
     bye_list = [
         'bye sweetie .' ,
-        f'Bye {username}'
+        f'Bye {config.username}'
     ]
     print(random.choice(bye_list))
 
 def Goodnight():
-    print(f'Have a Good night {username} .')
+    print(f'Have a Good night {config.username} .')
     print('I hope you sleep well !')
 
 def Sleep():
@@ -70,8 +71,9 @@ def Date():
         n_date = strftime("%Y-%m-%d", localtime())
         print(f'Today is : (', n_date, ') {username}')
     if 'i' in ask_date:
-        i_date = datetime.now().date().strftime("%Y , %m , %d")
+        i_date = strftime("%Y , %m , %d" , localtime())
         print(f'Today is : (', i_date, ') {username}')
+
 
 def Time():
     ask_time = input('[gmt] or [i]ran ? ')
@@ -80,8 +82,14 @@ def Time():
         gmt = strftime("%H : %M : %S", gmtime())
         print(f'Now is : (', gmt, ') {username}')
     if 'i' in ask_time:
-        i_time = datetime.now().time().strftime("%H : %M : %S")
-        print(f'Now is : (', i_time, ') {username}')
+        i_time = strftime("%Y , %m , %d" , localtime())
+        print('Now is : (', i_time, f') {config.username}')
+
+def how_am_i() :
+    print("How Are You !?")
+    print(f"You are {config.firstname} {config.lastname} .")
+    print(f"With {config.age} and called by {config.username} !")
+    print("For give me more information , add lines in config.py")
 
 def search_in_net(text):
     results = googlesearch.search(text)
