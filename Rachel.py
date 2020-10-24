@@ -16,9 +16,6 @@ while True:
         hello()
     elif 'clear' in q:
         clear()
-    elif 'music' in q :
-        Music()
-
     # { StarDate } Command
     elif 'stardate' in q:
         StarDate()
@@ -65,4 +62,5 @@ while True:
             print(search_in_net(q))
         else:
             pass
+
 input()
