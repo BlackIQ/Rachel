@@ -1,6 +1,5 @@
-# User Important Data
+# Import Owns
 from config import username
-
 # Import System Libs
 import os
 # Import Net Libs
@@ -23,7 +22,7 @@ def start():
         f'Hi Honey !'
     ]
     print(random.choice(start_list))
-    print(f'Today is : (', strftime("%Y , %m , %d" , localtime()), f') {username}')
+    print(f'Today is : (', datetime.now().date().strftime("%Y , %m , %d"), f') {username}')
 
 def clear() :
     os.system("clear")
@@ -71,7 +70,7 @@ def Date():
         n_date = strftime("%Y-%m-%d", localtime())
         print(f'Today is : (', n_date, ') {username}')
     if 'i' in ask_date:
-        i_date = strftime("%Y-%m-%d", localtime())
+        i_date = datetime.now().date().strftime("%Y , %m , %d")
         print(f'Today is : (', i_date, ') {username}')
 
 def Time():
@@ -81,7 +80,7 @@ def Time():
         gmt = strftime("%H : %M : %S", gmtime())
         print(f'Now is : (', gmt, ') {username}')
     if 'i' in ask_time:
-        i_time = strftime("%H : %M : %S" , localtime())
+        i_time = datetime.now().time().strftime("%H : %M : %S")
         print(f'Now is : (', i_time, ') {username}')
 
 def search_in_net(text):
@@ -93,6 +92,4 @@ def search_in_net(text):
     num = input('\n[?] Insert number to open url in browser : ')
     if num:
         webbrowser.open(results[int(num)])
-    elif not num :
-        pass
     return ''
