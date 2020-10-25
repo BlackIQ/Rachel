@@ -6,7 +6,7 @@ import os
 import webbrowser
 import googlesearch
 # Import Date and Time Libs
-from jdatetime import *
+import jdatetime
 import datetime
 from time import *
 # Import Text Libs
@@ -70,7 +70,7 @@ def Date():
         n_date = strftime("%Y-%m-%d", localtime())
         print(f'Today is : (', n_date, ') {username}')
     if 'i' in ask_date:
-        i_date = datetime.now().date().strftime("%Y , %m , %d")
+        i_date = strftime("%Y , %m , %d" , localtime())
         print(f'Today is : (', i_date, ') {username}')
 
 def Time():
