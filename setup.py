@@ -21,7 +21,7 @@ def w(Firstname , Lastname , Age , Username , Password) :
     write = open("Data.py", "w")
 
     # Write
-    print("Saving at Data.py . . .")
+    print("Saving at Data.py . . .\n")
     write.write(f"FirstName = '{Firstname}'")
     write.write("\n")
     write.write(f"LastName = '{Lastname}'")
@@ -70,9 +70,9 @@ cursor = cnx.cursor()
 print("Creating and Inserting to Database . . .")
 
 # MySQL Stuff
-cursor.execute('DROP DATABASE Amir')
-cursor.execute('CREATE DATABASE Amir')
-cursor.execute('USE Amir')
+cursor.execute('DROP DATABASE Rachel')
+cursor.execute('CREATE DATABASE Rachel')
+cursor.execute('USE Rachel')
 cursor.execute('CREATE TABLE Data (Firstname TEXT , Lastname TEXT , Age TEXT , Username TEXT , Password TEXT)')
 cursor.execute(f"INSERT INTO Data VALUES ('{Firstname}' , '{Lastname}' , '{Age}' , '{Username}' , '{Password}')")
 
