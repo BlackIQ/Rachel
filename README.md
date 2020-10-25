@@ -72,7 +72,8 @@
 		</code>
 		<hr>
 		<p>There is just a person who had contributed on me !</p>
-		<p>Many thanks from <b><a href="https://github.com/erfansaberi">Erfan Saberi</a></b> &hearts; !</p>
+		<p>Many thanks from <b><a href="https://github.com/erfansaberi">Erfan Saberi</a></b> &hearts; for the idea !</p>
+		<p>Many thanks from <b><a href="github.com/manijamali2003">Mani Jamali</a></b> for help in Rachel's talking !</p>
 		<p>Contribute on me !</p>
 	</body>
 </html>
