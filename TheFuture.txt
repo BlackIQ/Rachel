@@ -1,0 +1,9 @@
+Modules :
+    termcolor
+
+Apps :
+    play music
+    wifi controller
+
+Options :
+    Talk

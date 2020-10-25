@@ -1,12 +1,21 @@
+"""
+    Rachel's Setup written by Amirhossein Mohammadi & Erfan Saberi
+    github.com/ErfanSaberi
+    github.com/BlackIQ/Rachel
+
+    Version -> not available
+"""
+
 # Import Brain
 from Core import *
+import Data
 
 # Start
 start()
 
 while True:
 
-    q = input(f'What can I do for you {config.firstname} ? ')
+    q = input(f'What can I do for you {Data.FirstName} ? ')
     if not q:
         pass
     # { ----- Start ----- } Commands
