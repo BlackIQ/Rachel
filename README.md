@@ -7,12 +7,10 @@
 		<p>It's required to have <b>MySQL</b> on your device .</p>
 		<p>The are some Python Modules you need to install . You can see them <a href="https://github.com/BlackIQ/Rachel/blob/master/req.txt">Here</a> .</p>
 		<p>There are some steps before running !</p>
-		<ul type="circle">
-		    <li>Install packages</li>
-		    <li>Configure MySQL</li>
-		    <li>Install py modules</li>
-		    <li>Run setup.py</li>
-		    <li>Run Rachel.py</li>
+		<ul>
+		    <li><a href="https://github.com/BlackIQ/Rachel#packages-need-to-be-install-debian-">Install packages</a></li>
+		    <li><a href="https://github.com/BlackIQ/Rachel#mysql-configuration-">Configure MySQL</a></li>
+		    <li><a href="https://github.com/BlackIQ/Rachel#how-to-run-">Clone & install requirements & Run Rachel</a></li>
 		</ul>
 		<hr>
 		<h3>Packages need to be install (debian) :</h3>
