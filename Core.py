@@ -22,7 +22,7 @@ def start():
         f'Hi Honey !'
     ]
     print(random.choice(start_list))
-    print(f'Today is : (', datetime.now().date().strftime("%Y , %m , %d"), f') {username}')
+    print(f'Today is : (', strftime("%Y , %m , %d" , localtime()), f') {username}')
 
 def clear() :
     os.system("clear")
@@ -80,7 +80,7 @@ def Time():
         gmt = strftime("%H : %M : %S", gmtime())
         print(f'Now is : (', gmt, ') {username}')
     if 'i' in ask_time:
-        i_time = datetime.now().time().strftime("%H : %M : %S")
+        i_time = strftime("%Y , %m , %d" , localtime())
         print(f'Now is : (', i_time, ') {username}')
 
 def search_in_net(text):
