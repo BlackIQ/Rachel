@@ -7,3 +7,7 @@ Apps :
 
 Options :
     Talk
+
+Setup :
+    setup.ui -> checked !
+    GUI setup
