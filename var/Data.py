@@ -12,8 +12,8 @@
 from libabr.control import read_record
 
 # Read From database
-UserName = read_record('username' , 'database')
-firstname = read_record('firstname' , 'database')
-lastname = read_record('lastname' , 'database')
-email = read_record('email' , 'database')
-phone = read_record('phone' , 'database')
+UserName = read_record('username' , 'var/database')
+firstname = read_record('firstname' , 'var/database')
+lastname = read_record('lastname' , 'var/database')
+email = read_record('email' , 'var/database')
+phone = read_record('phone' , 'var/database')
