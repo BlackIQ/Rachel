@@ -19,7 +19,7 @@ from time import *
 # Import Text Libs
 import random
 
-from Data import *
+from var.Data import *
 
 # Functions
 def start():

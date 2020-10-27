@@ -12,9 +12,11 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
+
 import sys , platform
 from pathlib import Path
-from pyabr_extensions import control
+
+from libabr import control
 
 ## Support in Pyabr and other os ##
 class MainApp (QWizard):
@@ -51,11 +53,11 @@ class MainApp (QWizard):
                 add_to_path = False
 
             ## Write Datas ##
-            control.write_record('username',username,'database')
-            control.write_record('firstname', firstname, 'database')
-            control.write_record('lastname', lastname, 'database')
-            control.write_record('email', email, 'database')
-            control.write_record('phone', phone, 'database')
+            control.write_record('username',username,'var/database')
+            control.write_record('firstname', firstname, 'var/database')
+            control.write_record('lastname', lastname, 'var/database')
+            control.write_record('email', email, 'var/database')
+            control.write_record('phone', phone, 'var/database')
 
     def __init__(self,ports):
         super(MainApp, self).__init__()

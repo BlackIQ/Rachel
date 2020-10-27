@@ -10,7 +10,7 @@
 
 # Import Brain
 from Core import *
-from Data import *
+from var.Data import *
 
 try :
     import fdssd
