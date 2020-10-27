@@ -13,7 +13,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
 
-import sys , platform
+import sys , platform, py_compile as pyc,shutil,os
 from pathlib import Path
 
 from libabr import control
@@ -44,20 +44,36 @@ class MainApp (QWizard):
 
             if self.chds.isChecked():
                 desktop_shortcut = True
-            else:
-                desktop_shortcut = False
 
             if self.chpath.isChecked():
-                add_to_path = True
-            else:
-                add_to_path = False
+                file = open ('/usr/bin/Rachel','w')
+                file.write('cd '+location+' && {0} Rachel.pyc'.replace('{0}',sys.executable))
+                file.close()
+
+                os.system('chmod +x /usr/bin/Rachel')
 
             ## Write Datas ##
+            file = open ('var/database','w'); file.close()
             control.write_record('username',username,'var/database')
             control.write_record('firstname', firstname, 'var/database')
             control.write_record('lastname', lastname, 'var/database')
             control.write_record('email', email, 'var/database')
             control.write_record('phone', phone, 'var/database')
+
+            ## create compile files ##
+            os.mkdir('stor')
+            os.mkdir('stor/var')
+            os.mkdir('stor/libabr')
+            pyc.compile('Core.py','stor/Core.pyc')
+            pyc.compile('Rachel.py','stor/Rachel.pyc')
+            pyc.compile('var/Data.py','stor/var/Data.pyc')
+            shutil.copyfile('var/database','stor/var/database')
+            pyc.compile('libabr/control.py','stor/libabr/control.pyc')
+            shutil.make_archive('stor','zip','stor')
+            shutil.rmtree('stor')
+            shutil.unpack_archive('stor.zip',location,'zip')
+            os.remove('stor.zip')
+            os.remove('var/database')
 
     def __init__(self,ports):
         super(MainApp, self).__init__()
