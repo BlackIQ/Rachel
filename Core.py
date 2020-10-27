@@ -1,12 +1,13 @@
 """
-    Rachel's Core written by Erfan Saberi
-    github.com/ErfanSaberi
+    Rachel's Core
 
-    Version -> not available
+    Written by -> Amirhossein Mohammadi & Erfan Saberi
+    github.com/BlackIQ
+    github.com/erfansaberi
+
+    Rachel's Version -> 0.0.1
+    Core's  Version  -> 0.0.1
 """
-
-# Import main DATA
-import Data
 
 # Import System Libs
 import os
@@ -18,38 +19,40 @@ from time import *
 # Import Text Libs
 import random
 
+from Data import *
+
 # Functions
 def start():
     start_list = [
-        f'Welcome back {Data.UserName} !',
-        f'Hi {Data.UserName} !',
-        f'Hello {Data.UserName} ! I missed U :)'
+        f'Welcome back {UserName} !',
+        f'Hi {UserName} !',
+        f'Hello {UserName} ! I missed U :)'
         f'Hi Honey !'
     ]
     print(random.choice(start_list))
-    print(f'Today is : (', strftime("%Y , %m , %d" , localtime()), f') {Data.UserName}')
+    print(f'Today is : (', strftime("%Y , %m , %d" , localtime()), f') {UserName}')
 
 def clear() :
     os.system("clear")
 
 def hello():
     hello_list = [
-        f'Hello {Data.UserName} !',
+        f'Hello {UserName} !',
         'Hi Darline !',
         'Hello my love !' ,
-        f'Welcome Back {Data.UserName} .'
+        f'Welcome Back {UserName} .'
     ]
     print(random.choice(hello_list))
 
 def bye():
     bye_list = [
         'bye sweetie .' ,
-        f'Bye {Data.UserName}'
+        f'Bye {UserName}'
     ]
     print(random.choice(bye_list))
 
 def Goodnight():
-    print(f'Have a Good night {Data.UserName} .')
+    print(f'Have a Good night {UserName} .')
     print('I hope you sleep well !')
 
 def Sleep():
@@ -78,7 +81,6 @@ def Date():
         i_date = strftime("%Y , %m , %d" , localtime())
         print(f'Today is : (', i_date, ') {UserName}')
 
-
 def Time():
     ask_time = input('[gmt] or [i]ran ? ')
 
@@ -87,13 +89,7 @@ def Time():
         print(f'Now is : (', gmt, ') {UserName}')
     if 'i' in ask_time:
         i_time = strftime("%Y , %m , %d" , localtime())
-        print('Now is : (', i_time, f') {Data.UserName}')
-
-def how_am_i() :
-    print("How Are You !?")
-    print(f"You are {Data.firstname} {Data.lastname} .")
-    print(f"With {Data.age} and called by {Data.UserName} !")
-    print("For give me more information , add lines in Data.py")
+        print('Now is : (', i_time, f') {UserName}')
 
 def search_in_net(text):
     results = googlesearch.search(text)

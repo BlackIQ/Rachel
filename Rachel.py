@@ -1,21 +1,28 @@
 """
-    Rachel's Setup written by Amirhossein Mohammadi & Erfan Saberi
-    github.com/ErfanSaberi
-    github.com/BlackIQ/Rachel
+    Rachel
 
-    Version -> not available
+    Written by -> Amirhossein Mohammadi & Erfan Saberi
+    github.com/BlackIQ
+    github.com/erfansaberi
+
+    Rachel's Version -> 0.0.1
 """
 
 # Import Brain
 from Core import *
-import Data
+from Data import *
+
+try :
+    import fdssd
+except :
+    print("Not")
 
 # Start
 start()
 
 while True:
 
-    q = input(f'What can I do for you {Data.FirstName} ? ')
+    q = input(f'What can I do for you {firstname} ? ')
     if not q:
         pass
     # { ----- Start ----- } Commands
@@ -25,9 +32,6 @@ while True:
         hello()
     elif 'clear' in q:
         clear()
-
-    elif "how am I" in q :
-        how_am_i()
 
     # { StarDate } Command
     elif 'stardate' in q:
