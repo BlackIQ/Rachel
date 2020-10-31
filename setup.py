@@ -16,7 +16,7 @@ from PyQt5 import uic
 import sys , platform, py_compile as pyc,shutil,os
 from pathlib import Path
 
-from libabr import control
+from buildlibs import control, pack_archives as pack
 
 ## Support in Pyabr and other os ##
 class MainApp (QWizard):
@@ -47,33 +47,55 @@ class MainApp (QWizard):
 
             if self.chpath.isChecked():
                 file = open ('/usr/bin/Rachel','w')
-                file.write('cd '+location+' && {0} Rachel.pyc'.replace('{0}',sys.executable))
+                file.write('cd '+location+' && {0} rachel.pyc'.replace('{0}',sys.executable))
                 file.close()
 
                 os.system('chmod +x /usr/bin/Rachel')
 
             ## Write Datas ##
-            file = open ('var/database','w'); file.close()
-            control.write_record('username',username,'var/database')
-            control.write_record('firstname', firstname, 'var/database')
-            control.write_record('lastname', lastname, 'var/database')
-            control.write_record('email', email, 'var/database')
-            control.write_record('phone', phone, 'var/database')
+            control.write_record('username',username,'packs/rachel/data/etc/rachel')
+            control.write_record('firstname', firstname, 'packs/rachel/data/etc/rachel')
+            control.write_record('lastname', lastname, 'packs/rachel/data/etc/rachel')
+            control.write_record('email', email, 'packs/rachel/data/etc/rachel')
+            control.write_record('phone', phone, 'packs/rachel/data/etc/rachel')
 
             ## create compile files ##
-            os.mkdir('stor')
-            os.mkdir('stor/var')
-            os.mkdir('stor/libabr')
-            pyc.compile('Core.py','stor/Core.pyc')
-            pyc.compile('Rachel.py','stor/Rachel.pyc')
-            pyc.compile('var/Data.py','stor/var/Data.pyc')
-            shutil.copyfile('var/database','stor/var/database')
-            pyc.compile('libabr/control.py','stor/libabr/control.pyc')
-            shutil.make_archive('stor','zip','stor')
-            shutil.rmtree('stor')
-            shutil.unpack_archive('stor.zip',location,'zip')
-            os.remove('stor.zip')
-            os.remove('var/database')
+            ## pre build ##
+            if os.path.isdir("stor"): shutil.rmtree("stor")
+
+            if not os.path.isdir("app"):
+                os.mkdir("app")
+                os.mkdir("app/cache")
+                os.mkdir("app/cache/archives")
+                os.mkdir("app/cache/archives/data")
+                os.mkdir("app/cache/archives/control")
+                os.mkdir("app/cache/archives/code")
+                os.mkdir("app/cache/archives/build")
+                os.mkdir("app/cache/gets")
+
+            if not os.path.isdir("stor"):
+                os.mkdir("stor")
+                os.mkdir("stor/app")
+                os.mkdir("stor/app/packages")
+
+            if not os.path.isdir("build-packs"): os.mkdir("build-packs")
+
+            pack.install()
+            shutil.copyfile('stor/usr/app/rachel.pyc', 'stor/rachel.pyc')
+
+            shutil.make_archive('rachel', 'zip', 'stor')
+
+            # clean #
+            if os.path.isdir('app'): shutil.rmtree('app')
+            if os.path.isdir('build-packs'): shutil.rmtree('build-packs')
+            if os.path.isdir('stor'): shutil.rmtree('stor')
+
+
+            # unpack archive #
+            shutil.unpack_archive('rachel.zip',self.leLocation.text(),'zip')
+
+            if os.path.isfile('rachel.zip'): os.remove('rachel.zip')
+
 
     def __init__(self,ports):
         super(MainApp, self).__init__()
@@ -86,7 +108,7 @@ class MainApp (QWizard):
         self.External = ports[4]
 
         ## UI Setting up ##
-        uic.loadUi('etc/setup.ui',self)
+        uic.loadUi('setup.ui',self)
 
         ## Find all objects ##
         self.leLocation = self.findChild(QLineEdit, 'leLocation')

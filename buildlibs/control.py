@@ -8,7 +8,6 @@
 #  Git source:              github.com/manijamali2003/pyabr
 #
 #######################################################################################
-
 import os
 
 def read_record (name,filename):
