@@ -22,74 +22,84 @@ import random
 from libra.data import *
 
 # Functions
-def start():
-    start_list = [
-        f'Welcome back {UserName} !',
-        f'Hi {UserName} !',
-        f'Hello {UserName} ! I missed U :)'
-        f'Hi Honey !'
-    ]
-    print(random.choice(start_list))
-    print(f'Today is : (', strftime("%Y , %m , %d" , localtime()), f') {UserName}')
+
+class dt() :
+    def Date(self):
+        ask_date = input('[n]ational Or [i]ran ? ')
+
+        if 'n' in ask_date:
+            n_date = strftime("%Y-%m-%d", localtime())
+            print(f'Today is : (', n_date, ') {UserName}')
+        if 'i' in ask_date:
+            i_date = strftime("%Y , %m , %d", localtime())
+            print(f'Today is : (', i_date, ') {UserName}')
+
+    def Time(self):
+        ask_time = input('[gmt] or [i]ran ? ')
+
+        if 'gmt' in ask_time:
+            gmt = strftime("%H : %M : %S", gmtime())
+            print(f'Now is : (', gmt, ') {UserName}')
+        if 'i' in ask_time:
+            i_time = strftime("%Y , %m , %d", localtime())
+            print('Now is : (', i_time, f') {UserName}')
+
+
+class app() :
+    def uninstall(self):
+        print("Are you sure for uninstalling ?")
+        a = input("[Y]es , [n]o : ")
+        if a == "Y":
+            print("I ask one more time !")
+            aa = input("[Y]es , [n]o : ")
+            if aa == "Y":
+                os.system('sudo rm -rf /home/amir/Rachel/ /usr/bin/Rachel && exit')
+            else:
+                print('Wow !')
+        else:
+            print("Wow !")
+
+    def version(self) :
+        print('Rachel is on 0.0.3 !')
+
+class Hi() :
+    def start(self):
+        start_list = [
+            f'Welcome back {UserName} !',
+            f'Hi {UserName} !',
+            f'Hello {UserName} ! I missed U :)'
+            f'Hi Honey !'
+        ]
+        print(random.choice(start_list))
+        print(f'Today is : (', strftime("%Y , %m , %d", localtime()), f') {UserName}')
+
+    def hello(self):
+        hello_list = [
+            f'Hello {UserName} !',
+            'Hi Darline !',
+            'Hello my love !',
+            f'Welcome Back {UserName} .'
+        ]
+        print(random.choice(hello_list))
+
+class Bye() :
+    def bye(self):
+        bye_list = [
+            'bye sweetie .',
+            f'Bye {UserName}'
+        ]
+        print(random.choice(bye_list))
+
+    def Goodnight(self):
+        print(f'Have a Good night {UserName} .')
+        print('I hope you sleep well !')
+
+    def Sleep(self):
+        print('Oh , OK !')
+        print('Goodbye Pal !')
 
 def clear() :
     os.system("clear")
-
-def hello():
-    hello_list = [
-        f'Hello {UserName} !',
-        'Hi Darline !',
-        'Hello my love !' ,
-        f'Welcome Back {UserName} .'
-    ]
-    print(random.choice(hello_list))
-
-def bye():
-    bye_list = [
-        'bye sweetie .' ,
-        f'Bye {UserName}'
-    ]
-    print(random.choice(bye_list))
-
-def Goodnight():
-    print(f'Have a Good night {UserName} .')
-    print('I hope you sleep well !')
-
-def Sleep():
-    print('Oh , OK !')
-    print('Goodbye Pal !')
-
-def problem():
-    print('Oh sorry , Some thing went wrong :-(')
-    print('Please try again !')
-
-def StarDate():
-    YY = int(strftime("%Y", localtime())) - 1900
-    MM = strftime("%m", localtime())
-    DD = strftime("%d", localtime())
-    print("Rachels Log , Stardate (", YY, MM, ".", DD, ") !")
-
-def Date():
-    ask_date = input('[s]tardate Or [n]ational Or [i]ran ? ')
-
-    if 's' in ask_date:
-        StarDate()
-    if 'n' in ask_date:
-        n_date = strftime("%Y-%m-%d", localtime())
-        print(f'Today is : (', n_date, ') {UserName}')
-    if 'i' in ask_date:
-        i_date = strftime("%Y , %m , %d" , localtime())
-        print(f'Today is : (', i_date, ') {UserName}')
-
-def Time():
-    ask_time = input('[gmt] or [i]ran ? ')
-
-    if 'gmt' in ask_time:
-        gmt = strftime("%H : %M : %S", gmtime())
-        print(f'Now is : (', gmt, ') {UserName}')
-    if 'i' in ask_time:
-        i_time = strftime("%Y , %m , %d" , localtime())
-        print('Now is : (', i_time, f') {UserName}')
 
 def search_in_net(text):
     results = googlesearch.search(text)

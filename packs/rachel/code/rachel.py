@@ -16,11 +16,6 @@ sys.path.append('usr/app')
 from libra.core import *
 from libra.data import *
 
-try :
-    import fdssd
-except :
-    print("Not")
-
 # Start
 start()
 
@@ -30,6 +25,10 @@ while True:
     if not q:
         pass
     # { ----- Start ----- } Commands
+    elif 'uninstall' in q :
+        uninstall()
+    elif 'version' in q :
+        version()
     elif 'hello' in q:
         hello()
     elif 'hi' in q:
