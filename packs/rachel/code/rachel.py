@@ -16,9 +16,6 @@ sys.path.append('usr/app')
 from libra.core import *
 from libra.data import *
 
-# Start
-start()
-
 while True:
 
     q = input(f'What can I do for you {firstname} ? ')

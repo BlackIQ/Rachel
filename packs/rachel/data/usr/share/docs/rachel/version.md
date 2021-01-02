@@ -1,7 +1,7 @@
 <h1>Rachel</h1>
 
-<p>Version    : <b>0.0.2</b></p>
-<p>Build Date : <b>1399-08-06</b></p>
+<p>Version    : <b>0.1.0</b></p>
+<p>Build Date : <b>2021-1-3</b></p>
 
 <p>Developers :</p>
 <p><a href="https://github.com/BlackIQ">Amirhossein Mohammadi</a></p>
