@@ -1,11 +1,11 @@
 <html>
 	<body>
 		<h1>Hey there , I am Rachel !</h1>
-		<h5>Version 0.0.1 :)</h5>
+		<h5>Version 0.1.0 :)</h5>
 		<br>
 		<p>Hi , I am an assistant written in <b>Python !</b></p>
 		<p>I can't do many difficult stuff , but I am a <b>lovely</b> Assistant !</p>
-		<p>At first official version ( 0.0.1 ) , there is no MySQL !</p>
+		<p>At first official version ( 0.1.0 ) , there is no MySQL !</p>
 		<p>In this case we use <b><a href="https://github.com/manijamali2003/pyabr">PyAbr</a></b> Database Extension named Control .</p>
 		<p>There are some Python Modules you need to install . You can see them <a href="https://github.com/BlackIQ/Rachel/blob/master/req.txt">Here</a> .</p>
 		<p>There are some steps before running !</p>
