@@ -32,7 +32,7 @@
 		</code>
 		<br>
 		<code>
-		    $ pip3 install -r req.txt && python3 setup.py
+		    $ pip3 install -r requirements.txt && python3 setup.py
 		</code>
 		<br>
 		<code>
