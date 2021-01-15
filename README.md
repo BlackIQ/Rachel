@@ -24,7 +24,7 @@ First you have to install linux packages :
 
 > Use your own package manager .
  
-now clone install requirements .
+now clone and install requirements .
 
 ```
 git clone https://github.com/BlackIQ/Rachel && cd Rachel
@@ -66,6 +66,6 @@ You shoud change Core and Ashley . So , for test ( debug ) run this command :
 
 ### After all , I love guys that had work on me .
 
-<p>Many thanks from <b><a href="https://github.com/erfansaberi">Erfan Saberi</a></b> &hearts; for the idea !</p>
-<p>Many thanks from <b><a href="https://github.com/manijamali2003">Mani Jamali</a></b> for help in Rachel's Setup and Playform !</p>
-<p>Many thanks from <b><a href="https://github.com/Annahita2004"></a></b> for her nice ideas !</p>
+<p>Many thanks from <b><a href="https://github.com/erfansaberi">Erfan Saberi</a></b> ❤️ for the idea !</p>
+<p>Many thanks from <b><a href="https://github.com/manijamali2003">Mani Jamali</a></b> 🌟 for help in Rachel's Setup and Playform !</p>
+<p>Many thanks from <b><a href="https://github.com/Annahita2004">Anahita</a></b> 💖 for her nice ideas !</p>
