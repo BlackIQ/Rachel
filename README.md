@@ -66,6 +66,6 @@ You shoud change Core and Ashley . So , for test ( debug ) run this command :
 
 ### After all , I love guys that had work on me .
 
-<p>Many thanks from <b><a href="https://github.com/erfansaberi">Erfan Saberi</a></b> ❤️ for the idea !</p>
-<p>Many thanks from <b><a href="https://github.com/manijamali2003">Mani Jamali</a></b> 🌟 for help in Rachel's Setup and Playform !</p>
+<p>Many thanks from <b><a href="https://github.com/erfansaberi">Erfan Saberi</a></b> ❤️ for most updates and dataset !</p>
+<p>Many thanks from <b><a href="https://github.com/manijamali2003">Mani Jamali</a></b> 🌟 for help in Rachel's Setup and Platform !</p>
 <p>Many thanks from <b><a href="https://github.com/Annahita2004">Anahita</a></b> 💖 for her nice ideas !</p>
