@@ -36,7 +36,7 @@ googleapis-common-protos==1.52.0
 gpg==1.15.0
 gufw==20.4.0
 html5lib==1.1
-httplib2==0.18.1
+httplib2==0.19.0
 idna==2.10
 ipython==7.19.0
 ipython-genutils==0.1.0
