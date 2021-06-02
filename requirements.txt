@@ -116,7 +116,7 @@ tzlocal==2.1
 ueberzug==18.1.6
 ufw==0.36
 uritemplate==3.0.1
-urllib3==1.25.10
+urllib3==1.26.5
 wcwidth==0.2.5
 webencodings==0.5.1
 websocket-client==0.57.0
