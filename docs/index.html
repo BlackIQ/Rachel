@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rachel</title>
     <link type="text/css" rel="stylesheet" href="https://BlackIQ.github.io/Rachel/static/style.css">
+<!--    <link type="text/css" rel="stylesheet" href="static/style.css">-->
     <script src="https://kit.fontawesome.com/4a679d8ec0.js" crossorigin="anonymous"></script>
 </head>
 <body class="light" id="all">
@@ -53,6 +54,24 @@
             <div class="codes">
                 sudo python3 setup.py
             </div>
+        </div>
+        <br>
+        <div class="post">
+            <h3>How to develop and debug Rachel?</h3>
+            <hr>
+            <p>Well Rachel debug with a <a href="https://github.com/BlackIQ/Rachel/blob/master/debug.py">debug.py</a> file.</p>
+            <p>There are 2 files that Rachel works with them.</p>
+            <ul>
+                <li><a href="https://github.com/BlackIQ/Rachel/blob/master/packs/rachel/code/core.py">Core file</a></li>
+                <li><a href="https://github.com/BlackIQ/Rachel/blob/master/packs/rachel/code/rachel.py">Commands file</a></li>
+            </ul>
+            <p><b>Core file</b> has all classes and functions. Adding new feature or things is in code.</p>
+            <p>But in <b>Commands file</b> we define that whenever with class of function should run.</p>
+            <p>For example you add new feature and it is time for debug. How should you debug it?</p>
+            <div class="codes">
+                python3 debug.py
+            </div>
+            <p>Now you debugged Rachel!</p>
         </div>
     </div>
     <script src="https://BlackIQ.github.io/Rachel/static/script.js"></script>
