@@ -118,9 +118,9 @@ In [rchel](https://github.com/BlackIQ/Rachel/tree/master/rachel) we have 3 dirs.
   - [libabr.py](https://github.com/BlackIQ/Rachel/tree/master/pack/code/libabr.py) : PyAbr main library.
   - [rachel.py](https://github.com/BlackIQ/Rachel/tree/master/pack/code/rachel.py) : Rachel commands handler.
 - [control](https://github.com/BlackIQ/Rachel/tree/master/pack/control) directory.
-  - [pack](https://github.com/BlackIQ/Rachel/tree/master/pack/control/compile) : Compiling data.
-  - `list`: List file.
-  - `manifest` : Main manifest file.
+  - [compile](https://github.com/BlackIQ/Rachel/tree/master/pack/control/compile) : Compiling data.
+  - [list](https://github.com/BlackIQ/Rachel/tree/master/pack/control/list): List file.
+  - [manifest](https://github.com/BlackIQ/Rachel/tree/master/pack/control/manifest) : Main manifest file.
 - `data` directory.
   - `etc` directory.
     - `rachel` : This file includes Rachel and User data.
