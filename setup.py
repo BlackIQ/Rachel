@@ -27,14 +27,14 @@ class MainApp(QWizard):
     def Finish(self):
         # Get all configure information
         if not (
-                self.leLocation.text() == None and
-                self.leUsername.text() == None and
-                self.leFirstName.text() == None and
-                self.leLastName.text() == None and
-                self.leEmail.text() == None and
-                self.lePhone.text() == None and
-                self.chpath.currentText() == None and
-                self.chds.currentText() == None
+                self.leLocation.text() is None and
+                self.leUsername.text() is None and
+                self.leFirstName.text() is None and
+                self.leLastName.text() is None and
+                self.leEmail.text() is None and
+                self.lePhone.text() is None and
+                self.chpath.currentText() is None and
+                self.chds.currentText() is None
         ):
             location = self.leLocation.text()
             username = self.leUsername.text()
@@ -61,8 +61,10 @@ class MainApp(QWizard):
             control.write_record('phone', phone, 'packs/rachel/data/etc/rachel')
 
             # Create compile files
+
             # Pre build
-            if os.path.isdir("stor"): shutil.rmtree("stor")
+            if os.path.isdir("stor"):
+                shutil.rmtree("stor")
 
             if not os.path.isdir("app"):
                 os.mkdir("app")
@@ -79,7 +81,8 @@ class MainApp(QWizard):
                 os.mkdir("stor/app")
                 os.mkdir("stor/app/packages")
 
-            if not os.path.isdir("build-packs"): os.mkdir("build-packs")
+            if not os.path.isdir("build-packs"):
+                os.mkdir("build-packs")
 
             pack.install()
             shutil.copyfile('stor/usr/app/rachel.pyc', 'stor/rachel.pyc')
@@ -87,14 +90,18 @@ class MainApp(QWizard):
             shutil.make_archive('rachel', 'zip', 'stor')
 
             # Clean
-            if os.path.isdir('app'): shutil.rmtree('app')
-            if os.path.isdir('build-packs'): shutil.rmtree('build-packs')
-            if os.path.isdir('stor'): shutil.rmtree('stor')
+            if os.path.isdir('app'):
+                shutil.rmtree('app')
+            if os.path.isdir('build-packs'):
+                shutil.rmtree('build-packs')
+            if os.path.isdir('stor'):
+                shutil.rmtree('stor')
 
             # Unpack archive
             shutil.unpack_archive('rachel.zip', self.leLocation.text(), 'zip')
 
-            if os.path.isfile('rachel.zip'): os.remove('rachel.zip')
+            if os.path.isfile('rachel.zip'):
+                os.remove('rachel.zip')
 
     def __init__(self, ports):
         super(MainApp, self).__init__()
@@ -107,7 +114,7 @@ class MainApp(QWizard):
         self.External = ports[4]
 
         # UI Setting up
-        uic.loadUi('setup.ui', self)
+        uic.loadUi('buildlibs/ui/setup.ui', self)
 
         # Find all objects
         self.leLocation = self.findChild(QLineEdit, 'leLocation')
