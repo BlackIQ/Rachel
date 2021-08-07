@@ -141,6 +141,15 @@ In `rachel` we have 3 dirs. Let's go for details.
           - `LICENSE`:
           - `version.md`:
 
+#### Simple files.
+
+- `README.md` : Rachel README.
+- `requirements.txt` : Libraries that Rachel need.
+- `setup.py` : Setup file for installing Rachel.
+- `debug.db` : PyAbr database control system file.
+- `debug.py` : Rachel debugging file.
+- `LICENSE` : Rachel License under GPL-3
+
 ---
 
 ### After all , I love guys that had worked on Rachel
