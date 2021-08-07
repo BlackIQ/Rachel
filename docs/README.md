@@ -121,13 +121,13 @@ In [rchel](https://github.com/BlackIQ/Rachel/tree/master/rachel) we have 3 dirs.
   - [compile](https://github.com/BlackIQ/Rachel/tree/master/pack/control/compile) : Compiling data.
   - [list](https://github.com/BlackIQ/Rachel/tree/master/pack/control/list): List file.
   - [manifest](https://github.com/BlackIQ/Rachel/tree/master/pack/control/manifest) : Main manifest file.
-- `data` directory.
-  - `etc` directory.
-    - `rachel` : This file includes Rachel and User data.
-  - `usr` directory.
-    - `share` directory.
-      - `docs` directory.
-        - `rachel` directory.
+- [data](https://github.com/BlackIQ/Rachel/tree/master/pack/control/data) directory.
+  - [etc](https://github.com/BlackIQ/Rachel/tree/master/pack/control/data/etc) directory.
+    - [rachel](https://github.com/BlackIQ/Rachel/tree/master/pack/control/data/etc/rachel) : This file includes Rachel and User data.
+  - [usr](https://github.com/BlackIQ/Rachel/tree/master/pack/control/data/usr) directory.
+    - [share](https://github.com/BlackIQ/Rachel/tree/master/pack/control/usr/share) directory.
+      - [docs](https://github.com/BlackIQ/Rachel/tree/master/pack/control/usr/share/docs) directory.
+        - [rachel](https://github.com/BlackIQ/Rachel/tree/master/pack/control/usr/share/docs/rachel) directory.
           - `AUTHERS` : Developers.
           - `LICENSE` : License name.
           - `version.md` : Version and more information about it.
