@@ -112,14 +112,14 @@ Rachel
 
 Well, As you can see, here we have a nice architect!
 
-**`buildlibs` directory.**
+**[Buildlibs](https://github.com/BlackIQ/Rachel/tree/master/buildlibs) directory.**
 
 Here we have control and archive manager files. And setup ui file.
 
-- `control.py` : control file is one of pyabr database control files that Rachel uses it too.
-- `pack_archives.py` : pack_archives.py is again one of pyabr archive manager that Rachel uses too.
-- `ui` directory:
-  - `setup.ui` : There is a dir named `ui` and in dir there is ui file for setup.
+- [control.py](https://github.com/BlackIQ/Rachel/tree/master/buildlibs/pack_archives.py) : control file is one of pyabr database control files that Rachel uses it too.
+- [pack_archives.py](https://github.com/BlackIQ/Rachel/tree/master/buildlibs/pack_archives.py) : pack_archives.py is again one of pyabr archive manager that Rachel uses too.
+- [ui](https://github.com/BlackIQ/Rachel/tree/master/buildlibs/ui) directory:
+  - [setup.ui](https://github.com/BlackIQ/Rachel/tree/master/buildlibs/ui/setup.ui) : There is a dir named `ui` and in dir there is ui file for setup.
 
 **`packs` directory.**
 
