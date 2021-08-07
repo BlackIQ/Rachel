@@ -1,3 +1,49 @@
-.light {
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+/* Main Style */
+.main {
     padding: 5%;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/* Light Style */
+.light {
+    background: white;
+    color: black;
+}
+.light .toggle {
+    border: solid 1px white;
+    background: white;
+    color: black;
+}
+.light .post {
+    padding: 2%;
+    background: #e6e6e6;
+}
+.light .codes {
+    background: #f6f6f6;
+    padding: 2%;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* Dark Style */
+.dark {
+    background: black;
+    color: white;
+}
+.dark .toggle {
+    border: solid 1px black;
+    background: black;
+    color: white;
+}
+.dark .post {
+    padding: 2%;
+    background: #222222;
+}
+.dark .codes {
+    background: #333333;
+    padding: 2%;
+    font-family: 'Roboto Mono', monospace;
 }
