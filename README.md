@@ -121,18 +121,18 @@ Here we have control and archive manager files. And setup ui file.
 - [ui](https://github.com/BlackIQ/Rachel/tree/master/buildlibs/ui) directory:
   - [setup.ui](https://github.com/BlackIQ/Rachel/tree/master/buildlibs/ui/setup.ui) : There is a dir named `ui` and in dir there is ui file for setup.
 
-**`packs` directory.**
+** [pack](https://github.com/BlackIQ/Rachel/tree/master/pack) directory.**
 
-Main dir is `pack` that Rachel is located there. As you can see, there is `rachel` dir inside if `pack`.
-In `rachel` we have 3 dirs. Let's go for details.
+Main dir is [pack](https://github.com/BlackIQ/Rachel/tree/master/pack) that Rachel is located there. As you can see, there is [rachel](https://github.com/BlackIQ/Rachel/tree/master/pack/rachel) dir inside if [pack](https://github.com/BlackIQ/Rachel/tree/master/pack).
+In [rchel](https://github.com/BlackIQ/Rachel/tree/master/rachel) we have 3 dirs. Let's go for details.
 
-- `code` directory.
-  - `core.py` : Main functions and classes are all here.
-  - `data.py` : Getting data and transfer data with PyAbr files.
-  - `libabr.py` : PyAbr main library.
-  - `rachel.py` : Rachel commands handler.
-- `control` directory.
-  - `compile` : Compiling data.
+- [code](https://github.com/BlackIQ/Rachel/tree/master/pack/code) directory.
+  - [core.py](https://github.com/BlackIQ/Rachel/tree/master/pack/code/core.py) : Main functions and classes are all here.
+  - [data.py](https://github.com/BlackIQ/Rachel/tree/master/pack/code/data.py) : Getting data and transfer data with PyAbr files.
+  - [libabr.py](https://github.com/BlackIQ/Rachel/tree/master/pack/code/libabr.py) : PyAbr main library.
+  - [rachel.py](https://github.com/BlackIQ/Rachel/tree/master/pack/code/rachel.py) : Rachel commands handler.
+- [control](https://github.com/BlackIQ/Rachel/tree/master/pack/control) directory.
+  - [pack](https://github.com/BlackIQ/Rachel/tree/master/pack/control/compile) : Compiling data.
   - `list`: List file.
   - `manifest` : Main manifest file.
 - `data` directory.
