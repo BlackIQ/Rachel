@@ -122,24 +122,24 @@ Main dir is `pack` that Rachel is located there. As you can see, there is `rache
 In `rachel` we have 3 dirs. Let's go for details.
 
 - `code` directory.
-  - `core.py` : 
-  - `data.py` : 
-  - `libabr.py` : 
-  - `rachel.py` :
+  - `core.py` : Main functions and classes are all here.
+  - `data.py` : Getting data and transfer data with PyAbr files.
+  - `libabr.py` : PyAbr main library.
+  - `rachel.py` : Rachel commands handler.
 - `control` directory.
-  - `compile` : 
-  - `list`: 
-  - `manifest` : 
+  - `compile` : Compiling data.
+  - `list`: List file.
+  - `manifest` : Main manifest file.
 - `data` directory.
   - `etc` directory.
-    - `rachel` :
+    - `rachel` : This file includes Rachel and User data.
   - `usr` directory.
     - `share` directory.
       - `docs` directory.
         - `rachel` directory.
-          - `AUTHERS` :
-          - `LICENSE` :
-          - `version.md` :
+          - `AUTHERS` : Developers.
+          - `LICENSE` : License name.
+          - `version.md` : Version and more information about it.
 
 #### Simple files.
 
