@@ -13,8 +13,12 @@ Anyway, I can't do difficult stuff, but I am a lovely Assistant!
 There is no MySQL in This version :)
 In this case we use [pyabr](https://github.com/manijamali2003/pyabr) Database Extension named **Control**.
 
-There are some Python Modules you need to install . You can see
-them [here](https://github.com/BlackIQ/Rachel/blob/master/requirements.txt).
+README map:
+- Installation
+- Run
+- Debug
+- Software Architect
+- Thanks from developers.
 
 ---
 
@@ -110,13 +114,16 @@ Well, As you can see, here we have a nice architect!
 
 #### `buildlibs` directory.
 
-In `buildlibs` we have 2 Python files and one directory for ui file.
+**`buildlibs` directory.**
+
+Here we have control and archive manager files. And setup ui file.
 
 - `control.py` : control file is one of pyabr database control files that Rachel uses it too.
 - `pack_archives.py` : pack_archives.py is again one of pyabr archive manager that Rachel uses too.
-- `setup.ui` : There is a dir named `ui` and in dir there is ui file for setup.
+- `ui` directory:
+  - `setup.ui` : There is a dir named `ui` and in dir there is ui file for setup.
 
-#### `packs` directory.
+**`packs` directory.**
 
 Main dir is `pack` that Rachel is located there. As you can see, there is `rachel` dir inside if `pack`.
 In `rachel` we have 3 dirs. Let's go for details.
@@ -141,7 +148,7 @@ In `rachel` we have 3 dirs. Let's go for details.
           - `LICENSE` : License name.
           - `version.md` : Version and more information about it.
 
-#### Simple files.
+**Single files.**
 
 - `README.md` : Rachel README.
 - `requirements.txt` : Libraries that Rachel need.
