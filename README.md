@@ -1,71 +1,70 @@
-<img src="https://img.shields.io/github/license/BlackIQ/Ashley?style=flat-square" alt="License"/>
-<img src="https://img.shields.io/github/languages/code-size/BlackIQ/Ashley?style=flat-square" alt="Code Size"/>
+[![license](https://img.shields.io/github/license/BlackIQ/Ashley?style=flat-square)](https://github.com/BlackIQ)
+
+[![code-size](https://img.shields.io/github/languages/code-size/BlackIQ/Ashley?style=flat-square)](https://github.com/BlackIQ)
 
 # Hey there ! I am Rachel :)
-> An assistant written in `Python` Version `0.1.0` !
-<hr>
+An assistant written in **Python**!
 
-Anyway , I can't do difficult stuff , but I am a lovely Assistant !
-> There is no MySQL in This version :)
-> \
-> In this case we use <a href="https://github.com/manijamali2003/pyabr">PyAbr</a> Database Extension named Control .
+---
+
+Anyway, I can't do difficult stuff, but I am a lovely Assistant!
+
+There is no MySQL in This version :)
+In this case we use [pyabr](https://github.com/manijamali2003/pyabr) Database Extension named **Control**.
 
 There are some Python Modules you need to install .
-You can see them <a href="https://github.com/BlackIQ/Rachel/blob/master/requirements.txt">Here</a> .
+You can see them [here](https://github.com/BlackIQ/Rachel/blob/master/requirements.txt).
 
-> You should install Rachel in your computer and for test just run <a href="https://github.com/BlackIQ/Rachel/blob/master/debug.py">`debug.py`</a>
+---
 
-<hr>
+### Installation
 
-#### So , Lets start
-First you have to install linux packages :
+#### Install packages.
 
-`sudo pacman -S espeak ffmpeg mpg123 git`
-
-> Use your own package manager .
+Things you should have already:
+- Python, Pip
+- espeack, ffmpeg, mpg123
+- git
  
-now clone and install requirements .
+#### Clone and install Rachel requires
 
 ```
 git clone https://github.com/BlackIQ/Rachel && cd Rachel
 pip3 install -r requirements.txt
 ```
 
-Ok , now you can install Rachel .
+#### Install Rachel
 
 ```
-python3 setup.py
+sudo python3 setup.py
 ```
 
-How to run ?
+---
+
+### Run
+
+You can run **Rachel** with command.
 
 ```
 Rachel
 ```
 
-<hr>
+---
 
-#### Important !
+### Debugging
 
-There are 2 main files . Core.py and Rachel.py .
+When you clone and install **Rachel**, you can not run it via `python3 Rachel.py`.
+You have to enter Rachel command. But for **debugging** you should run `debug.py` and it will debug it for you.
 
-Core is in `packs/rachel/code/core.py`
-\
-Rachel is in `packs/rachel/code/rachel.py`
-
-###### Core :
-Everything is in Core . I mean functions .
-###### Rachel
-Rachel file gets commands and run functions from core.py
-
-You shoud change Core and Ashley . So , for test ( debug ) run this command :
+#### How yo debug?
 
 `python3 debug.py`
 
-<hr>
+---
 
-### After all , I love guys that had work on me .
+### After all , I love guys that had worked on Rachel
 
-<p>Many thanks from <b><a href="https://github.com/erfansaberi">Erfan Saberi</a></b> ❤️ for most updates and dataset !</p>
-<p>Many thanks from <b><a href="https://github.com/manijamali2003">Mani Jamali</a></b> 🌟 for help in Rachel's Setup and Platform !</p>
-<p>Many thanks from <b><a href="https://github.com/Annahita2004">Anahita</a></b> 💖 for her nice ideas !</p>
+- [Erfan Saberi](https://github.com/erfansaberi) :heart:, for big new updates and **Hacktoberfest**.
+- [Mani Jamali](https://github.com/manijamali2003) :star:, for new platform and setup. 
+- [Amirmahdi Tafreshi](https://github.com/mr-tafreshi) :pen:, for Rachel packages.
+- [Annahita Mirhosseini](https://github.com/Annahita2004) :sparkles:, for features idea.
