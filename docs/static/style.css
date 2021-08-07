@@ -16,6 +16,9 @@
     background: white;
     color: black;
 }
+.light a {
+    color: blue;
+}
 .light .toggle {
     border: solid 1px white;
     background: white;
@@ -43,6 +46,9 @@
 .dark {
     background: black;
     color: white;
+}
+.dark a {
+    color: red;
 }
 .dark .toggle {
     border: solid 1px black;
