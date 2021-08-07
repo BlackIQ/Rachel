@@ -134,9 +134,9 @@ In [rchel](https://github.com/BlackIQ/Rachel/tree/master/rachel) we have 3 dirs.
 
 **Single files.**
 
-- `README.md` : Rachel README.
-- `requirements.txt` : Libraries that Rachel need.
-- `setup.py` : Setup file for installing Rachel.
-- `debug.db` : PyAbr database control system file.
-- `debug.py` : Rachel debugging file.
-- `LICENSE` : Rachel License under GPL-3
+- [README.md](https://github.com/BlackIQ/Rachel/tree/master/README.md) : Rachel README.
+- [requirements.txt](https://github.com/BlackIQ/Rachel/tree/master/) : Libraries that Rachel need.
+- [setup.py](https://github.com/BlackIQ/Rachel/tree/master/setup.py) : Setup file for installing Rachel.
+- [debug.db](https://github.com/BlackIQ/Rachel/tree/master/debug.db) : PyAbr database control system file.
+- [debug.py](https://github.com/BlackIQ/Rachel/tree/master/debug.py) : Rachel debugging file.
+- [LICENSE](https://github.com/BlackIQ/Rachel/tree/master/LICENSE) : Rachel License under GPL-3
