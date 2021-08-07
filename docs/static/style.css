@@ -6,6 +6,9 @@
     padding: 5%;
     font-family: 'Roboto', sans-serif;
 }
+.right {
+    float: right;
+}
 
 
 /* Light Style */
@@ -16,6 +19,14 @@
 .light .toggle {
     border: solid 1px white;
     background: white;
+    color: black;
+}
+.light .icon {
+    border: solid 1px white;
+    background: white;
+    color: black;
+}
+.light .icon a {
     color: black;
 }
 .light .post {
@@ -36,6 +47,14 @@
 .dark .toggle {
     border: solid 1px black;
     background: black;
+    color: white;
+}
+.dark .icon {
+    border: solid 1px black;
+    background: black;
+    color: white;
+}
+.dark .icon a {
     color: white;
 }
 .dark .post {
