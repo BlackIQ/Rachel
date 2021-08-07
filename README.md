@@ -58,7 +58,9 @@ You have to enter Rachel command. But for **debugging** you should run `debug.py
 
 #### How yo debug?
 
-`python3 debug.py`
+```
+python3 debug.py
+```
 
 ---
 
