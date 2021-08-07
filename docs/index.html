@@ -7,9 +7,49 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rachel</title>
     <link type="text/css" rel="stylesheet" href="static/style.css">
+    <script src="https://kit.fontawesome.com/4a679d8ec0.js" crossorigin="anonymous"></script>
 </head>
 <body class="light" id="all">
-<h1>Hey there, I am Rachel!</h1>
-<p>Simple assistant for you!</p>
+    <div class="main">
+        <h1>Hey there, I am Rachel! <button onclick="toggle()" style="float: right;" value="light" class="toggle" id="mode"><i class="fa fa-moon"></i></button></h1>
+        <p>I can't do so mush hard stuff but, I am lovely!</p>
+        <hr>
+        <h2>Here we go for learn about me.</h2>
+        <br>
+        <div class="post">
+            <h3>How to install Rachel?</h3>
+            <hr>
+            <p>First of all remember that, <b>Rachel can be installed just on linux</b>.</p>
+            <p>Ok, next. You need to have <b>Git, Python, Pip</b> in your system. After, You need to clone repository and after, go for next step.</p>
+            <div class="codes">
+                git clone https://github.com/BlackIQ/Rachel && cd Rachel
+            </div>
+            <p>Now you cloned Rachel and it is time to install it.</p>
+            <p>You have 2 ways.</p>
+            <ol>
+                <li>Create a venv and install it with venv.</li>
+                <li>Install Rachel libs global.</li>
+            </ol>
+            <p>I will show you both of them.</p>
+            <p><b>Install with venv</b></p>
+            <p>There is nothing changes with venv. The reason is that you may don't want x version of y lib.</p>
+            <div class="codes">
+                python3 -m venv venv
+                <br>
+                pip3 install -r requirements.txt
+            </div>
+            <p><b>Installing without venv</b></p>
+            <p>This is a good way but installing with venv is better.</p>
+            <div class="codes">
+                pip3 install -r requirements.txt
+            </div>
+            <p>Ok, now it is time to run setup.</p>
+            <p>As you know, Rachel will be installed in your system, so run setup with <b>sudo command</b>.</p>
+            <div class="codes">
+                sudo python3 setup.py
+            </div>
+        </div>
+    </div>
+    <script src="static/script.js"></script>
 </body>
 </html>
