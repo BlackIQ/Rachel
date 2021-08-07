@@ -3,6 +3,7 @@
 [![code-size](https://img.shields.io/github/languages/code-size/BlackIQ/Ashley?style=flat-square)](https://github.com/BlackIQ)
 
 # Hey there ! I am Rachel :)
+
 An assistant written in **Python**!
 
 ---
@@ -12,8 +13,8 @@ Anyway, I can't do difficult stuff, but I am a lovely Assistant!
 There is no MySQL in This version :)
 In this case we use [pyabr](https://github.com/manijamali2003/pyabr) Database Extension named **Control**.
 
-There are some Python Modules you need to install .
-You can see them [here](https://github.com/BlackIQ/Rachel/blob/master/requirements.txt).
+There are some Python Modules you need to install . You can see
+them [here](https://github.com/BlackIQ/Rachel/blob/master/requirements.txt).
 
 ---
 
@@ -22,10 +23,11 @@ You can see them [here](https://github.com/BlackIQ/Rachel/blob/master/requiremen
 #### Install packages.
 
 Things you should have already:
+
 - Python, Pip
 - espeack, ffmpeg, mpg123
 - git
- 
+
 #### Clone and install Rachel requires
 
 ```
@@ -53,8 +55,8 @@ Rachel
 
 ### Debugging
 
-When you clone and install **Rachel**, you can not run it via `python3 Rachel.py`.
-You have to enter Rachel command. But for **debugging** you should run `debug.py` and it will debug it for you.
+When you clone and install **Rachel**, you can not run it via `python3 Rachel.py`. You have to enter Rachel command. But
+for **debugging** you should run `debug.py` and it will debug it for you.
 
 #### How yo debug?
 
@@ -64,9 +66,61 @@ python3 debug.py
 
 ---
 
+### Software Architecture
+
+```
+Rachel
+├── buildlibs
+│   ├── control.py
+│   ├── pack_archives.py
+│   └── ui
+│       └── setup.ui
+├── packs
+│   └── rachel
+│       ├── code
+│       │   ├── core.py
+│       │   ├── data.py
+│       │   ├── libabr.py
+│       │   └── rachel.py
+│       ├── control
+│       │   ├── compile
+│       │   ├── list
+│       │   └── manifest
+│       └── data
+│           ├── etc
+│           │   └── rachel
+│           └── usr
+│               └── share
+│                   └── docs
+│                       └── rachel
+│                           ├── AUTHERS
+│                           ├── LICENSE
+│                           └── version.md
+├── README.md
+├── requirements.txt
+├── setup.py
+├── debug.db
+├── debug.py
+└── LICENSE
+
+12 directories, 21 files
+```
+
+Well, As you can see, here we have a nice architect!
+
+#### `buildlibs` directory.
+
+In `buildlibs` we have 2 Python files and one directory for ui file.
+
+- `control.py`: control file is one of pyabr database control files that Rachel uses it too.
+- `pack_archives.py`: pack_archives.py is again one of pyabr archive manager that Rachel uses too.
+- `setup.ui`: There is a dir named `ui` and in dir there is ui file for setup.
+
+---
+
 ### After all , I love guys that had worked on Rachel
 
 - [Erfan Saberi](https://github.com/erfansaberi) :heart:, for big new updates and **Hacktoberfest**.
-- [Mani Jamali](https://github.com/manijamali2003) :star:, for new platform and setup. 
+- [Mani Jamali](https://github.com/manijamali2003) :star:, for new platform and setup.
 - [Amirmahdi Tafreshi](https://github.com/mr-tafreshi) :pen:, for Rachel packages.
 - [Annahita Mirhosseini](https://github.com/Annahita2004) :sparkles:, for features idea.
