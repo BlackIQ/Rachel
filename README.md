@@ -116,6 +116,31 @@ In `buildlibs` we have 2 Python files and one directory for ui file.
 - `pack_archives.py`: pack_archives.py is again one of pyabr archive manager that Rachel uses too.
 - `setup.ui`: There is a dir named `ui` and in dir there is ui file for setup.
 
+#### `packs` directory.
+
+Main dir is `pack` that Rachel is located there. As you can see, there is `rachel` dir inside if `pack`.
+In `rachel` we have 3 dirs. Let's go for details.
+
+- `code` directory.
+  - `core.py`: 
+  - `data.py`: 
+  - `libabr.py`: 
+  - `rachel.py`:
+- `control` directory.
+  - `compile`: 
+  - `list`: 
+  - `manifest`: 
+- `data` directory.
+  - `etc` directory.
+    - `rachel`:
+  - `usr` directory.
+    - `share` directory.
+      - `docs` directory.
+        - `rachel` directory.
+          - `AUTHERS`:
+          - `LICENSE`:
+          - `version.md`:
+
 ---
 
 ### After all , I love guys that had worked on Rachel
