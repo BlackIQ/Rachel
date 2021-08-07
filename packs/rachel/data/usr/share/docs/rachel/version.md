@@ -7,5 +7,6 @@
 <p><a href="https://github.com/BlackIQ">Amirhossein Mohammadi</a></p>
 <p><a href="https://github.com/ErfanSaberi">Erfan Saberi</a></p>
 <p><a href="https://github.com/ManiJamali">Mani Jamali</a></p>
+<p><a href="https://github.com/mr-tafreshi">Amirmahdi Tafreshi</a></p>
 <hr>
 <p>Github -> <b><a href="https://github.com/BlackIQ/Rachel">Rachel</a></b></p>
