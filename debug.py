@@ -1,18 +1,18 @@
-# Test !
+from buildlibs import control, pack_archives as pack
+import os, shutil, subprocess as sub, sys
 
-from buildlibs import  control, pack_archives as pack
-import os,shutil,subprocess as sub,sys
+# Write Data
+control.write_record('username', control.read_record('username', 'debug.db'), 'packs/rachel/data/etc/rachel')
+control.write_record('firstname', control.read_record('firstname', 'debug.db'), 'packs/rachel/data/etc/rachel')
+control.write_record('lastname', control.read_record('lastname', 'debug.db'), 'packs/rachel/data/etc/rachel')
+control.write_record('email', control.read_record('email', 'debug.db'), 'packs/rachel/data/etc/rachel')
+control.write_record('phone', control.read_record('phone', 'debug.db'), 'packs/rachel/data/etc/rachel')
 
-## Write Datas ##
-control.write_record('username',control.read_record('username','debug.db'),'packs/rachel/data/etc/rachel')
-control.write_record('firstname',control.read_record('firstname','debug.db'), 'packs/rachel/data/etc/rachel')
-control.write_record('lastname', control.read_record('lastname','debug.db'), 'packs/rachel/data/etc/rachel')
-control.write_record('email', control.read_record('email','debug.db'), 'packs/rachel/data/etc/rachel')
-control.write_record('phone',control.read_record('phone','debug.db'), 'packs/rachel/data/etc/rachel')
+# Create compile files
 
-            ## create compile files ##
-            ## pre build ##
-if os.path.isdir("stor"): shutil.rmtree("stor")
+# Pre build
+if os.path.isdir("stor"):
+    shutil.rmtree("stor")
 
 if not os.path.isdir("app"):
     os.mkdir("app")
@@ -29,12 +29,18 @@ if not os.path.isdir("stor"):
     os.mkdir("stor/app")
     os.mkdir("stor/app/packages")
 
-if not os.path.isdir("build-packs"): os.mkdir("build-packs")
+if not os.path.isdir("build-packs"):
+    os.mkdir("build-packs")
 
 pack.install()
-shutil.copyfile('stor/usr/app/rachel.pyc','stor/rachel.pyc')
-os.system('cd stor && "'+sys.executable+'" rachel.pyc')
-            # clean #
-if os.path.isdir('app'): shutil.rmtree('app')
-if os.path.isdir('build-packs'): shutil.rmtree('build-packs')
-if os.path.isdir('stor'): shutil.rmtree('stor')
+
+shutil.copyfile('stor/usr/app/rachel.pyc', 'stor/rachel.pyc')
+os.system('cd stor && "' + sys.executable + '" rachel.pyc')
+
+# Clean
+if os.path.isdir('app'):
+    shutil.rmtree('app')
+if os.path.isdir('build-packs'):
+    shutil.rmtree('build-packs')
+if os.path.isdir('stor'):
+    shutil.rmtree('stor')
