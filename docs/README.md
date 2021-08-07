@@ -128,9 +128,9 @@ In [rchel](https://github.com/BlackIQ/Rachel/tree/master/rachel) we have 3 dirs.
     - [share](https://github.com/BlackIQ/Rachel/tree/master/pack/control/usr/share) directory.
       - [docs](https://github.com/BlackIQ/Rachel/tree/master/pack/control/usr/share/docs) directory.
         - [rachel](https://github.com/BlackIQ/Rachel/tree/master/pack/control/usr/share/docs/rachel) directory.
-          - `AUTHERS` : Developers.
-          - `LICENSE` : License name.
-          - `version.md` : Version and more information about it.
+          - [AUTHERS](https://github.com/BlackIQ/Rachel/tree/master/pack/control/usr/share/docs/rachel/AUTHERS) : Developers.
+          - [LICENSE](https://github.com/BlackIQ/Rachel/tree/master/pack/control/usr/share/docs/rachel/LICENSE) : License name.
+          - [version.md](https://github.com/BlackIQ/Rachel/tree/master/pack/control/usr/share/docs/rachel/version.md) : Version and more information about it.
 
 **Single files.**
 
