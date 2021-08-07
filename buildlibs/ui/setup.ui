@@ -53,7 +53,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Developed by Amirhossei Mohammadi.</string>
+     <string>Developed by Amirhossein Mohammadi.</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -84,7 +84,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Many thanks from Erfan Saberi for big updates.</string>
+     <string>Many thanks from Erfan Saberi for helping in developing.</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
@@ -98,11 +98,11 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>13</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Setup by Mani Jamali.</string>
+     <string>Powered by PyAbr (Mani Jamali system).</string>
     </property>
    </widget>
   </widget>
