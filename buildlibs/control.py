@@ -10,8 +10,9 @@
 #######################################################################################
 import os
 
-def read_record (name,filename):
-    file = open (filename,"r")
+
+def read_record(name, filename):
+    file = open(filename, "r")
     strv = file.read()
     file.close()
     strv = strv.split("\n")
@@ -19,24 +20,26 @@ def read_record (name,filename):
     for i in strv:
         if i.startswith(name):
             i = i.split(": ")
-            if i[0]==(name):
+            if i[0] == name:
                 return i[1]
 
-def read_list (filename):
-    file = open (filename,"r")
+
+def read_list(filename):
+    file = open(filename, "r")
     strv = file.read()
     file.close()
     strv = strv.split("\n")
     return strv
 
+
 def write_record(name, value, filename):
-    file = open (filename,'r')
+    file = open(filename, 'r')
     all = file.read()
     file.close()
     record = read_record(name, filename)
     os.remove(filename)
-    if not (record == None):
+    if not record == None:
         all = all.replace(name + ": " + record, "")
-    file = open(filename,'w')
+    file = open(filename, 'w')
     file.write(all + "\n" + name + ": " + value)
     file.close()
