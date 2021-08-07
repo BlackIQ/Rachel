@@ -112,8 +112,6 @@ Rachel
 
 Well, As you can see, here we have a nice architect!
 
-#### `buildlibs` directory.
-
 **`buildlibs` directory.**
 
 Here we have control and archive manager files. And setup ui file.
