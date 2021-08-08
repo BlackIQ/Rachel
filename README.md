@@ -13,11 +13,11 @@ Anyway, I can't do difficult stuff, but I am a lovely Assistant!
 There is no MySQL in This version :)
 In this case we use [pyabr](https://github.com/manijamali2003/pyabr) Database Extension named **Control**.
 
-- [Installation]()
-- [Run]()
-- [Debug]()
-- [Software Architect]()
-- [Thanks from developers]()
+- [Installation](https://github.com/BlackIQ/Rachel/tree/master/docs#installation)
+- [Run](https://github.com/BlackIQ/Rachel/tree/master/docs#run)
+- [Debug](https://github.com/BlackIQ/Rachel/tree/master/docs#debugging)
+- [Software Architect](https://github.com/BlackIQ/Rachel/tree/master/docs#software-architecture)
+- [Thanks from developers](https://github.com/BlackIQ/Rachel#after-all--i-love-guys-that-had-worked-on-rachel)
 
 ---
 
