@@ -22,9 +22,9 @@ while True:
     if not q:
         pass
     # { ----- Start ----- } Commands
-    elif 'uninstall' in q :
+    elif 'uninstall' in q:
         uninstall()
-    elif 'version' in q :
+    elif 'version' in q:
         version()
     elif 'hello' in q:
         hello()
@@ -37,25 +37,25 @@ while True:
     elif 'stardate' in q:
         StarDate()
     # { Date } Command
-    elif 'date' in q :
+    elif 'date' in q:
         Date()
-    elif 'what date is today' in q :
+    elif 'what date is today' in q:
         Date()
-    elif 'today' in q :
+    elif 'today' in q:
         Date()
     # { Time } Command
-    elif 'time' in q :
+    elif 'time' in q:
         Time()
-    elif 'what time is it' in q :
+    elif 'what time is it' in q:
         Time()
-    elif 'now' in q :
+    elif 'now' in q:
         Time()
     # { ----- End  ----- } Commands
     # { Close } Command
     elif 'close' in q:
         bye()
         break
-    elif 'exit' in q :
+    elif 'exit' in q:
         bye()
         break
     # { Sleep ) Command
