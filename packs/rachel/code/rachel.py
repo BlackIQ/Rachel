@@ -25,11 +25,11 @@ while True:
     elif 'uninstall' in q:
         uninstall()
     elif 'version' in q:
-        version()
+        version
     elif 'hello' in q:
-        hello()
+        start.hello()
     elif 'hi' in q:
-        hello()
+        start.hello()
     elif 'clear' in q:
         clear()
 
@@ -53,22 +53,22 @@ while True:
     # { ----- End  ----- } Commands
     # { Close } Command
     elif 'close' in q:
-        bye()
+        close.bye()
         break
     elif 'exit' in q:
-        bye()
+        close.bye()
         break
     # { Sleep ) Command
     elif 'sleep' in q:
-        Sleep()
+        close.Sleep()
         break
     # { Good night } Command
     elif 'good night' in q:
-        Goodnight()
+        close.Goodnight()
         break
     # { Bye } Command
     elif 'bye' in q:
-        bye()
+        close.bye()
         break
 
     # { ----- Chat ----- } Command
