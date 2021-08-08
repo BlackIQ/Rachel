@@ -22,14 +22,14 @@ import random
 from libra.data import *
 
 
-# ٰVariables
-
-version = 'Rachel is V 0.1.0 !'
-
-
-# Functions
+# Classes
 
 class dt:
+    """
+        Date and Time class
+        It this class there are date methods, time methods
+    """
+
     @staticmethod
     def Date():
         ask_date = input('[n]ational Or [i]ran ? ')
@@ -53,21 +53,12 @@ class dt:
             print('Now is : (', i_time, f') {UserName}')
 
 
-def uninstall():
-    print("Are you sure for uninstalling ?")
-    a = input("[Y]es , [n]o : ")
-    if a == "Y":
-        print("I ask one more time !")
-        aa = input("[Y]es , [n]o : ")
-        if aa == "Y":
-            os.system('sudo rm -rf /home/amir/Rachel/ /usr/bin/Rachel && exit')
-        else:
-            print('Wow !')
-    else:
-        print("Wow !")
-
-
 class start:
+    """
+        Star class
+        In this class there are start methods
+    """
+
     @staticmethod
     def start():
         start_list = [
@@ -91,6 +82,11 @@ class start:
 
 
 class close:
+    """
+        Close class
+        Here are methods for ending app
+    """
+
     @staticmethod
     def bye():
         bye_list = [
@@ -110,8 +106,38 @@ class close:
         print('Goodbye Pal !')
 
 
-def clear():
-    os.system("clear")
+class cli:
+    """
+        CLI class
+        We have cli stuff here. Like clear or change bg color
+    """
+
+    @staticmethod
+    def clear():
+        os.system("clear")
+
+
+class software:
+    """
+        Software class
+        Uninstall, Update and other software methods are here
+    """
+
+    version = 'Rachel is V 0.1.0 !'
+
+    @staticmethod
+    def uninstall():
+        print("Are you sure for uninstalling ?")
+        a = input("[Y]es , [n]o : ")
+        if a == "Y":
+            print("I ask one more time !")
+            aa = input("[Y]es , [n]o : ")
+            if aa == "Y":
+                os.system('sudo rm -rf /home/amir/Rachel/ /usr/bin/Rachel && exit')
+            else:
+                print('Wow !')
+        else:
+            print("Wow !")
 
 
 def search_in_net(text):
