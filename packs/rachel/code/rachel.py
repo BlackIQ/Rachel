@@ -25,7 +25,7 @@ while True:
     elif 'uninstall' in q:
         uninstall()
     elif 'version' in q:
-        version
+        print(version)
     elif 'hello' in q:
         start.hello()
     elif 'hi' in q:
