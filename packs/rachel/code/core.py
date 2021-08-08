@@ -29,26 +29,28 @@ version = 'Rachel is V 0.1.0 !'
 
 # Functions
 
-def Date():
-    ask_date = input('[n]ational Or [i]ran ? ')
+class dt:
+    @staticmethod
+    def Date():
+        ask_date = input('[n]ational Or [i]ran ? ')
 
-    if 'n' in ask_date:
-        n_date = strftime("%Y-%m-%d", localtime())
-        print(f'Today is : (', n_date, ') {UserName}')
-    if 'i' in ask_date:
-        i_date = strftime("%Y , %m , %d", localtime())
-        print(f'Today is : (', i_date, ') {UserName}')
+        if 'n' in ask_date:
+            n_date = strftime("%Y-%m-%d", localtime())
+            print(f'Today is : (', n_date, ') {UserName}')
+        if 'i' in ask_date:
+            i_date = strftime("%Y , %m , %d", localtime())
+            print(f'Today is : (', i_date, ') {UserName}')
 
+    @staticmethod
+    def Time():
+        ask_time = input('[gmt] or [i]ran ? ')
 
-def Time():
-    ask_time = input('[gmt] or [i]ran ? ')
-
-    if 'gmt' in ask_time:
-        gmt = strftime("%H : %M : %S", gmtime())
-        print(f'Now is : (', gmt, ') {UserName}')
-    if 'i' in ask_time:
-        i_time = strftime("%Y , %m , %d", localtime())
-        print('Now is : (', i_time, f') {UserName}')
+        if 'gmt' in ask_time:
+            gmt = strftime("%H : %M : %S", gmtime())
+            print(f'Now is : (', gmt, ') {UserName}')
+        if 'i' in ask_time:
+            i_time = strftime("%Y , %m , %d", localtime())
+            print('Now is : (', i_time, f') {UserName}')
 
 
 def uninstall():
