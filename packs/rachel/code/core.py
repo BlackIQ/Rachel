@@ -22,6 +22,11 @@ import random
 from libra.data import *
 
 
+# ٰVariables
+
+version = 'Rachel is V 0.1.0 !'
+
+
 # Functions
 
 def Date():
@@ -60,47 +65,47 @@ def uninstall():
         print("Wow !")
 
 
-def version():
-    print('Rachel is V 0.1.0 !')
+class start:
+    @staticmethod
+    def start():
+        start_list = [
+            f'Welcome back {UserName} !',
+            f'Hi {UserName} !',
+            f'Hello {UserName} ! I missed U :)'
+            f'Hi Honey !'
+        ]
+        print(random.choice(start_list))
+        print(f'Today is : (', strftime("%Y , %m , %d", localtime()), f') {UserName}')
+
+    @staticmethod
+    def hello():
+        hello_list = [
+            f'Hello {UserName} !',
+            'Hi Darline !',
+            'Hello my love !',
+            f'Welcome Back {UserName} .'
+        ]
+        print(random.choice(hello_list))
 
 
-def start():
-    start_list = [
-        f'Welcome back {UserName} !',
-        f'Hi {UserName} !',
-        f'Hello {UserName} ! I missed U :)'
-        f'Hi Honey !'
-    ]
-    print(random.choice(start_list))
-    print(f'Today is : (', strftime("%Y , %m , %d", localtime()), f') {UserName}')
+class close:
+    @staticmethod
+    def bye():
+        bye_list = [
+            'bye sweetie .',
+            f'Bye {UserName}'
+        ]
+        print(random.choice(bye_list))
 
+    @staticmethod
+    def Goodnight():
+        print(f'Have a Good night {UserName}.')
+        print('I hope you sleep well!')
 
-def hello():
-    hello_list = [
-        f'Hello {UserName} !',
-        'Hi Darline !',
-        'Hello my love !',
-        f'Welcome Back {UserName} .'
-    ]
-    print(random.choice(hello_list))
-
-
-def bye():
-    bye_list = [
-        'bye sweetie .',
-        f'Bye {UserName}'
-    ]
-    print(random.choice(bye_list))
-
-
-def Goodnight():
-    print(f'Have a Good night {UserName} .')
-    print('I hope you sleep well !')
-
-
-def Sleep():
-    print('Oh , OK !')
-    print('Goodbye Pal !')
+    @staticmethod
+    def Sleep():
+        print('Oh , OK !')
+        print('Goodbye Pal !')
 
 
 def clear():
