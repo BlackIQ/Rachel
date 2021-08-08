@@ -23,33 +23,33 @@ while True:
         pass
     # { ----- Start ----- } Commands
     elif 'uninstall' in q:
-        uninstall()
+        software.uninstall()
     elif 'version' in q:
-        print(version)
+        print(software.version)
     elif 'hello' in q:
         start.hello()
     elif 'hi' in q:
         start.hello()
     elif 'clear' in q:
-        clear()
+        cli.clear()
 
     # { StarDate } Command
     elif 'stardate' in q:
         StarDate()
     # { Date } Command
     elif 'date' in q:
-        Date()
+        dt.Date()
     elif 'what date is today' in q:
-        Date()
+        dt.Date()
     elif 'today' in q:
-        Date()
+        dt.Date()
     # { Time } Command
     elif 'time' in q:
-        Time()
+        dt.Time()
     elif 'what time is it' in q:
-        Time()
+        dt.Time()
     elif 'now' in q:
-        Time()
+        dt.Time()
     # { ----- End  ----- } Commands
     # { Close } Command
     elif 'close' in q:
