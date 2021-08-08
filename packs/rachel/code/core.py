@@ -21,6 +21,7 @@ import random
 
 from libra.data import *
 
+
 # Functions
 
 def Date():
@@ -33,6 +34,7 @@ def Date():
         i_date = strftime("%Y , %m , %d", localtime())
         print(f'Today is : (', i_date, ') {UserName}')
 
+
 def Time():
     ask_time = input('[gmt] or [i]ran ? ')
 
@@ -42,6 +44,7 @@ def Time():
     if 'i' in ask_time:
         i_time = strftime("%Y , %m , %d", localtime())
         print('Now is : (', i_time, f') {UserName}')
+
 
 def uninstall():
     print("Are you sure for uninstalling ?")
@@ -56,8 +59,10 @@ def uninstall():
     else:
         print("Wow !")
 
-def version() :
+
+def version():
     print('Rachel is V 0.1.0 !')
+
 
 def start():
     start_list = [
@@ -69,6 +74,7 @@ def start():
     print(random.choice(start_list))
     print(f'Today is : (', strftime("%Y , %m , %d", localtime()), f') {UserName}')
 
+
 def hello():
     hello_list = [
         f'Hello {UserName} !',
@@ -78,6 +84,7 @@ def hello():
     ]
     print(random.choice(hello_list))
 
+
 def bye():
     bye_list = [
         'bye sweetie .',
@@ -85,16 +92,20 @@ def bye():
     ]
     print(random.choice(bye_list))
 
+
 def Goodnight():
     print(f'Have a Good night {UserName} .')
     print('I hope you sleep well !')
+
 
 def Sleep():
     print('Oh , OK !')
     print('Goodbye Pal !')
 
-def clear() :
+
+def clear():
     os.system("clear")
+
 
 def search_in_net(text):
     results = googlesearch.search(text)
