@@ -27,3 +27,9 @@ In this case we use [pyabr](https://github.com/manijamali2003/pyabr) Database Ex
 - [Mani Jamali](https://github.com/manijamali2003) :star:, for new platform and setup.
 - [Amirmahdi Tafreshi](https://github.com/mr-tafreshi) :pen:, for Rachel packages.
 - [Annahita Mirhosseini](https://github.com/Annahita2004) :sparkles:, for features idea.
+
+[Rachel official page](https://blackiq.github.io/Rachel)
+
+**Rachel assistant**. 2019 - 2021 &copy;
+
+Developed by Amirhossein Mohammadi.
