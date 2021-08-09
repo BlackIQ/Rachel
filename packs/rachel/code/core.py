@@ -9,14 +9,11 @@
     Core's  Version  -> 0.0.1
 """
 
-# Import System Libs
+import gtts
 import os
-# Import Net Libs
 import webbrowser
 import googlesearch
-# Import Date and Time Libs
 from time import *
-# Import Text Libs
 import random
 
 from libra.data import *
