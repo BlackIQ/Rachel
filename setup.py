@@ -14,6 +14,7 @@ from PyQt5 import uic
 # Import other libs
 import sys, platform, py_compile as pyc, shutil, os
 from pathlib import Path
+import sqlite3
 
 # Import PyAbr libs
 from buildlibs import control, pack_archives as pack
@@ -25,6 +26,15 @@ class MainApp(QWizard):
         self.leLocation.setText((QFileDialog().getExistingDirectory()))
 
     def Finish(self):
+        connection = sqlite3.connect("packs/rachel/data/etc/rachel.db")
+        cursor = connection.cursor()
+
+        create_table_query = "CREATE TABLE userdata (username TEXT, firstname TEXT, lastname TEXT, email TEXT, phone TEXT, location TEXT)"
+
+        cursor.execute(create_table_query)
+
+        connection.commit()
+
         # Get all configure information
         if not (
                 self.leLocation.text() is None and
@@ -43,9 +53,6 @@ class MainApp(QWizard):
             email = self.leEmail.text()
             phone = self.lePhone.text()
 
-            if self.chds.isChecked():
-                desktop_shortcut = True
-
             if self.chpath.isChecked():
                 file = open('/usr/bin/Rachel', 'w')
                 file.write('cd ' + location + ' && {0} rachel.pyc'.replace('{0}', sys.executable))
@@ -54,11 +61,9 @@ class MainApp(QWizard):
                 os.system('chmod +x /usr/bin/Rachel')
 
             # Write Data
-            control.write_record('username', username, 'packs/rachel/data/etc/rachel')
-            control.write_record('firstname', firstname, 'packs/rachel/data/etc/rachel')
-            control.write_record('lastname', lastname, 'packs/rachel/data/etc/rachel')
-            control.write_record('email', email, 'packs/rachel/data/etc/rachel')
-            control.write_record('phone', phone, 'packs/rachel/data/etc/rachel')
+            insert_user_data_query = f"INSERT INTO userdata (username, firstname, lastname, email, phone, location) VALUES ('{username}', '{firstname}', '{lastname}', '{email}', '{phone}', '{location}')"
+            cursor.execute(insert_user_data_query)
+            connection.commit()
 
             # Create compile files
 
