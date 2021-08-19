@@ -5,7 +5,7 @@
     <br>
     For more information check <a href="https://rachel.neotrinost.ir">Rachel official page</a>.
     <br>
-    For installation check <a href="https://rachel.neotrinost.ir">How to install Rachel</a>.
+    For installation see <a href="https://rachel.neotrinost.ir">the page</a> again.
     <br><br>
     <b>Most people helped in developing</b>
     <br>
