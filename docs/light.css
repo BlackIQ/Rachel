@@ -32,4 +32,8 @@
         background-color: #f3f3f3;
         border-radius: 2px;
     }
+    .link {
+        color: blue;
+        text-decoration: none;
+    }
 }
