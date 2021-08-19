@@ -4,9 +4,11 @@
 
 # Hey there ! I am Rachel :)
 
+### Rachel is on working. Do not test or install it.
+
 An assistant written in **Python**!
 
----
+I am in **Alpha Version**.
 
 Anyway, I can't do difficult stuff, but I am a lovely Assistant!
 
