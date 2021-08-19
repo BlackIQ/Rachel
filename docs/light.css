@@ -14,4 +14,22 @@
         border: solid 1px #e6e6e6;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
+    .code {
+        font-size: 15px;
+        font-family: 'Roboto Mono', monospace;
+        padding: 2%;
+        font-weight: bold;
+        color: red;
+        background-color: #f3f3f3;
+        border-radius: 2px;
+    }
+    .incode {
+        font-size: 15px;
+        font-family: 'Roboto Mono', monospace;
+        padding: 1%;
+        font-weight: bold;
+        color: red;
+        background-color: #f3f3f3;
+        border-radius: 2px;
+    }
 }
