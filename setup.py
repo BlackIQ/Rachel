@@ -1,7 +1,5 @@
 import os
 
-print("Begin installation.")
-
 os.system("sudo rm -rf /bin/Rachel ~/.Rachel")
 os.system("gcc Rachel/execute.c")
 os.system("mkdir exe")
@@ -13,4 +11,4 @@ os.system("cp -r Rachel/rachel.py ~/.Rachel")
 os.system("rm -rf exe a.out")
 os.system("pip3 install RachelCore")
 
-print("Installation done.")
+print("\nInstallation done.")
