@@ -1,4 +1,4 @@
-<small>
+<div style="font-size: 10px; background: #222; font-family: 'Roboto Mono', monospace; padding: 5%;">
     <b>Rachel. An assistant.</b>
     <br><br>
     Rachel is an assistant written in <b>Python</b>.
@@ -18,4 +18,4 @@
     <b>Rachel assistant</b>. 2019 - 2021 &copy;
     <br>
     <b>Created by Amirhossein Mohammadi.</b>
-</small>
+</div>
