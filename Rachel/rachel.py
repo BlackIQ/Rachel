@@ -14,4 +14,6 @@ import RachelCore
 
 while True:
     # Get input
-    inp = str(input("What can I do?"))
+    user_command = str(input("What can I do?"))
+    # Move it to Core
+    RachelCore.command.get(user_command)
