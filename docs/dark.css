@@ -31,4 +31,8 @@
         background-color: #444;
         border-radius: 2px;
     }
+    .link {
+        color: gray;
+        text-decoration: none;
+    }
 }
