@@ -1,11 +1,17 @@
-.all {
-    background-color: #f1f1f1;
-}
-.main {
-    font-family: 'Roboto', sans-serif;
-    padding: 5%;
-}
-.dialog {
-    border-radius: 5px;
-    border: solid 1px black;
+@media (prefers-color-scheme: light) {
+    .all {
+        color: black;
+        background-color: #f1f1f1;
+    }
+    .main {
+        font-family: 'Roboto', sans-serif;
+        padding: 5%;
+    }
+    .dialog {
+        padding: 2%;
+        border-radius: 5px;
+        background-color: #e6e6e6;
+        border: solid 1px #e6e6e6;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
 }
