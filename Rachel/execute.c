@@ -14,5 +14,5 @@
 #include <stdlib.h>
 
 void main() {
-	system("python3 ~/Rachel/rachel.py");
+	system("python3 ~/.Rachel/rachel.py");
 }
