@@ -10,6 +10,8 @@
 
 """
 
+import RachelCore
+
 while True:
     # Get input
     inp = str(input("What can I do?"))
