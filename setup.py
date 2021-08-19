@@ -10,5 +10,6 @@ os.system("sudo cp -r exe/Rachel /bin")
 os.system("mkdir ~/.Rachel")
 os.system("cp -r Rachel/rachel.py ~/.Rachel")
 os.system("rm -rf exe a.out")
+os.system("pip3 install RachelCore")
 
 print("Installation done.")
