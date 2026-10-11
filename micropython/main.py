@@ -1,5 +1,5 @@
 # Machine & Devices
-from machine import Pin, I2C
+from machine import Pin, ADC, I2C
 import network
 
 # Libs
@@ -35,6 +35,8 @@ i2c = I2C(sda=Pin(0), scl=Pin(1), freq=400000)
 lcd = I2cLcd(i2c, 0x27, 2, 16)
 rtc = DS3231(i2c)
 
+ldr = ADC(Pin(26))
+
 lcd.display_on()
 lcd.backlight_on()
 
@@ -69,6 +71,15 @@ for led in LEDS.values():
 
 for relay in RELAYS.values():
     relay.on()
+
+
+async def light_check():
+    while True:
+        value = ldr.read_u16()
+
+        print(value)
+
+        await asyncio.sleep(1)
 
 
 async def status_led_loop():
@@ -305,6 +316,7 @@ async def main():
     asyncio.create_task(status_led_loop())
     asyncio.create_task(display_loop())
     asyncio.create_task(update_temp())
+    asyncio.create_task(light_check())
 
     await app.start_server(port=80)
 
