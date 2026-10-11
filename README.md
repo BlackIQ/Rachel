@@ -29,7 +29,7 @@ Years later, this repo brings her back, local models, real hardware, and a full 
 | ------------ | ---------------------------------------- | ------------------------------------- |
 | **Frontend** | NextJs, React, MUI                       | User interface, chats, tool summaries |
 | **Backend**  | FastAPI, SQLAlchemy, Alembic, PostgreSQL | API, agent loop, tool calling         |
-| **Model**    | Ollama + Qwen3 4B (`rachel-1.3:4b`)      | Reasoning & tool selection            |
+| **Model**    | Ollama + Qwen3 4B (`rachel-1.4:4b`)      | Reasoning & tool selection            |
 | **Hardware** | Pico 2 W, MicroPython, Microdot          | Control devices, lights and sensors   |
 
 ## Features
@@ -61,7 +61,7 @@ Each major package has its own README with setup details:
 Install it first. Then:
 
 ```bash
-ollama create rachel-1.3:4b -f Modelfile
+ollama create rachel-1.4:4b -f Modelfile
 ```
 
 ### 2. Backend

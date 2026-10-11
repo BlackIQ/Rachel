@@ -42,7 +42,7 @@ PICO_IP=http://192.168.1.50
 WEATHER_APIKEY=your_weatherapi_key
 ```
 
-> You can override model via `Settings.MODEL` in `core/settings.py` (default: `rachel-1.3:4b`).
+> You can override model via `Settings.MODEL` in `core/settings.py` (default: `rachel-1.4˝:4b`).
 
 ### Database
 
