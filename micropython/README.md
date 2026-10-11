@@ -36,6 +36,10 @@ A simple table to remember what is connected to what:
 | GPIO 7  | Relay: Bedroom     |
 | GPIO 8  | Relay: Living room |
 | GPIO 9  | Relay: Kitchen     |
+| GPIO 10 | Relay: R1 (-)      |
+| GPIO 11 | Relay: R2 (-)      |
+| GPIO 12 | Relay: R3 (-)      |
+| GPIO 13 | Relay: R4 (-)      |
 | GPIO 16 | LED: White         |
 | GPIO 17 | LED: Green         |
 | GPIO 18 | LED: Red           |

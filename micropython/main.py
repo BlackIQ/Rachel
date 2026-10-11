@@ -58,6 +58,10 @@ RELAYS = {
     "bedroom": Pin(7, Pin.OUT),
     "living_room": Pin(8, Pin.OUT),
     "kitchen": Pin(9, Pin.OUT),
+    "r1": Pin(10, Pin.OUT),
+    "r2": Pin(11, Pin.OUT),
+    "r3": Pin(12, Pin.OUT),
+    "r4": Pin(13, Pin.OUT),
 }
 
 for led in LEDS.values():
