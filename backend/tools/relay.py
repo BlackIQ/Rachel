@@ -11,6 +11,10 @@ VALID_RELAYS = {
     "bedroom",
     "living_room",
     "kitchen",
+    "r1",
+    "r2",
+    "r3",
+    "r4",
 }
 
 
@@ -18,7 +22,7 @@ def turn_relay_on(name: str) -> dict:
     """Turn on a specific relay on the Rachel Pico device.
 
     Args:
-        name: Relay name. One of: "library", "bedroom", "living_room", "kitchen".
+        name: Relay name. One of: "library", "bedroom", "living_room", "kitchen", "r1", "r2", "r3", "r4".
 
     Returns:
         ToolResult as dict.
@@ -89,7 +93,7 @@ def turn_relay_off(name: str) -> dict:
     """Turn off a specific relay on the Rachel Pico device.
 
     Args:
-        name: Relay name. One of: "library", "bedroom", "living_room", "kitchen".
+        name: Relay name. One of: "library", "bedroom", "living_room", "kitchen", "r1", "r2", "r3", "r4".
 
     Returns:
         ToolResult as dict.
