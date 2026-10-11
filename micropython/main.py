@@ -48,8 +48,13 @@ dht_humidity = None
 ip = None
 network_connected = False
 
+LIGHT_DARK_THRESHOLD = 20000
+
+AUTO_RELAY = Pin(16, Pin.OUT)
+AUTO_RELAY.off()
+
 LEDS = {
-    "white": Pin(16, Pin.OUT),
+    # "white": Pin(16, Pin.OUT),
     "green": Pin(17, Pin.OUT),
     "red": Pin(18, Pin.OUT),
     "blue": Pin(19, Pin.OUT),
@@ -74,10 +79,21 @@ for relay in RELAYS.values():
 
 
 async def light_check():
-    while True:
-        value = ldr.read_u16()
+    global light_raw, light_dark
 
-        print(value)
+    while True:
+        samples = [ldr.read_u16() for _ in range(5)]
+
+        light_raw = sum(samples) // len(samples)
+
+        light_dark = light_raw >= LIGHT_DARK_THRESHOLD
+
+        if light_raw > 25000:
+            AUTO_RELAY.on()
+        elif light_raw < 12000:
+            AUTO_RELAY.off()
+        else:
+            AUTO_RELAY.off()
 
         await asyncio.sleep(1)
 
