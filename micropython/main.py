@@ -55,8 +55,8 @@ LEDS = {
 
 RELAYS = {
     "library": Pin(6, Pin.OUT),
-    "room": Pin(7, Pin.OUT),
-    "hall": Pin(8, Pin.OUT),
+    "bedroom": Pin(7, Pin.OUT),
+    "living_room": Pin(8, Pin.OUT),
     "kitchen": Pin(9, Pin.OUT),
 }
 
@@ -194,7 +194,7 @@ def relay_on(request, name):
     if relay is None:
         return {"message": "Unknown relay"}, 404
 
-    relay.on()
+    relay.off()
 
     return {"message": f"Relay {name} is now on"}
 
@@ -207,7 +207,7 @@ def relay_off(request, name):
     if relay is None:
         return {"message": "Unknown relay"}, 404
 
-    relay.off()
+    relay.on()
 
     return {"message": f"Relay {name} is now off"}
 

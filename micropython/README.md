@@ -22,25 +22,25 @@ Things I used for this project:
 | DHT11                       | Temperature and humidity sensor                     |
 | Liquid crystal 16×2 I2C LCD | Just to see some stuff in LCD like IP and RAM usage |
 | LEDs                        | White, Green, Red, Blue                             |
-| Relays                      | Library, Room                                       |
+| Relays                      | Library, Bedroom, Living room, Kitchen              |
 
 ## Pins
 
 A simple table to remember what is connected to what:
 
-| Pin     | Details           |
-| ------- | ----------------- |
-| GPIO 0  | SDA I2C Bus       |
-| GPIO 1  | SCL I2C Bus       |
-| GPIO 6  | Relay: Library    |
-| GPIO 7  | Relay: Room       |
-| GPIO 8  | Relay: Hall       |
-| GPIO 9  | Relay: Kitchen    |
-| GPIO 16 | LED: White        |
-| GPIO 17 | LED: Green        |
-| GPIO 18 | LED: Red          |
-| GPIO 19 | LED: Blue         |
-| GPIO 22 | DHT11 Sensor Data |
+| Pin     | Details            |
+| ------- | ------------------ |
+| GPIO 0  | SDA I2C Bus        |
+| GPIO 1  | SCL I2C Bus        |
+| GPIO 6  | Relay: Library     |
+| GPIO 7  | Relay: Bedroom     |
+| GPIO 8  | Relay: Living room |
+| GPIO 9  | Relay: Kitchen     |
+| GPIO 16 | LED: White         |
+| GPIO 17 | LED: Green         |
+| GPIO 18 | LED: Red           |
+| GPIO 19 | LED: Blue          |
+| GPIO 22 | DHT11 Sensor Data  |
 
 ## Files
 
