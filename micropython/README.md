@@ -28,23 +28,24 @@ Things I used for this project:
 
 A simple table to remember what is connected to what:
 
-| Pin     | Details            |
-| ------- | ------------------ |
-| GPIO 0  | SDA I2C Bus        |
-| GPIO 1  | SCL I2C Bus        |
-| GPIO 6  | Relay: Library     |
-| GPIO 7  | Relay: Bedroom     |
-| GPIO 8  | Relay: Living room |
-| GPIO 9  | Relay: Kitchen     |
-| GPIO 10 | Relay: R1 (-)      |
-| GPIO 11 | Relay: R2 (-)      |
-| GPIO 12 | Relay: R3 (-)      |
-| GPIO 13 | Relay: R4 (-)      |
-| GPIO 16 | LED: White         |
-| GPIO 17 | LED: Green         |
-| GPIO 18 | LED: Red           |
-| GPIO 19 | LED: Blue          |
-| GPIO 22 | DHT11 Sensor Data  |
+| Pin            | Details            |
+| -------------- | ------------------ |
+| GP0 - I2C0 SDA | SDA I2C Bus        |
+| GP1 - I2C0 DSA | SCL I2C Bus        |
+| GP6            | Relay: Library     |
+| GP7            | Relay: Bedroom     |
+| GP8            | Relay: Living room |
+| GP9            | Relay: Kitchen     |
+| GP10           | Relay: R1 (-)      |
+| GP11           | Relay: R2 (-)      |
+| GP12           | Relay: R3 (-)      |
+| GP13           | Relay: R4 (-)      |
+| GP16           | LED: White         |
+| GP17           | LED: Green         |
+| GP18           | LED: Red           |
+| GP19           | LED: Blue          |
+| GP22           | DHT11 Sensor Data  |
+| GP26 - ADC0    | Photocell resistor |
 
 ## Files
 
