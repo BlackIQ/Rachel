@@ -8,7 +8,9 @@ from tools.schema import ToolResult  # Tools: Schema
 
 VALID_RELAYS = {
     "library",
-    "room",
+    "bedroom",
+    "living_room",
+    "kitchen",
 }
 
 
@@ -16,7 +18,7 @@ def turn_relay_on(name: str) -> dict:
     """Turn on a specific relay on the Rachel Pico device.
 
     Args:
-        name: Relay name. One of: "library", "room".
+        name: Relay name. One of: "library", "bedroom", "living_room", "kitchen".
 
     Returns:
         ToolResult as dict.
@@ -87,7 +89,7 @@ def turn_relay_off(name: str) -> dict:
     """Turn off a specific relay on the Rachel Pico device.
 
     Args:
-        name: Relay name. One of: "library", "room".
+        name: Relay name. One of: "library", "bedroom", "living_room", "kitchen".
 
     Returns:
         ToolResult as dict.
