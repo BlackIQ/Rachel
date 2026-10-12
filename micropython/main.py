@@ -48,13 +48,13 @@ dht_humidity = None
 ip = None
 network_connected = False
 
-LIGHT_DARK_THRESHOLD = 20000
+LIGHT_DARK_THRESHOLD = 50000
 
-AUTO_RELAY = Pin(16, Pin.OUT)
-AUTO_RELAY.off()
+NIGHTLIGHT_RELAY = Pin(13, Pin.OUT)
+NIGHTLIGHT_RELAY.on()
 
 LEDS = {
-    # "white": Pin(16, Pin.OUT),
+    "white": Pin(16, Pin.OUT),
     "green": Pin(17, Pin.OUT),
     "red": Pin(18, Pin.OUT),
     "blue": Pin(19, Pin.OUT),
@@ -68,7 +68,6 @@ RELAYS = {
     "r1": Pin(10, Pin.OUT),
     "r2": Pin(11, Pin.OUT),
     "r3": Pin(12, Pin.OUT),
-    "r4": Pin(13, Pin.OUT),
 }
 
 for led in LEDS.values():
@@ -88,12 +87,10 @@ async def light_check():
 
         light_dark = light_raw >= LIGHT_DARK_THRESHOLD
 
-        if light_raw > 25000:
-            AUTO_RELAY.on()
-        elif light_raw < 12000:
-            AUTO_RELAY.off()
+        if light_dark:
+            NIGHTLIGHT_RELAY.off()
         else:
-            AUTO_RELAY.off()
+            NIGHTLIGHT_RELAY.on()
 
         await asyncio.sleep(1)
 
