@@ -53,9 +53,10 @@ Let's take a look what is inside it:
 
 - `main.py`: App entry
 - `config.py`: Configs. Wi-Fi SSID & PASSWD, Secret
-- `lcd_api.py`: LCD helpers
-- `machine_i2c_lcd.py`: I2C LCD Driver
-- `microdot`: Bundled Microdot server directory
+- `microdot`: Bundled Microdot server directory (Flask like framework)
+- `picozero`: Bundled Pico Zero server directory (RPI Pico things)
+- `lcd`: Bundled LCD server directory (LCD Display)
+- `urtc`: Bundled URTC server directory (Real time clock)
 
 ## Setup
 
