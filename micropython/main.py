@@ -48,7 +48,11 @@ dht_humidity = None
 ip = None
 network_connected = False
 
-LIGHT_DARK_THRESHOLD = 50000
+light_raw = 0
+light_dark = False
+
+LIGHT_ON_ABOVE = 50000
+LIGHT_OFF_BELOW = 25000
 
 NIGHTLIGHT_RELAY = Pin(13, Pin.OUT)
 NIGHTLIGHT_RELAY.on()
@@ -82,15 +86,14 @@ async def light_check():
 
     while True:
         samples = [ldr.read_u16() for _ in range(5)]
-
         light_raw = sum(samples) // len(samples)
 
-        light_dark = light_raw >= LIGHT_DARK_THRESHOLD
-
-        if light_dark:
+        if light_raw >= LIGHT_ON_ABOVE:
             NIGHTLIGHT_RELAY.off()
-        else:
+            light_dark = True
+        elif light_raw <= LIGHT_OFF_BELOW:
             NIGHTLIGHT_RELAY.on()
+            light_dark = False
 
         await asyncio.sleep(1)
 

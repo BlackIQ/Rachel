@@ -39,7 +39,7 @@ A simple table to remember what is connected to what:
 | GP10           | Relay: R1 (-)      |
 | GP11           | Relay: R2 (-)      |
 | GP12           | Relay: R3 (-)      |
-| GP13           | Relay: R4 (-)      |
+| GP13           | Relay: Nightlight  |
 | GP16           | LED: White         |
 | GP17           | LED: Green         |
 | GP18           | LED: Red           |
