@@ -29,8 +29,9 @@ Years later, this repo brings her back, local models, real hardware, and a full 
 | ------------ | ---------------------------------------- | ------------------------------------- |
 | **Frontend** | NextJs, React, MUI                       | User interface, chats, tool summaries |
 | **Backend**  | FastAPI, SQLAlchemy, Alembic, PostgreSQL | API, agent loop, tool calling         |
-| **Model**    | Ollama + Qwen3 4B (`rachel-1.4:4b`)      | Reasoning & tool selection            |
-| **Hardware** | Pico 2 W, MicroPython, Microdot          | Control devices, lights and sensors   |
+| **Firmware** | Micropython, Microdot                    | Control devices, lights and sensors   |
+| **Hardware** | Pico 2 W, MicroPython, Microdot          | Communicating with devices            |
+| **LLM**      | Ollama, Qwen3:4B (`rachel-1.4:4b`)       | Reasoning & tool selection            |
 
 ## Features
 
@@ -44,8 +45,10 @@ Years later, this repo brings her back, local models, real hardware, and a full 
 
 - **get_home_temperature**: Temperature & humidity from DHT11 on the Pico
 - **get_pico_resources**: Free / allocated RAM on the Pico
-- **turn_led_on**: Control LED
-- **turn_led_off**: Control LED
+- **turn_led_on**: Turn LED on
+- **turn_led_off**: Turn LED off
+- **turn_relay_on**: Turn Relay on
+- **turn_relay_off**: Turn Relay off
 - **get_weather**: Get read time weather from [WeatherAPI](https://www.weatherapi.com)
 
 Each major package has its own README with setup details:
