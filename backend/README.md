@@ -37,9 +37,7 @@ cp .env.example .env
 Then edit it:
 
 ```env
-POSTGRESQL_URL=postgresql+psycopg2://user:pass@localhost:5432/rachel
-PICO_IP=http://192.168.1.50
-WEATHER_APIKEY=your_weatherapi_key
+POSTGRESQL_URL="postgresql+psycopg2://user:pass@localhost:5432/rachel"
 ```
 
 > You can override model via `Settings.MODEL` in `core/settings.py` (default: `rachel-1.4˝:4b`).

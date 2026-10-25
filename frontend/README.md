@@ -36,7 +36,7 @@ cp .env.example .env.local
 So, now edit it:
 
 ```env
-NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
+NEXT_PUBLIC_API_URL="http://127.0.0.1:8000"
 ```
 
 ### Run
