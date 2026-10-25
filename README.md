@@ -31,6 +31,7 @@ Years later, this repo brings her back, local models, real hardware, and a full 
 | **Backend**  | FastAPI, SQLAlchemy, Alembic, PostgreSQL | API, agent loop, tool calling         |
 | **Firmware** | Micropython, Microdot                    | Control devices, lights and sensors   |
 | **Hardware** | Pico 2 W, MicroPython, Microdot          | Communicating with devices            |
+| **MCP**      | Model Context Protocol (Streamable HTTP) | Tools server (hardware + weather)     |
 | **LLM**      | Ollama, Qwen3:4B (`rachel-1.4:4b`)       | Reasoning & tool selection            |
 
 ## Features
@@ -55,6 +56,7 @@ Each major package has its own README with setup details:
 
 - [Backend README.md](backend/README.md)
 - [Frontend README.md](frontend/README.md)
+- [MCP Server README.md](mcp/README.md)
 - [Micropython README.md](micropython/README.md)
 
 ## Setup
@@ -67,15 +69,19 @@ Install it first. Then:
 ollama create rachel-1.4:4b -f Modelfile
 ```
 
-### 2. Backend
+### 2. MCP Server
+
+Follow details at [MCP Server README.md](mcp/README.md)
+
+### 3. Backend
 
 Follow details at [Backend README.md](backend/README.md)
 
-### 3. Frontend
+### 4. Frontend
 
 Follow details at [Frontend README.md](frontend/README.md)
 
-### 4. Pico
+### 5. Pico
 
 Follow details at [Micropython README.md](micropython/README.md)
 
