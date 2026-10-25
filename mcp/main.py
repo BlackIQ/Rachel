@@ -1,5 +1,95 @@
+# Libs
+from mcp.server import MCPServer  # MCP Server
+
+import requests  # Requests
+from requests.exceptions import RequestException  # Requests Exception
+
+# Application
+from core.settings import settings  # Core: Settings
+
+# Create MCP Server
+mcp = MCPServer(
+    title="Rachel Assistant MCP Server",
+    version="0.1.0",
+)
+
+
+# Weather Tool
+@mcp.tool(
+    name="get_weather",
+    title="Get Weather",
+    description="Get the current weather information for a city",
+)
+def get_weather(city: str) -> dict:
+    """
+    Get the current weather information for a city.
+
+    Args:
+        city: The name of the city
+
+    Returns:
+        ToolResult as dict. On success, data is the WeatherAPI payload.
+
+        On failure, error may be:
+            - missing_api_key
+            - weather_api_error
+            - network_error
+            - invalid_response
+    """
+
+    if not settings.WEATHER_APIKEY:
+        return {
+            "status": False,
+            "error": "missing_api_key",
+            "message": "Weather API key is not set",
+        }
+
+    try:
+        response = requests.get(
+            "https://api.weatherapi.com/v1/current.json",
+            params={
+                "q": city,
+                "key": settings.WEATHER_APIKEY,
+            },
+            timeout=8,
+        )
+
+        try:
+            data = response.json()
+        except ValueError:
+            return {
+                "success": False,
+                "error": "invalid_response",
+                "message": "WeatherAPI returned invalid JSON",
+            }
+
+        if not response.ok:
+            error_msg = data.get("error", {}).get(
+                "message", "Unknown weather API error"
+            )
+
+            return {
+                "success": False,
+                "error": "weather_api_error",
+                "message": error_msg,
+            }
+
+        return {
+            "success": True,
+            "message": f"Weather for {city}",
+            "data": data,
+        }
+
+    except RequestException:
+        return {
+            "success": False,
+            "error": "network_error",
+            "message": "Could not reach WeatherAPI. Check your internet connection.",
+        }
+
+
 def main():
-    print("Hello from mcp!")
+    mcp.run(transport="streamable-http")
 
 
 if __name__ == "__main__":
