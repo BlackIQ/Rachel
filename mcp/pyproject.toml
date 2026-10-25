@@ -1,0 +1,7 @@
+[project]
+name = "rachel_mcp"
+version = "0.1.0"
+description = "Rachel Agent (Assistant) MCP Server"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
