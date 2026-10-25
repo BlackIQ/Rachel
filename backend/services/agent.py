@@ -1,14 +1,12 @@
 # Libs
 import json  # JSON
-from ollama import chat, ChatResponse, Message as OllamaMessage  # Ollama
+
+from mcp import Client  # MCP Client
+from mcp_types import TextContent  # Text Content
+from ollama import chat, ChatResponse, Message, Tool  # Ollama
 
 # Application
 from core.settings import settings  # Core: Settings
-from tools.weather import get_weather  # Tools: Weather
-from tools.home import get_home_temperature  # Tools: Home temp
-from tools.pico import get_pico_resources  # Tools: Pico resources
-from tools.led import turn_led_on, turn_led_off  # Tools: LED control
-from tools.relay import turn_relay_on, turn_relay_off  # Tools: Relay control
 
 TOOLS = [
     get_weather,
@@ -32,7 +30,7 @@ AVAILABLE_FUNCTIONS = {
 
 
 def run_agent(history: list[dict]) -> list[dict]:
-    messages: list[OllamaMessage] = []
+    messages: list[Message] = []
 
     for msg in history:
         role = msg["role"]
@@ -44,7 +42,7 @@ def run_agent(history: list[dict]) -> list[dict]:
 
         if role == "tool":
             messages.append(
-                OllamaMessage(
+                Message(
                     role="tool",
                     content=content,
                     tool_name=tool_name,
@@ -52,7 +50,7 @@ def run_agent(history: list[dict]) -> list[dict]:
             )
         else:
             messages.append(
-                OllamaMessage(
+                Message(
                     role=role,
                     content=content,
                 )
@@ -95,7 +93,7 @@ def run_agent(history: list[dict]) -> list[dict]:
             tool_content = json.dumps(result, ensure_ascii=False)
 
             messages.append(
-                OllamaMessage(
+                Message(
                     role="tool",
                     tool_name=tool_name,
                     content=tool_content,
