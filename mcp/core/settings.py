@@ -4,6 +4,10 @@ from pydantic_settings import BaseSettings, SettingsConfigDict  # Pydantic Setti
 
 # Settings
 class Settings(BaseSettings):
+    # Hardware (Raspberry Pi Pico 2 W)
+    PICO_IP: str = ""
+    PICO_SECRET: str = ""
+
     # Weather API
     WEATHER_APIKEY: str = ""
 
