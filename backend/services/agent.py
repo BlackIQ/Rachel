@@ -1,35 +1,42 @@
 # Libs
-import json  # JSON
+import json
 
-from mcp import Client  # MCP Client
-from mcp_types import TextContent  # Text Content
-from ollama import chat, ChatResponse, Message, Tool  # Ollama
+from mcp import Client
+from mcp_types import TextContent
+from ollama import chat, ChatResponse, Message, Tool
 
 # Application
-from core.settings import settings  # Core: Settings
+from core.settings import settings
 
-TOOLS = [
-    get_weather,
-    get_home_temperature,
-    get_pico_resources,
-    turn_led_on,
-    turn_led_off,
-    turn_relay_on,
-    turn_relay_off,
-]
-
-AVAILABLE_FUNCTIONS = {
-    "get_weather": get_weather,
-    "get_home_temperature": get_home_temperature,
-    "get_pico_resources": get_pico_resources,
-    "turn_led_on": turn_led_on,
-    "turn_led_off": turn_led_off,
-    "turn_relay_on": turn_relay_on,
-    "turn_relay_off": turn_relay_off,
-}
+MCP_SERVER_URL = "http://127.0.0.1:8080/mcp"
 
 
-def run_agent(history: list[dict]) -> list[dict]:
+def _to_ollama_tool(tool) -> Tool:
+    return Tool(
+        type="function",
+        function=Tool.Function(
+            name=tool.name,
+            description=tool.description or "",
+            parameters=tool.input_schema,
+        ),
+    )
+
+
+def _serialize_tool_result(result) -> str:
+    text_parts = [
+        block.text for block in result.content if isinstance(block, TextContent)
+    ]
+
+    payload = {
+        "success": not result.is_error,
+        "content": "\n".join(text_parts),
+        "structured_content": getattr(result, "structured_content", None),
+    }
+
+    return json.dumps(payload, ensure_ascii=False, default=str)
+
+
+def _build_messages(history: list[dict]) -> list[Message]:
     messages: list[Message] = []
 
     for msg in history:
@@ -37,7 +44,7 @@ def run_agent(history: list[dict]) -> list[dict]:
         content = msg["content"]
         tool_name = msg.get("tool_name")
 
-        if role == "assistant" and not content.strip():
+        if role == "assistant" and not (content or "").strip():
             continue
 
         if role == "tool":
@@ -56,41 +63,66 @@ def run_agent(history: list[dict]) -> list[dict]:
                 )
             )
 
+    return messages
+
+
+async def run_agent(history: list[dict]) -> list[dict]:
+    messages = _build_messages(history)
     new_messages: list[dict] = []
 
-    response: ChatResponse = chat(
-        model=settings.MODEL,
-        messages=messages,
-        tools=TOOLS,
-    )
+    async with Client(MCP_SERVER_URL) as client:
+        tool_list = await client.list_tools()
+        available_tools = {tool.name for tool in tool_list.tools}
+        tools = [_to_ollama_tool(tool) for tool in tool_list.tools]
 
-    assistant_msg = response.message
-    messages.append(assistant_msg)
-
-    if assistant_msg.content and assistant_msg.content.strip():
-        new_messages.append(
-            {
-                "role": "assistant",
-                "content": assistant_msg.content,
-                "tool_name": None,
-            }
+        response: ChatResponse = chat(
+            model=settings.MODEL,
+            messages=messages,
+            tools=tools,
         )
 
-    if assistant_msg.tool_calls:
-        for tc in assistant_msg.tool_calls:
-            tool_name = tc.function.name
-            arguments = tc.function.arguments or {}
+        assistant_msg = response.message
+        messages.append(assistant_msg)
 
-            if tool_name in AVAILABLE_FUNCTIONS:
-                result = AVAILABLE_FUNCTIONS[tool_name](**arguments)
-            else:
-                result = {
-                    "success": False,
-                    "error": "tool_not_found",
-                    "message": f"Tool {tool_name} not found",
+        if assistant_msg.content and assistant_msg.content.strip():
+            new_messages.append(
+                {
+                    "role": "assistant",
+                    "content": assistant_msg.content,
+                    "tool_name": None,
                 }
+            )
 
-            tool_content = json.dumps(result, ensure_ascii=False)
+        tool_calls = assistant_msg.tool_calls or []
+        if not tool_calls:
+            return new_messages
+
+        for tool_call in tool_calls:
+            tool_name = tool_call.function.name
+            arguments = tool_call.function.arguments or {}
+
+            if tool_name not in available_tools:
+                tool_content = json.dumps(
+                    {
+                        "success": False,
+                        "error": "tool_not_found",
+                        "message": f"Tool {tool_name} not found",
+                    },
+                    ensure_ascii=False,
+                )
+            else:
+                try:
+                    result = await client.call_tool(tool_name, arguments)
+                    tool_content = _serialize_tool_result(result)
+                except Exception as exc:
+                    tool_content = json.dumps(
+                        {
+                            "success": False,
+                            "error": "tool_execution_failed",
+                            "message": str(exc),
+                        },
+                        ensure_ascii=False,
+                    )
 
             messages.append(
                 Message(
@@ -111,11 +143,10 @@ def run_agent(history: list[dict]) -> list[dict]:
         final_response: ChatResponse = chat(
             model=settings.MODEL,
             messages=messages,
-            tools=TOOLS,
+            tools=tools,
         )
 
         final_msg = final_response.message
-
         new_messages.append(
             {
                 "role": "assistant",
@@ -124,4 +155,4 @@ def run_agent(history: list[dict]) -> list[dict]:
             }
         )
 
-    return new_messages
+        return new_messages

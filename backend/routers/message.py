@@ -1,16 +1,16 @@
 # Libs
-from fastapi import APIRouter, Depends, HTTPException, status  # FastAPI
-from sqlalchemy.orm import Session  # SQLAlchemy ORM
-from datetime import datetime, timezone  # Datetime
-from uuid import UUID  # UUID
+from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.orm import Session
+from datetime import datetime, timezone
+from uuid import UUID
 
 # Application
-from dependencies.database import get_db  # Dependencies: Database
-from schemas.message import MessageRead, MessageCreate  # Schemas: Chat
-from models.message import Message  # Models: Message
-from models.chat import Chat  # Models: Chat
-from enums.role import RoleEnum  # Enums: Role
-from services.agent import run_agent  # Services: Agent
+from dependencies.database import get_db
+from schemas.message import MessageRead, MessageCreate
+from models.message import Message
+from models.chat import Chat
+from enums.role import RoleEnum
+from services.agent import run_agent
 
 # Router
 router = APIRouter(
@@ -90,12 +90,8 @@ async def create_message(
 
     db_messages = (
         db.query(Message)
-        .where(
-            Message.chat_id == db_chat.id,
-        )
-        .order_by(
-            Message.created_at.asc(),
-        )
+        .where(Message.chat_id == db_chat.id)
+        .order_by(Message.created_at.asc())
         .all()
     )
 
@@ -108,7 +104,7 @@ async def create_message(
         for m in db_messages
     ]
 
-    new_messages_data = run_agent(history)
+    new_messages_data = await run_agent(history)
 
     saved_messages = [user_message]
 
@@ -119,9 +115,7 @@ async def create_message(
             tool_name=msg_data.get("tool_name"),
             chat_id=db_chat.id,
         )
-
         db.add(db_msg)
-
         saved_messages.append(db_msg)
 
     db_chat.updated_at = datetime.now(timezone.utc)
