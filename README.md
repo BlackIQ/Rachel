@@ -10,7 +10,7 @@ She runs locally with **Ollama** (Qwen3, but customized), a **FastAPI backend**,
 
 **Rachel** is not a new idea.
 
-The first public code goes back to **2020** ([Rachel](https://github.com/BlackIQ/Rachel)).
+The first public code goes back to **2020** ([NewRachel](https://github.com/BlackIQ/NewRachel)).
 Before that, work on the assistant had already started around **2019**.
 There was a separate core package ([RachelCore](https://github.com/BlackIQ/RachelCore)),
 and an archived early line ([OldRachel](https://github.com/BlackIQ/OldRachel)).
