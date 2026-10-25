@@ -15,9 +15,6 @@ class Settings(BaseSettings):
     PICO_IP: str = ""
     PICO_SECRET: str = ""
 
-    # Weather API
-    WEATHER_APIKEY: str = ""
-
     model_config = SettingsConfigDict(env_file=".env")
 
 
