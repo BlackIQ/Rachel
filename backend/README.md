@@ -40,7 +40,7 @@ Then edit it:
 POSTGRESQL_URL="postgresql+psycopg2://user:pass@localhost:5432/rachel"
 ```
 
-> You can override model via `Settings.MODEL` in `core/settings.py` (default: `rachel-1.4˝:4b`).
+> You can override model via `Settings.MODEL` in `core/settings.py` (default: `rachel-1.5˝:4b`).
 
 ### Database
 

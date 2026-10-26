@@ -32,7 +32,7 @@ Years later, this repo brings her back, local models, real hardware, and a full 
 | **Firmware** | Micropython, Microdot                    | Control devices, lights and sensors   |
 | **Hardware** | Pico 2 W, MicroPython, Microdot          | Communicating with devices            |
 | **MCP**      | Model Context Protocol (Streamable HTTP) | Tools server (hardware + weather)     |
-| **LLM**      | Ollama, Qwen3:4B (`rachel-1.4:4b`)       | Reasoning & tool selection            |
+| **LLM**      | Ollama, Qwen3:4B (`rachel-1.5:4b`)       | Reasoning & tool selection            |
 
 ## Features
 
@@ -66,7 +66,7 @@ Each major package has its own README with setup details:
 Install it first. Then:
 
 ```bash
-ollama create rachel-1.4:4b -f Modelfile
+ollama create rachel-1.5:4b -f Modelfile
 ```
 
 ### 2. MCP Server
