@@ -11,6 +11,7 @@ from ollama import chat, ChatResponse, Message, Tool  # Ollama
 # Application
 from core.settings import settings  # Core: Settings
 
+MCP_HOME_URL = "http://127.0.0.1:8080"
 MCP_GITHUB_URL = "https://api.githubcopilot.com/mcp"
 
 
