@@ -10,6 +10,9 @@ class Settings(BaseSettings):
     # Database
     POSTGRESQL_URL: str = ""
 
+    # MCP Integration: GitHub
+    MCP_GITHUB_TOKEN: str = ""
+
     model_config = SettingsConfigDict(env_file=".env")
 
 
