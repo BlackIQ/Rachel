@@ -23,7 +23,7 @@ app.add_tool(led.turn_led_off)
 app.add_tool(relay.turn_relay_on)
 app.add_tool(relay.turn_relay_off)
 
-# Runs:
+# How to run
 ## STDIO
 ### uv run fastmcp run main.py:app --transport stdio
 ## HTTP
