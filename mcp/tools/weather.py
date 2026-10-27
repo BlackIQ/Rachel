@@ -1,5 +1,5 @@
 # Libs
-from mcp.server import MCPServer  # MCP Server
+from fastmcp.tools import tool  # FastMCP Tool
 
 import requests  # Requests
 from requests.exceptions import RequestException  # Requests Exception
@@ -16,13 +16,13 @@ VALID_LEDS = {
 }
 
 
-def register(mcp: MCPServer):
-    @mcp.tool(
+class Weather:
+    @tool(
         name="get_weather",
         title="Get Weather",
         description="Get the current weather information for a city",
     )
-    def get_weather(city: str) -> dict:
+    def get_weather(self, city: str) -> dict:
         """Get the current weather information for a city.
 
         Args:
@@ -86,3 +86,6 @@ def register(mcp: MCPServer):
                 error="network_error",
                 message="Could not reach WeatherAPI. Check your internet connection.",
             ).to_json()
+
+
+weather = Weather()

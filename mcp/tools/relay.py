@@ -1,5 +1,5 @@
 # Libs
-from mcp.server import MCPServer  # MCP Server
+from fastmcp.tools import tool  # FastMCP Tool
 
 import requests  # Requests
 from requests.exceptions import RequestException  # Requests Exception
@@ -19,13 +19,13 @@ VALID_RELAYS = {
 }
 
 
-def register(mcp: MCPServer):
-    @mcp.tool(
+class Relay:
+    @tool(
         name="turn_relay_on",
         title="Turn Relay On",
         description="Turn on a specific relay on the Rachel Pico device",
     )
-    def turn_relay_on(name: str) -> dict:
+    def turn_relay_on(self, name: str) -> dict:
         """Turn on a specific relay on the Rachel Pico device.
 
         Args:
@@ -95,12 +95,12 @@ def register(mcp: MCPServer):
                 message="Could not reach the Pico device. Check power and network.",
             ).to_json()
 
-    @mcp.tool(
+    @tool(
         name="turn_relay_off",
         title="Turn Relay Off",
         description="Turn off a specific relay on the Rachel Pico device",
     )
-    def turn_relay_off(name: str) -> dict:
+    def turn_relay_off(self, name: str) -> dict:
         """Turn off a specific relay on the Rachel Pico device.
 
         Args:
@@ -169,3 +169,6 @@ def register(mcp: MCPServer):
                 error="pico_unreachable",
                 message="Could not reach the Pico device. Check power and network.",
             ).to_json()
+
+
+relay = Relay()

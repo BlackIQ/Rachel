@@ -1,5 +1,5 @@
 # Libs
-from mcp.server import MCPServer  # MCP Server
+from fastmcp.tools import tool  # FastMCP Tool
 
 import requests  # Requests
 from requests.exceptions import RequestException  # Requests Exception
@@ -16,13 +16,13 @@ VALID_LEDS = {
 }
 
 
-def register(mcp: MCPServer):
-    @mcp.tool(
+class LED:
+    @tool(
         name="turn_led_on",
         title="Turn LED On",
         description="Turn on a specific LED on the Rachel Pico device",
     )
-    def turn_led_on(name: str) -> dict:
+    def turn_led_on(self, name: str) -> dict:
         """Turn on a specific LED on the Rachel Pico device.
 
         Args:
@@ -92,12 +92,12 @@ def register(mcp: MCPServer):
                 message="Could not reach the Pico device. Check power and network.",
             ).to_json()
 
-    @mcp.tool(
+    @tool(
         name="turn_led_off",
         title="Turn LED off",
         description="Turn off a specific LED on the Rachel Pico device",
     )
-    def turn_led_off(name: str) -> dict:
+    def turn_led_off(self, name: str) -> dict:
         """Turn off a specific LED on the Rachel Pico device.
 
         Args:
@@ -166,3 +166,6 @@ def register(mcp: MCPServer):
                 error="pico_unreachable",
                 message="Could not reach the Pico device. Check power and network.",
             ).to_json()
+
+
+led = LED()

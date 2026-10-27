@@ -1,5 +1,5 @@
 # Libs
-from mcp.server import MCPServer  # MCP Server
+from fastmcp.tools import tool  # FastMCP Tool
 
 import requests  # Requests
 from requests.exceptions import RequestException  # Requests Exception
@@ -9,13 +9,13 @@ from core.settings import settings  # Core: Settings
 from schemas.response import ToolResult  # Schema: Tool Result
 
 
-def register(mcp: MCPServer):
-    @mcp.tool(
+class Home:
+    @tool(
         name="get_home_temperature",
         title="Get Home Temperature",
         description="Get the current home temperature information",
     )
-    def get_home_temperature() -> dict:
+    def get_home_temperature(self) -> dict:
         """Get the current home temperature information.
 
         Returns:
@@ -79,3 +79,6 @@ def register(mcp: MCPServer):
                 error="pico_unreachable",
                 message="Could not reach the Pico device. Check power and network.",
             ).to_json()
+
+
+home = Home()

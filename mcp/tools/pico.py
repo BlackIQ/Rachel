@@ -1,5 +1,5 @@
 # Libs
-from mcp.server import MCPServer  # MCP Server
+from fastmcp.tools import tool  # FastMCP Tool
 
 import requests  # Requests
 from requests.exceptions import RequestException  # Requests Exception
@@ -9,13 +9,13 @@ from core.settings import settings  # Core: Settings
 from schemas.response import ToolResult  # Schema: Tool Result
 
 
-def register(mcp: MCPServer):
-    @mcp.tool(
+class Pico:
+    @tool(
         name="get_pico_resources",
         title="Get Pico Resources",
         description="Get Raspberry Pi Pico memory information",
     )
-    def get_pico_resources() -> dict:
+    def get_pico_resources(self) -> dict:
         """
         Get Raspberry Pi Pico memory information
 
@@ -80,3 +80,6 @@ def register(mcp: MCPServer):
                 error="pico_unreachable",
                 message="Could not reach the Pico device. Check power and network.",
             ).to_json()
+
+
+pico = Pico()
