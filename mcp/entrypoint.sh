@@ -2,4 +2,4 @@
 
 set -e
 
-exec uv run mcp run main.py --transport stdio
+exec uv run fastmcp run main.py:mcp --transport stdio
