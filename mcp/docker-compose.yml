@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: .
+    container_name: rachel-mcp
+    restart: always
+    command: ["/app/entrypoint.sh"]
+    networks:
+      - rachel-network
+    environment:
+      PICO_IP: ${PICO_IP}
+      PICO_SECRET: ${PICO_SECRET}
+
+      WEATHER_APIKEY: ${WEATHER_APIKEY}
+
+networks:
+  rachel-network:
