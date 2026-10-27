@@ -15,12 +15,12 @@ from core.settings import settings  # Core: Settings
 MCP_SERVERS: list[dict[str, Any]] = [
     {
         "name": "home",
-        "url": "http://127.0.0.1:8080",
+        "url": "http://127.0.0.1:8080/mcp",
         "headers": {},
     },
     {
         "name": "github",
-        "url": "https://api.githubcopilot.com/mcp/",
+        "url": "https://api.githubcopilot.com/mcp",
         "headers": {
             "Authorization": f"Bearer {settings.MCP_GITHUB_TOKEN}",
         },
