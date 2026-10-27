@@ -58,11 +58,50 @@ WEATHER_APIKEY="your-weatherapi-key"
 
 ### Run
 
+You have many ways to do this.
+
+#### Stdio
+
+How to run in **STDIO** mode:
+
 ```bash
-uv run main.py
+uv run mcp run main.py --transport stdio
 ```
 
-- Server: `http://127.0.0.1:8080`
-- Transport: Streamable HTTP
+#### HTTP
+
+How to run in **HTTP** mode:
+
+```bash
+uv run mcp run main.py --transport streamable-http
+```
+
+#### Docker
+
+Here is how you can run it with **Docker**. Remember in this case is **STDIO**. Unless you change `entrypoint.sh`.
+
+First build the image:
+
+```bash
+docker build -t rachel-mcp:stdio .
+```
+
+Then run it:
+
+```bash
+docker run -i --rm --network host \
+    -e PICO_IP=http://192.168.1.50 \
+    -e PICO_SECRET=... \
+    -e WEATHER_APIKEY=... \
+    rachel-mcp:stdio
+```
+
+Or use **Docker Compose**:
+
+```bash
+docker compose up -d --build
+```
+
+---
 
 Any MCP client can now connect to this endpoint and use the tools above.
