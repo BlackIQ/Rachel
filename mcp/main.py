@@ -16,10 +16,8 @@ led.register(mcp)
 relay.register(mcp)
 pico.register(mcp)
 
-
-# def main():
-#     mcp.run(transport="streamable-http", port=8080)
-
-
-# if __name__ == "__main__":
-#     main()
+# Runs:
+## STDIO
+### uv run mcp run main.py --transport stdio
+## HTTP
+### uv run mcp run main.py --transport streamable-http
