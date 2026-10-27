@@ -1,13 +1,13 @@
 # Rachel MCP Server
 
-MCP server that exposes Rachel's tools (home sensors, LEDs, relays, Pico resources, and weather) over **Streamable HTTP**.
+MCP server that exposes Rachel's tools (home sensors, LEDs, relays, Pico resources, and weather) over **Streamable HTTP** or **STDIO**.
 
 The backend (and any other MCP client) can connect to this server instead of calling the hardware tools directly.
 
 ## Techs
 
 - **Python**: Programming language
-- **MCP**: Model Context Protocol
+- **FastMCP**: Model Context Protocol Server
 - **UV**: Dependency management
 - **Requests**: HTTP client for Pico and WeatherAPI
 
@@ -65,7 +65,7 @@ You have many ways to do this.
 How to run in **STDIO** mode:
 
 ```bash
-uv run mcp run main.py --transport stdio
+uv run fastmcp run main.py:app --transport stdio
 ```
 
 #### HTTP
@@ -73,7 +73,7 @@ uv run mcp run main.py --transport stdio
 How to run in **HTTP** mode:
 
 ```bash
-uv run mcp run main.py --transport streamable-http
+uv run fastmcp run main.py:app --transport http
 ```
 
 #### Docker
