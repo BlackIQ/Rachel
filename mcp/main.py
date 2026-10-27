@@ -17,9 +17,9 @@ relay.register(mcp)
 pico.register(mcp)
 
 
-def main():
-    mcp.run(transport="streamable-http", port=8080)
+# def main():
+#     mcp.run(transport="streamable-http", port=8080)
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
