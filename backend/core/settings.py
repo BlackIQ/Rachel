@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict  # Pydantic Setti
 # Settings
 class Settings(BaseSettings):
     # Model
-    MODEL: str = "rachel-1.5:4b"
+    MODEL: str = ""
 
     # Database
     POSTGRESQL_URL: str = ""
