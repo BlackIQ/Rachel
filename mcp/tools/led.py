@@ -1,12 +1,13 @@
 # Libs
 from fastmcp.tools import tool  # FastMCP Tool
-
+from pydantic import Field  # Pydantic
 import requests  # Requests
 from requests.exceptions import RequestException  # Requests Exception
 
 # Application
 from core.settings import settings  # Core: Settings
 from schemas.response import ToolResult  # Schema: Tool Result
+from enums.led import LEDName  # Enums: LED
 
 VALID_LEDS = {
     "white",
@@ -20,9 +21,20 @@ class LED:
     @tool(
         name="turn_led_on",
         title="Turn LED On",
-        description="Turn on a specific LED on the Rachel Pico device",
+        description=(
+            "Turn on a specific LED connected to the Raspberry Pi Pico."
+            "Use this when the user asks to turn on a light/LED (white, green, red or blue)."
+            "Valid names: white, green, red, blue."
+        ),
     )
-    def turn_led_on(self, name: str) -> dict:
+    def turn_led_on(
+        self,
+        name: LEDName = Field(
+            ...,
+            title="LED Name",
+            description="Which LED to turn on. Must be one of: white, green, red, blue.",
+        ),
+    ) -> dict:
         """Turn on a specific LED on the Rachel Pico device.
 
         Args:
@@ -94,10 +106,21 @@ class LED:
 
     @tool(
         name="turn_led_off",
-        title="Turn LED off",
-        description="Turn off a specific LED on the Rachel Pico device",
+        title="Turn LED Off",
+        description=(
+            "Turn off a specific LED connected to the Raspberry Pi Pico."
+            "Use this when the user asks to turn off a light/LED (white, green, red or blue)."
+            "Valid names: white, green, red, blue."
+        ),
     )
-    def turn_led_off(self, name: str) -> dict:
+    def turn_led_off(
+        self,
+        name: LEDName = Field(
+            ...,
+            title="LED Name",
+            description="Which LED to turn off. Must be one of: white, green, red, blue.",
+        ),
+    ) -> dict:
         """Turn off a specific LED on the Rachel Pico device.
 
         Args:

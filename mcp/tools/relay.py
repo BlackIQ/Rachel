@@ -1,12 +1,12 @@
-# Libs
 from fastmcp.tools import tool  # FastMCP Tool
-
+from pydantic import Field  # Pydantic
 import requests  # Requests
 from requests.exceptions import RequestException  # Requests Exception
 
 # Application
 from core.settings import settings  # Core: Settings
 from schemas.response import ToolResult  # Schema: Tool Result
+from enums.relay import RelayName  # Enums: Relay
 
 VALID_RELAYS = {
     "library",
@@ -23,9 +23,20 @@ class Relay:
     @tool(
         name="turn_relay_on",
         title="Turn Relay On",
-        description="Turn on a specific relay on the Rachel Pico device",
+        description=(
+            "Turn on a specific Relay connected to the Raspberry Pi Pico."
+            "Use this when the user asks to turn on a relay (library, bedroom, living_room, kitchen)."
+            "Valid names: library, bedroom, living_room, kitchen."
+        ),
     )
-    def turn_relay_on(self, name: str) -> dict:
+    def turn_relay_on(
+        self,
+        name: RelayName = Field(
+            ...,
+            title="Relay Name",
+            description="Which Relay to turn on. Must be one of: library, bedroom, living_room, kitchen.",
+        ),
+    ) -> dict:
         """Turn on a specific relay on the Rachel Pico device.
 
         Args:
@@ -98,9 +109,20 @@ class Relay:
     @tool(
         name="turn_relay_off",
         title="Turn Relay Off",
-        description="Turn off a specific relay on the Rachel Pico device",
+        description=(
+            "Turn off a specific Relay connected to the Raspberry Pi Pico."
+            "Use this when the user asks to turn off a relay (library, bedroom, living_room, kitchen)."
+            "Valid names: library, bedroom, living_room, kitchen."
+        ),
     )
-    def turn_relay_off(self, name: str) -> dict:
+    def turn_relay_off(
+        self,
+        name: RelayName = Field(
+            ...,
+            title="Relay Name",
+            description="Which Relay to turn on. Must be one of: library, bedroom, living_room, kitchen.",
+        ),
+    ) -> dict:
         """Turn off a specific relay on the Rachel Pico device.
 
         Args:
