@@ -11,6 +11,9 @@ class Settings(BaseSettings):
     # Weather API
     WEATHER_APIKEY: str = ""
 
+    # Security
+    SECRET: str = ""
+
     model_config = SettingsConfigDict(env_file=".env")
 
 
