@@ -1,5 +1,9 @@
 # Libs
 from fastmcp import FastMCP  # FastMCP
+from fastmcp.server.auth.providers.jwt import StaticTokenVerifier  # FastMCP Auth
+
+# Application
+from core.settings import settings  # Core: Settings
 
 # Application
 from tools.home import home  # Tools: Home
@@ -8,11 +12,23 @@ from tools.weather import weather  # Tools: Weather
 from tools.led import led  # Tools: LED
 from tools.relay import relay  # Tools: Relay
 
+# Create Auth instance
+auth = StaticTokenVerifier(
+    tokens={
+        settings.SECRET: {
+            "client_id": "rachel-backend",
+            "scopes": ["home:read", "home:write", "weather:read"],
+        },
+    },
+    required_scopes=["home:read"],
+)
+
 # Create MCP Server
 app = FastMCP(
     name="Rachel Assistant MCP Server",
     version="0.1.0",
     website_url="rachel.amirhossein.info",
+    auth=auth,
 )
 
 app.add_tool(home.get_home_temperature)
