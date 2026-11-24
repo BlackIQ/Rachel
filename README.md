@@ -2,9 +2,9 @@
 
 **Rachel** is a personal AI assistant that talks to real home hardware.
 
-She runs locally with **Ollama** (Qwen3, but customized), a **FastAPI backend**, a **NextJs frontend**, and talks to a **Raspberry Pi Pico** over Wi‑Fi for hardware communication.
+She runs locally with **Ollama** (Qwen3, but customized), a **Gin backend**, a **NextJs frontend**, and talks to a **Raspberry Pi Pico** over Wi‑Fi for hardware communication.
 
-> Bringing the old Rachel back — this time as a read agent.
+> Bringing the old Rachel back — this time as a real agent.
 
 ## A long story
 
@@ -25,18 +25,18 @@ Years later, this repo brings her back, local models, real hardware, and a full 
 
 ## Architecture
 
-| Layer        | Stack                                    | Role                                  |
-| ------------ | ---------------------------------------- | ------------------------------------- |
-| **Frontend** | NextJs, React, MUI                       | User interface, chats, tool summaries |
-| **Backend**  | FastAPI, SQLAlchemy, Alembic, PostgreSQL | API, agent loop, tool calling         |
-| **Firmware** | Micropython, Microdot                    | Control devices, lights and sensors   |
-| **Hardware** | Pico 2 W, MicroPython, Microdot          | Communicating with devices            |
-| **MCP**      | Model Context Protocol (Streamable HTTP) | Tools server (hardware + weather)     |
-| **LLM**      | Ollama, Qwen3:4B (`rachel-1.5:4b`)       | Reasoning & tool selection            |
+| Layer        | Stack                                            | Role                                  |
+| ------------ | ------------------------------------------------ | ------------------------------------- |
+| **Frontend** | NextJs, React, MUI                               | User interface, chats, tool summaries |
+| **Backend**  | Gin, GORM, SQLite                                | API, chat storage (agent loop soon)   |
+| **Firmware** | MicroPython, Microdot                            | Control devices, lights and sensors   |
+| **Hardware** | Pico 2 W, MicroPython, Microdot                  | Communicating with devices            |
+| **MCP**      | Model Context Protocol (Streamable HTTP / STDIO) | Tools server (hardware + weather)     |
+| **LLM**      | Ollama, Qwen3:4B (`rachel-1.5:4b`)               | Reasoning & tool selection            |
 
 ## Features
 
-- Multi-turn chat with history stored in PostgreSQL
+- Multi-turn chat with history stored in SQLite
 - Tool calling for home sensors, LEDs, Pico memory, and weather
 - Light / dark theme following the system
 - Persian (and other languages) — model replies in the user’s language
@@ -50,7 +50,7 @@ Years later, this repo brings her back, local models, real hardware, and a full 
 - **turn_led_off**: Turn LED off
 - **turn_relay_on**: Turn Relay on
 - **turn_relay_off**: Turn Relay off
-- **get_weather**: Get read time weather from [WeatherAPI](https://www.weatherapi.com)
+- **get_weather**: Get real-time weather from [WeatherAPI](https://www.weatherapi.com)
 
 Each major package has its own README with setup details:
 

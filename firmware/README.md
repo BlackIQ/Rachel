@@ -2,7 +2,7 @@
 
 **MicroPython firmware** for **Raspberry Pi Pico 2 W**. Wi‑Fi, DHT11, LEDs, I2C LCD, and a small HTTP API with **Microdot**.
 
-The FastAPI backend calls this device for temperature/humidity, LED control, and memory stats and other stuff.
+The backend (and MCP server) calls this device for temperature/humidity, LED control, and memory stats and other stuff.
 
 ## Techs
 
