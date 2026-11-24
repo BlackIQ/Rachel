@@ -57,7 +57,7 @@ Each major package has its own README with setup details:
 - [Backend README.md](backend/README.md)
 - [Frontend README.md](frontend/README.md)
 - [MCP Server README.md](mcp/README.md)
-- [Micropython README.md](micropython/README.md)
+- [Firmware README.md](firmware/README.md)
 
 ## Setup
 
@@ -83,7 +83,7 @@ Follow details at [Frontend README.md](frontend/README.md)
 
 ### 5. Pico
 
-Follow details at [Micropython README.md](micropython/README.md)
+Follow details at [Firmware README.md](firmware/README.md)
 
 ---
 
