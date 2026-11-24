@@ -1,99 +1,69 @@
 package services
 
 import (
-	"bytes"
-	"encoding/json"
-	"fmt"
-	"net/http"
+	"context"
+	"errors"
 
-	"github.com/google/uuid"
+	"github.com/ollama/ollama/api"
 
 	"github.com/BlackIQ/Rachel/backend/internal/enums"
 	"github.com/BlackIQ/Rachel/backend/internal/models"
 )
 
-const (
-	ollamaBaseURL = "http://localhost:11434"
-	modelName     = "rachel:test-1"
-)
-
-type MessageInput struct {
-	Role     enums.MessageRole
-	Content  string
-	ToolName *string
-}
-
-type ollamaMessage struct {
-	Role    string `json:"role"`
-	Content string `json:"content"`
-}
-
-type ollamaChatRequest struct {
-	Model    string          `json:"model"`
-	Messages []ollamaMessage `json:"messages"`
-	Stream   bool            `json:"stream"`
-}
-
-type ollamaChatResponse struct {
-	Message ollamaMessage `json:"message"`
-}
-
-func Run(history []MessageInput) ([]models.Message, error) {
-	if modelName == "" {
-		return nil, fmt.Errorf("model name is empty")
+func Run(history []models.Message) (message *models.Message, err error) {
+	stream := false
+	think := &api.ThinkValue{
+		Value: false,
 	}
 
-	messages := make([]ollamaMessage, 0, len(history))
-	for _, msg := range history {
-		if msg.Role == enums.Tool {
-			continue
-		}
-		role := string(msg.Role)
-		messages = append(messages, ollamaMessage{
-			Role:    role,
-			Content: msg.Content,
+	var ollamaResp api.ChatResponse
+
+	ctx := context.Background()
+
+	messages := []api.Message{}
+
+	for _, m := range history {
+		messages = append(messages, api.Message{
+			Role:    string(m.Role),
+			Content: m.Content,
 		})
 	}
 
-	reqBody := ollamaChatRequest{
-		Model:    modelName,
+	client, err := api.ClientFromEnvironment()
+
+	if err != nil {
+		return nil, errors.New("Could not connect to Ollama:" + err.Error())
+	}
+
+	err = client.Heartbeat(ctx)
+
+	if err != nil {
+		return nil, errors.New("Ollama is not available:" + err.Error())
+	}
+
+	req := &api.ChatRequest{
+		Model:    "rachel:test-1",
 		Messages: messages,
-		Stream:   false,
+		Stream:   &stream,
+		Think:    think,
 	}
 
-	jsonBody, err := json.Marshal(reqBody)
+	res := func(resp api.ChatResponse) error {
+		ollamaResp = resp
+
+		return nil
+	}
+
+	err = client.Chat(ctx, req, res)
 
 	if err != nil {
-		return nil, fmt.Errorf("marshal request: %w", err)
-	}
-
-	resp, err := http.Post(
-		ollamaBaseURL+"/api/chat",
-		"application/json",
-		bytes.NewReader(jsonBody),
-	)
-
-	if err != nil {
-		return nil, fmt.Errorf("ollama request failed: %w", err)
-	}
-
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("ollama returned status %d", resp.StatusCode)
-	}
-
-	var ollamaResp ollamaChatResponse
-
-	if err := json.NewDecoder(resp.Body).Decode(&ollamaResp); err != nil {
-		return nil, fmt.Errorf("decode response: %w", err)
+		return nil, errors.New("Error in Ollama Chat:" + err.Error())
 	}
 
 	assistantMsg := models.Message{
-		ID:      uuid.New(),
 		Content: ollamaResp.Message.Content,
 		Role:    enums.Assistant,
 	}
 
-	return []models.Message{assistantMsg}, nil
+	return &assistantMsg, nil
 }
