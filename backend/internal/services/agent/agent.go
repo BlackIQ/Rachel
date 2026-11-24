@@ -3,22 +3,30 @@ package agent
 import (
 	"context"
 	"errors"
+	"time"
 
 	"github.com/ollama/ollama/api"
 
+	"github.com/BlackIQ/Rachel/backend/internal/config"
 	"github.com/BlackIQ/Rachel/backend/internal/enums"
 	"github.com/BlackIQ/Rachel/backend/internal/models"
+	"github.com/BlackIQ/Rachel/backend/internal/ollama"
 )
 
-func Run(history []models.Message) (message *models.Message, err error) {
-	stream := false
-	think := &api.ThinkValue{
-		Value: false,
-	}
+func Run(parent context.Context, history []models.Message) (message *models.Message, err error) {
+	cfg := config.GetConfig()
+
+	client := ollama.GetOllama()
+
+	ollamaConfig := cfg.OllamaConfig
 
 	var ollamaResp api.ChatResponse
 
-	ctx := context.Background()
+	ctx, cancel := context.WithTimeout(
+		parent,
+		2*time.Minute,
+	)
+	defer cancel()
 
 	messages := []api.Message{}
 
@@ -29,12 +37,6 @@ func Run(history []models.Message) (message *models.Message, err error) {
 		})
 	}
 
-	client, err := api.ClientFromEnvironment()
-
-	if err != nil {
-		return nil, errors.New("Could not connect to Ollama:" + err.Error())
-	}
-
 	err = client.Heartbeat(ctx)
 
 	if err != nil {
@@ -42,10 +44,10 @@ func Run(history []models.Message) (message *models.Message, err error) {
 	}
 
 	req := &api.ChatRequest{
-		Model:    "rachel:test-1",
+		Model:    ollamaConfig.Model,
+		Stream:   &ollamaConfig.Stream,
+		Think:    &ollamaConfig.Think,
 		Messages: messages,
-		Stream:   &stream,
-		Think:    think,
 	}
 
 	res := func(resp api.ChatResponse) error {
