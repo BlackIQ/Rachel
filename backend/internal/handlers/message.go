@@ -3,6 +3,7 @@ package handlers
 import (
 	"errors"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -12,6 +13,7 @@ import (
 	"github.com/BlackIQ/Rachel/backend/internal/enums"
 	"github.com/BlackIQ/Rachel/backend/internal/models"
 	"github.com/BlackIQ/Rachel/backend/internal/schemas"
+	agent "github.com/BlackIQ/Rachel/backend/internal/services"
 )
 
 func AllMessages(ctx *gin.Context) {
@@ -76,6 +78,16 @@ func CreateMessage(ctx *gin.Context) {
 		return
 	}
 
+	var messageData schemas.CreateMessageRequest
+
+	if err := ctx.ShouldBindBodyWithJSON(&messageData); err != nil {
+		ctx.AbortWithStatusJSON(
+			http.StatusBadRequest,
+			gin.H{"message": err.Error()},
+		)
+		return
+	}
+
 	db := database.GetDB()
 
 	var chat models.Chat
@@ -98,24 +110,24 @@ func CreateMessage(ctx *gin.Context) {
 		return
 	}
 
-	var messageData schemas.CreateMessageRequest
-
-	if err := ctx.ShouldBindBodyWithJSON(&messageData); err != nil {
-		ctx.AbortWithStatusJSON(
-			http.StatusBadRequest,
-			gin.H{"message": err.Error()},
-		)
-		return
-	}
-
-	newMessage := models.Message{
+	userMessage := models.Message{
 		ID:      uuid.New(),
 		Content: messageData.Content,
 		Role:    enums.User,
 		ChatID:  chat.ID,
 	}
 
-	result = db.Create(&newMessage)
+	if err := db.Create(&userMessage).Error; err != nil {
+		ctx.AbortWithStatusJSON(
+			http.StatusInternalServerError,
+			gin.H{"message": "Database error"},
+		)
+		return
+	}
+
+	var dbMessages []models.Message
+
+	result = db.Where("chat_id = ?", chat.ID).Order("created_at ASC").Find(&dbMessages)
 
 	if result.Error != nil {
 		ctx.AbortWithStatusJSON(
@@ -125,28 +137,42 @@ func CreateMessage(ctx *gin.Context) {
 		return
 	}
 
-	// start test part
+	history := make([]agent.MessageInput, 0, len(dbMessages))
 
-	newMessageAssistant := models.Message{
-		ID:      uuid.New(),
-		Content: "You said: " + newMessage.Content,
-		Role:    enums.Assistant,
-		ChatID:  chat.ID,
+	for _, m := range dbMessages {
+		history = append(history, agent.MessageInput{
+			Role:     m.Role,
+			Content:  m.Content,
+			ToolName: m.ToolName,
+		})
 	}
 
-	result = db.Create(&newMessageAssistant)
+	newMessages, err := agent.Run(history)
 
-	if result.Error != nil {
+	if err != nil {
 		ctx.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			gin.H{"message": "Database error"},
+			gin.H{"message": "Agent error"},
 		)
 		return
 	}
 
-	// end test part
+	savedMessages := []models.Message{userMessage}
 
-	ctx.Status(
-		http.StatusCreated,
-	)
+	for i := range newMessages {
+		newMessages[i].ChatID = chat.ID
+
+		if err := db.Create(&newMessages[i]).Error; err != nil {
+			ctx.AbortWithStatusJSON(
+				http.StatusInternalServerError,
+				gin.H{"message": "Database error"},
+			)
+			return
+		}
+		savedMessages = append(savedMessages, newMessages[i])
+	}
+
+	db.Model(&chat).Update("updated_at", time.Now())
+
+	ctx.JSON(http.StatusCreated, savedMessages)
 }
