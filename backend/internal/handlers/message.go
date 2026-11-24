@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"errors"
+	"log"
 	"net/http"
 	"time"
 
@@ -137,12 +138,15 @@ func CreateMessage(ctx *gin.Context) {
 		return
 	}
 
-	assistantMessage, err := agent.Run(dbMessages)
+	assistantMessage, err := agent.Run(
+		ctx.Request.Context(),
+		dbMessages,
+	)
 
 	if err != nil {
 		ctx.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			gin.H{"message": "Ollama error: " + err.Error()},
+			gin.H{"message": "Ollama error"},
 		)
 		return
 	}
@@ -162,7 +166,11 @@ func CreateMessage(ctx *gin.Context) {
 		return
 	}
 
-	db.Model(&chat).Update("updated_at", time.Now())
+	result = db.Model(&chat).Update("updated_at", time.Now())
+
+	if result.Error != nil {
+		log.Printf("Error saving time %v\n", result.Error.Error())
+	}
 
 	ctx.JSON(
 		http.StatusCreated,
