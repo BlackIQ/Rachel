@@ -5,6 +5,8 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+
+	"github.com/BlackIQ/Rachel/backend/internal/handlers"
 )
 
 func SetupRouter() *gin.Engine {
@@ -20,6 +22,21 @@ func SetupRouter() *gin.Engine {
 			},
 		)
 	})
+
+	apiGroup := router.Group("/api")
+
+	chatGroup := apiGroup.Group("/chats")
+
+	chatGroup.GET("", handlers.AllChats)
+	chatGroup.GET("/:id", handlers.OneChat)
+	chatGroup.POST("", handlers.CreateChat)
+	chatGroup.PATCH("/:id", handlers.UpdateChat)
+	chatGroup.DELETE("/:id", handlers.DeleteChat)
+
+	messageGroup := apiGroup.Group("/messages")
+
+	messageGroup.GET("/:chatID", handlers.AllMessages)
+	messageGroup.POST("/:chatID", handlers.CreateMessage)
 
 	return router
 }
