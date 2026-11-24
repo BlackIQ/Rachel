@@ -28,7 +28,7 @@ func main() {
 
 	engine := router.SetupRouter()
 
-	if err := engine.Run(":8080"); err != nil {
+	if err := engine.Run(":8000"); err != nil {
 		log.Fatalf("Error running app: %v\n", err)
 	}
 }
