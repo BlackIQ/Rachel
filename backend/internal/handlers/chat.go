@@ -103,7 +103,7 @@ func CreateChat(ctx *gin.Context) {
 
 	ctx.JSON(
 		http.StatusCreated,
-		chatData,
+		newChat,
 	)
 }
 
@@ -153,7 +153,7 @@ func UpdateChat(ctx *gin.Context) {
 	updates := map[string]any{}
 
 	if chatData.Title != nil {
-		updates["Title"] = *&chat.Title
+		updates["Title"] = chatData.Title
 	}
 
 	result = db.Model(&chat).Updates(updates)
@@ -161,9 +161,7 @@ func UpdateChat(ctx *gin.Context) {
 	if result.Error != nil {
 		ctx.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			gin.H{
-				"message": "Database error",
-			},
+			gin.H{"message": "Database error"},
 		)
 		return
 	}
@@ -213,9 +211,7 @@ func DeleteChat(ctx *gin.Context) {
 	if result.RowsAffected == 0 {
 		ctx.AbortWithStatusJSON(
 			http.StatusNotFound,
-			gin.H{
-				"message": "Chat not found",
-			},
+			gin.H{"message": "Chat not found"},
 		)
 		return
 	}
