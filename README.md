@@ -57,7 +57,7 @@ Each major package has its own README with setup details:
 - [Backend README.md](backend/README.md)
 - [Frontend README.md](frontend/README.md)
 - [MCP Server Repository](https://github.com/BlackIQ/Rachel-MCP)
-- [Firmware README.md](firmware/README.md)
+- [Firmware Repository](https://github.com/BlackIQ/Rachel-Firmware)
 
 ## Setup
 
@@ -68,6 +68,10 @@ Install it first. Then:
 ```bash
 ollama create rachel-1.5:4b -f Modelfile
 ```
+
+### 1. Pico Firmware
+
+Follow details at [Firmware Repository](https://github.com/BlackIQ/Rachel-Firmware)
 
 ### 2. MCP Server
 
@@ -80,10 +84,6 @@ Follow details at [Backend README.md](backend/README.md)
 ### 4. Frontend
 
 Follow details at [Frontend README.md](frontend/README.md)
-
-### 5. Pico
-
-Follow details at [Firmware README.md](firmware/README.md)
 
 ---
 
