@@ -14,7 +14,7 @@ import (
 
 const (
 	ollamaBaseURL = "http://localhost:11434"
-	modelName     = "kimi-k3:cloud"
+	modelName     = "rachel:test-1"
 )
 
 type MessageInput struct {
