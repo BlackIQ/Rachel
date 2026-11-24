@@ -137,42 +137,35 @@ func CreateMessage(ctx *gin.Context) {
 		return
 	}
 
-	history := make([]agent.MessageInput, 0, len(dbMessages))
-
-	for _, m := range dbMessages {
-		history = append(history, agent.MessageInput{
-			Role:     m.Role,
-			Content:  m.Content,
-			ToolName: m.ToolName,
-		})
-	}
-
-	newMessages, err := agent.Run(history)
+	assistantMessage, err := agent.Run(dbMessages)
 
 	if err != nil {
 		ctx.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			gin.H{"message": "Agent error"},
+			gin.H{"message": "Ollama error: " + err.Error()},
 		)
 		return
 	}
 
-	savedMessages := []models.Message{userMessage}
+	newMessage := models.Message{
+		ID:      uuid.New(),
+		ChatID:  chat.ID,
+		Role:    assistantMessage.Role,
+		Content: assistantMessage.Content,
+	}
 
-	for i := range newMessages {
-		newMessages[i].ChatID = chat.ID
-
-		if err := db.Create(&newMessages[i]).Error; err != nil {
-			ctx.AbortWithStatusJSON(
-				http.StatusInternalServerError,
-				gin.H{"message": "Database error"},
-			)
-			return
-		}
-		savedMessages = append(savedMessages, newMessages[i])
+	if err := db.Create(&newMessage).Error; err != nil {
+		ctx.AbortWithStatusJSON(
+			http.StatusInternalServerError,
+			gin.H{"message": "Database error"},
+		)
+		return
 	}
 
 	db.Model(&chat).Update("updated_at", time.Now())
 
-	ctx.JSON(http.StatusCreated, savedMessages)
+	ctx.JSON(
+		http.StatusCreated,
+		newMessage,
+	)
 }
