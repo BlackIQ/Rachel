@@ -11,5 +11,9 @@ func Initialize() (err error) {
 		return errors.New("[init.go] Init database: " + err.Error())
 	}
 
+	if err := InitOllama(); err != nil {
+		return errors.New("[init.go] Init Ollama: " + err.Error())
+	}
+
 	return nil
 }
