@@ -13,7 +13,7 @@ import (
 	"github.com/BlackIQ/Rachel/backend/internal/enums"
 	"github.com/BlackIQ/Rachel/backend/internal/models"
 	"github.com/BlackIQ/Rachel/backend/internal/schemas"
-	agent "github.com/BlackIQ/Rachel/backend/internal/services"
+	"github.com/BlackIQ/Rachel/backend/internal/services/agent"
 )
 
 func AllMessages(ctx *gin.Context) {
