@@ -71,7 +71,7 @@ ollama create rachel-1.5:4b -f Modelfile
 
 ### 2. MCP Server
 
-Follow details at [MCP Server README.md](mcp/README.md)
+Follow details at [MCP Server Repository](https://github.com/BlackIQ/Rachel-MCP)
 
 ### 3. Backend
 
