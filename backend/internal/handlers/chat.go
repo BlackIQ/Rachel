@@ -40,7 +40,7 @@ func OneChat(ctx *gin.Context) {
 	if err != nil {
 		ctx.AbortWithStatusJSON(
 			http.StatusBadRequest,
-			gin.H{"message": "Invalid ID"},
+			gin.H{"message": "Invalid Chat ID"},
 		)
 		return
 	}
@@ -113,7 +113,7 @@ func UpdateChat(ctx *gin.Context) {
 	if err != nil {
 		ctx.AbortWithStatusJSON(
 			http.StatusBadRequest,
-			gin.H{"message": "Invalid ID"},
+			gin.H{"message": "Invalid Chat ID"},
 		)
 		return
 	}
@@ -179,7 +179,7 @@ func DeleteChat(ctx *gin.Context) {
 	if err != nil {
 		ctx.AbortWithStatusJSON(
 			http.StatusBadRequest,
-			gin.H{"message": "Invalid ID"},
+			gin.H{"message": "Invalid Chat ID"},
 		)
 		return
 	}
