@@ -18,7 +18,7 @@ func AllChats(ctx *gin.Context) {
 
 	var chats []models.Chat
 
-	result := db.Order("updated_at ASC").Find(&chats)
+	result := db.Order("updated_at DESC").Find(&chats)
 
 	if result.Error != nil {
 		ctx.AbortWithStatusJSON(
