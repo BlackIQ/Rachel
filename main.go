@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -10,6 +11,9 @@ import (
 	"github.com/BlackIQ/Rachel/internal/inits"
 	"github.com/BlackIQ/Rachel/internal/router"
 )
+
+//go:embed all:frontend/dist
+var diskFS embed.FS
 
 func init() {
 	if err := inits.Initialize(); err != nil {
@@ -26,7 +30,7 @@ func main() {
 		gin.SetMode(gin.DebugMode)
 	}
 
-	engine := router.SetupRouter()
+	engine := router.SetupRouter(&diskFS)
 
 	if err := engine.Run(":8000"); err != nil {
 		log.Fatalf("Error running app: %v\n", err)

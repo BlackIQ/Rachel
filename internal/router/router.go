@@ -1,6 +1,8 @@
 package router
 
 import (
+	"embed"
+	"io/fs"
 	"net/http"
 
 	"github.com/gin-contrib/cors"
@@ -9,19 +11,37 @@ import (
 	"github.com/BlackIQ/Rachel/internal/handlers"
 )
 
-func SetupRouter() *gin.Engine {
+func SetupRouter(diskFS *embed.FS) *gin.Engine {
 	router := gin.Default()
 
-	router.Use(cors.Default())
+	// ===== Frontend ===== //
 
-	router.GET("/", func(ctx *gin.Context) {
-		ctx.JSON(
-			http.StatusOK,
-			gin.H{
-				"message": "Router",
-			},
-		)
+	frontendFS, err := fs.Sub(*diskFS, "frontend/dist")
+	if err != nil {
+		panic(err)
+	}
+
+	assetsFS, err := fs.Sub(frontendFS, "assets")
+	if err != nil {
+		panic(err)
+	}
+
+	router.StaticFS("/assets", http.FS(assetsFS))
+
+	router.GET("/", func(c *gin.Context) {
+		index, err := fs.ReadFile(frontendFS, "index.html")
+
+		if err != nil {
+			c.AbortWithStatus(http.StatusInternalServerError)
+			return
+		}
+
+		c.Data(http.StatusOK, "text/html; charset=utf-8", index)
 	})
+
+	// ===== Backend ===== //
+
+	router.Use(cors.Default())
 
 	apiGroup := router.Group("/api")
 
