@@ -1,163 +1,101 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Box, Collapse, Paper, Typography } from "@mui/material";
-import { ExpandMoreRounded, PsychologyAltOutlined } from "@mui/icons-material";
+import { Box, IconButton, Paper, Tooltip } from "@mui/material";
+import { CheckRounded, ContentCopyRounded } from "@mui/icons-material";
+import ThinkingBlock from "./ThinkingBlock";
+import { markdownSx } from "../lib/markdownSx";
 import type { Message } from "../lib/types";
 
-const markdownSx = {
-  fontSize: "0.925rem",
-  lineHeight: 1.65,
-  overflowWrap: "anywhere" as const,
-  "& > :first-of-type": { mt: 0 },
-  "& > :last-child": { mb: 0 },
-  "& p": { my: 0.5 },
-  "& h1, & h2, & h3, & h4": {
-    mt: 1.1,
-    mb: 0.4,
-    fontWeight: 700,
-    lineHeight: 1.35,
-  },
-  "& h1": { fontSize: "1.2rem" },
-  "& h2": { fontSize: "1.05rem" },
-  "& h3": { fontSize: "0.975rem" },
-  "& ul, & ol": {
-    my: 0.5,
-    pl: 2.25,
-  },
-  "& li": { my: 0.2 },
-  "& code:not(pre code)": {
-    fontFamily:
-      'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace',
-    fontSize: "0.84em",
-    px: 0.5,
-    py: 0.1,
-    borderRadius: 0.75,
-    bgcolor: "action.hover",
-  },
-  "& pre": {
-    my: 0.75,
-    p: 1.15,
-    borderRadius: 1,
-    overflowX: "auto" as const,
-    bgcolor: "action.hover",
-    border: "1px solid",
-    borderColor: "divider",
-  },
-  "& pre code": {
-    fontFamily:
-      'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace',
-    fontSize: "0.825rem",
-    lineHeight: 1.5,
-    bgcolor: "transparent !important",
-    p: "0 !important",
-  },
-  "& blockquote": {
-    my: 0.6,
-    pl: 1.2,
-    ml: 0.2,
-    borderLeft: "2px solid",
-    borderColor: "primary.main",
-    color: "text.secondary",
-  },
-  "& a": {
-    color: "primary.main",
-    textDecoration: "underline",
-    textUnderlineOffset: 2,
-  },
-  "& table": {
-    width: "100%",
-    borderCollapse: "collapse" as const,
-    my: 0.75,
-    fontSize: "0.85rem",
-  },
-  "& th, & td": {
-    border: "1px solid",
-    borderColor: "divider",
-    px: 1,
-    py: 0.45,
-    textAlign: "start" as const,
-  },
-  "& th": {
-    fontWeight: 600,
-    bgcolor: "action.hover",
-  },
-  "& hr": {
-    border: 0,
-    borderTop: "1px solid",
-    borderColor: "divider",
-    my: 0.85,
-  },
-};
+function extractText(node: ReactNode): string {
+  if (node == null || typeof node === "boolean") return "";
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(extractText).join("");
+  if (typeof node === "object" && "props" in node) {
+    return extractText(
+      (node as { props?: { children?: ReactNode } }).props?.children,
+    );
+  }
+  return "";
+}
 
-function ThinkingSection({ thinking }: { thinking: string }) {
-  const [open, setOpen] = useState(false);
+function CodeBlock({
+  children,
+  inverted,
+}: {
+  children: ReactNode;
+  inverted: boolean;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  async function handleCopy() {
+    const raw = extractText(children).replace(/\n$/, "");
+    if (!raw) return;
+    try {
+      await navigator.clipboard.writeText(raw);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1600);
+    } catch {
+      // Ignore clipboard permission errors in restricted contexts
+    }
+  }
 
   return (
-    <Box sx={{ maxWidth: { xs: "95%", sm: "80%" } }}>
+    <Box sx={{ position: "relative", my: 0.8 }}>
+      <Tooltip title={copied ? "Copied" : "Copy code"}>
+        <IconButton
+          size="small"
+          onClick={() => void handleCopy()}
+          aria-label="Copy code"
+          sx={{
+            position: "absolute",
+            top: 6,
+            right: 6,
+            zIndex: 1,
+            width: 26,
+            height: 26,
+            bgcolor: inverted ? "rgba(0, 0, 0, 0.28)" : "background.paper",
+            border: "1px solid",
+            borderColor: inverted ? "rgba(255, 255, 255, 0.18)" : "divider",
+            color: copied ? "primary.main" : "text.secondary",
+            "&:hover": {
+              color: "text.primary",
+              bgcolor: inverted ? "rgba(0, 0, 0, 0.42)" : "action.hover",
+            },
+          }}
+        >
+          {copied ? (
+            <CheckRounded sx={{ fontSize: 14 }} />
+          ) : (
+            <ContentCopyRounded sx={{ fontSize: 13 }} />
+          )}
+        </IconButton>
+      </Tooltip>
+
       <Box
-        component="button"
-        type="button"
-        onClick={() => setOpen((prev) => !prev)}
-        aria-expanded={open}
+        component="pre"
         sx={{
-          all: "unset",
-          cursor: "pointer",
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 0.6,
-          px: 0.75,
-          py: 0.35,
-          borderRadius: 1,
-          color: "text.secondary",
-          transition: "color 120ms ease, background-color 120ms ease",
-          "&:hover": {
-            color: "text.primary",
-            bgcolor: "action.hover",
+          m: 0,
+          p: 1.2,
+          pr: 4.5,
+          borderRadius: 1.25,
+          overflowX: "auto",
+          bgcolor: inverted ? "rgba(0, 0, 0, 0.24)" : "action.hover",
+          border: "1px solid",
+          borderColor: inverted ? "rgba(255, 255, 255, 0.14)" : "divider",
+          "& code": {
+            fontFamily:
+              'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace',
+            fontSize: "0.825rem",
+            lineHeight: 1.52,
+            bgcolor: "transparent !important",
+            border: "0 !important",
+            p: "0 !important",
           },
         }}
       >
-        <PsychologyAltOutlined sx={{ fontSize: 15, opacity: 0.85 }} />
-        <Typography
-          component="span"
-          sx={{
-            fontSize: "0.75rem",
-            lineHeight: 1.4,
-            fontWeight: 500,
-          }}
-        >
-          Thinking
-        </Typography>
-        <ExpandMoreRounded
-          sx={{
-            fontSize: 16,
-            opacity: 0.75,
-            transform: open ? "rotate(180deg)" : "none",
-            transition: "transform 150ms ease",
-          }}
-        />
+        {children}
       </Box>
-
-      <Collapse in={open}>
-        <Box
-          dir="auto"
-          sx={{
-            mt: 0.5,
-            ml: 0.5,
-            pl: 1.25,
-            pr: 0.5,
-            py: 0.4,
-            borderLeft: "2px solid",
-            borderColor: "divider",
-            color: "text.secondary",
-            ...markdownSx,
-            fontSize: "0.8rem",
-            lineHeight: 1.5,
-          }}
-        >
-          <Markdown remarkPlugins={[remarkGfm]}>{thinking}</Markdown>
-        </Box>
-      </Collapse>
     </Box>
   );
 }
@@ -181,23 +119,26 @@ export default function MessageBubble({ message }: { message: Message }) {
         display: "flex",
         flexDirection: "column",
         alignItems: isUser ? "flex-end" : "flex-start",
-        gap: 1.25,
+        gap: 1.15,
       }}
     >
-      {hasThinking && <ThinkingSection thinking={thinking} />}
+      {hasThinking && <ThinkingBlock thinking={thinking} />}
 
       {hasContent && (
         <Paper
           elevation={0}
           sx={{
-            maxWidth: { xs: "92%", sm: "75%" },
-            px: 1.75,
-            py: 1.2,
-            borderRadius: 1.5,
+            maxWidth: { xs: "92%", sm: "76%" },
+            px: 1.85,
+            py: 1.25,
+            borderRadius: 1.75,
             bgcolor: isUser ? "primary.main" : "background.paper",
             color: isUser ? "primary.contrastText" : "text.primary",
             border: isAssistant ? "1px solid" : "none",
             borderColor: "divider",
+            boxShadow: isAssistant
+              ? "0 1px 2px rgba(0, 0, 0, 0.08)"
+              : "0 2px 8px rgba(27, 122, 74, 0.16)",
           }}
         >
           <Box
@@ -206,33 +147,36 @@ export default function MessageBubble({ message }: { message: Message }) {
               ...markdownSx,
               ...(isUser && {
                 "& code:not(pre code)": {
-                  bgcolor: "rgba(255, 255, 255, 0.16)",
-                },
-                "& pre": {
-                  bgcolor: "rgba(0, 0, 0, 0.22)",
-                  borderColor: "transparent",
-                },
-                "& pre code": {
-                  bgcolor: "transparent !important",
+                  bgcolor: "rgba(255, 255, 255, 0.18)",
+                  borderColor: "rgba(255, 255, 255, 0.25)",
                 },
                 "& blockquote": {
                   borderColor: "currentColor",
                   color: "inherit",
-                  opacity: 0.9,
+                  opacity: 0.92,
                 },
                 "& a": {
                   color: "inherit",
                 },
                 "& th, & td": {
-                  borderColor: "rgba(255, 255, 255, 0.25)",
+                  borderColor: "rgba(255, 255, 255, 0.28)",
                 },
                 "& th": {
-                  bgcolor: "rgba(255, 255, 255, 0.1)",
+                  bgcolor: "rgba(255, 255, 255, 0.12)",
                 },
               }),
             }}
           >
-            <Markdown remarkPlugins={[remarkGfm]}>{content}</Markdown>
+            <Markdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                pre: ({ children }) => (
+                  <CodeBlock inverted={isUser}>{children}</CodeBlock>
+                ),
+              }}
+            >
+              {content}
+            </Markdown>
           </Box>
         </Paper>
       )}

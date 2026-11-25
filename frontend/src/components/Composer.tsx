@@ -1,4 +1,3 @@
-// MUI
 import {
   Box,
   CircularProgress,
@@ -6,8 +5,6 @@ import {
   InputBase,
   Paper,
 } from "@mui/material";
-
-// MUI Icons
 import { SendRounded } from "@mui/icons-material";
 
 type Props = {
@@ -46,15 +43,19 @@ export default function Composer({
           display: "flex",
           alignItems: "flex-end",
           gap: 0.75,
-          px: 1,
-          py: 0.4,
-          borderRadius: 1.5,
+          px: 1.1,
+          py: 0.45,
+          borderRadius: 1.75,
           bgcolor: "background.paper",
           border: "1px solid",
           borderColor: "divider",
-          transition: "border-color 120ms ease",
+          transition: "border-color 140ms ease, box-shadow 140ms ease",
           "&:focus-within": {
             borderColor: "primary.main",
+            boxShadow: (theme) =>
+              theme.palette.mode === "dark"
+                ? "0 0 0 3px rgba(107, 207, 154, 0.14)"
+                : "0 0 0 3px rgba(27, 122, 74, 0.12)",
           },
         }}
       >
@@ -100,7 +101,9 @@ export default function Composer({
             borderRadius: 1.25,
             bgcolor: "primary.main",
             color: "primary.contrastText",
+            transition: "transform 120ms ease, background-color 140ms ease",
             "&:hover": { bgcolor: "primary.dark" },
+            "&:active": { transform: "scale(0.96)" },
             "&.Mui-disabled": {
               bgcolor: "action.hover",
               color: "text.disabled",

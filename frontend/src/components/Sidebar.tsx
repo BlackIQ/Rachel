@@ -11,10 +11,12 @@ import {
   Menu,
   MenuItem,
   TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import {
   AddRounded,
+  MenuOpenRounded,
   MoreHorizRounded,
   SmartToyOutlined,
 } from "@mui/icons-material";
@@ -24,6 +26,8 @@ type Props = {
   chats: Chat[];
   activeChatId: string | null;
   loading?: boolean;
+  canCollapse?: boolean;
+  onCollapse?: () => void;
   onSelect: (id: string) => void;
   onNew: () => void;
   onDelete: (id: string) => void;
@@ -34,6 +38,8 @@ export default function Sidebar({
   chats,
   activeChatId,
   loading,
+  canCollapse = false,
+  onCollapse,
   onSelect,
   onNew,
   onDelete,
@@ -112,7 +118,7 @@ export default function Sidebar({
             borderRadius: 1.5,
             display: "grid",
             placeItems: "center",
-            bgcolor: "action.hover",
+            bgcolor: "action.selected",
             color: "primary.main",
             flexShrink: 0,
           }}
@@ -127,6 +133,24 @@ export default function Sidebar({
             Personal Assistant
           </Typography>
         </Box>
+        {canCollapse && onCollapse && (
+          <Tooltip title="Collapse sidebar">
+            <IconButton
+              size="small"
+              onClick={onCollapse}
+              aria-label="Collapse sidebar"
+              sx={{
+                color: "text.secondary",
+                "&:hover": {
+                  color: "primary.main",
+                  bgcolor: "action.hover",
+                },
+              }}
+            >
+              <MenuOpenRounded fontSize="small" />
+            </IconButton>
+          </Tooltip>
+        )}
       </Box>
 
       <Box sx={{ p: 1.5 }}>
@@ -135,6 +159,13 @@ export default function Sidebar({
           variant="outlined"
           startIcon={<AddRounded />}
           onClick={onNew}
+          sx={{
+            borderColor: "divider",
+            "&:hover": {
+              borderColor: "primary.main",
+              bgcolor: "action.hover",
+            },
+          }}
         >
           New chat
         </Button>
@@ -178,7 +209,10 @@ export default function Sidebar({
                   borderRadius: 1.5,
                   cursor: "pointer",
                   bgcolor: active ? "action.selected" : "transparent",
-                  transition: "background-color 120ms ease",
+                  border: "1px solid",
+                  borderColor: active ? "divider" : "transparent",
+                  transition:
+                    "background-color 120ms ease, border-color 120ms ease",
                   "&:hover": {
                     bgcolor: active ? "action.selected" : "action.hover",
                   },
@@ -187,7 +221,7 @@ export default function Sidebar({
               >
                 <Typography
                   noWrap
-                  color="text.primary"
+                  color={active ? "primary.main" : "text.primary"}
                   sx={{
                     flex: 1,
                     minWidth: 0,
@@ -207,7 +241,7 @@ export default function Sidebar({
                     width: 26,
                     height: 26,
                     flexShrink: 0,
-                    opacity: active ? 0.65 : 0,
+                    opacity: active ? 0.7 : 0,
                     color: "text.secondary",
                     borderRadius: 1,
                     transition: "opacity 120ms ease",
