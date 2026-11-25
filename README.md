@@ -54,7 +54,7 @@ Years later, this repo brings her back, local models, real hardware, and a full 
 
 Each major package has its own README with setup details:
 
-- [Backend README.md](backend/README.md)
+- [Backend README.md](README.Backend.md)
 - [Frontend README.md](frontend/README.md)
 - [MCP Server Repository](https://github.com/BlackIQ/Rachel-MCP)
 - [Firmware Repository](https://github.com/BlackIQ/Rachel-Firmware)
