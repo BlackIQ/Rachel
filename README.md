@@ -19,9 +19,13 @@ Years later, this repo brings her back, local models, real hardware, and a full 
 
 ## Screenshots
 
-| Chat & tools                        | Persian conversation                | Thinking                                                                          |
-| ----------------------------------- | ----------------------------------- | --------------------------------------------------------------------------------- |
-| ![Control](screenshots/control.png) | ![Persian](screenshots/persian.png) | ![Think 1](screenshots/thinking_001.png) ![Think 2](screenshots/thinking_002.png) |
+| Chat                                     | Thinking & Tools                         | Persian conversation                |
+| ---------------------------------------- | ---------------------------------------- | ----------------------------------- |
+| ![Think 1](screenshots/thinking_001.png) | ![Think 2](screenshots/thinking_002.png) | ![Persian](screenshots/persian.png) |
+
+| Home page empty state         |
+| ----------------------------- |
+| ![Home](screenshots/home.png) |
 
 ## Architecture
 
