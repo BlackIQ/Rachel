@@ -2,7 +2,7 @@
 
 **Rachel** is a personal AI assistant that talks to real home hardware.
 
-She runs locally with **Ollama** (Qwen3, but customized), a **Gin backend**, a **NextJs frontend**, and talks to a **Raspberry Pi Pico** over Wi‑Fi for hardware communication.
+She runs locally with **Ollama** (Qwen3, but customized), a **Gin backend**, a **React.js frontend**, and talks to a **Raspberry Pi Pico** over Wi‑Fi for hardware communication.
 
 > Bringing the old Rachel back — this time as a real agent.
 
@@ -27,7 +27,7 @@ Years later, this repo brings her back, local models, real hardware, and a full 
 
 | Layer        | Stack                                            | Role                                  |
 | ------------ | ------------------------------------------------ | ------------------------------------- |
-| **Frontend** | NextJs, React, MUI                               | User interface, chats, tool summaries |
+| **Frontend** | React.js, Vite, MUI                              | User interface, chats, tool summaries |
 | **Backend**  | Gin, GORM, SQLite                                | API, chat storage (agent loop soon)   |
 | **Firmware** | MicroPython, Microdot                            | Control devices, lights and sensors   |
 | **Hardware** | Pico 2 W, MicroPython, Microdot                  | Communicating with devices            |
@@ -79,7 +79,7 @@ Follow details at [MCP Server Repository](https://github.com/BlackIQ/Rachel-MCP)
 
 ### 3. Backend
 
-Follow details at [Backend README.md](backend/README.md)
+Follow details at [Backend README.md](README.Backend.md)
 
 ### 4. Frontend
 
