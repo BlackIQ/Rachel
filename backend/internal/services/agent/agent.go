@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"time"
 
+	mcpsdk "github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/ollama/ollama/api"
 
 	"github.com/BlackIQ/Rachel/backend/internal/config"
@@ -162,7 +163,7 @@ func buildOllamaMessages(history []models.Message) []api.Message {
 	return messages
 }
 
-func buildOllamaTools(mcpTools []*mcp.Tool) []api.Tool {
+func buildOllamaTools(mcpTools []*mcpsdk.Tool) []api.Tool {
 	tools := make([]api.Tool, 0, len(mcpTools))
 
 	for _, t := range mcpTools {
