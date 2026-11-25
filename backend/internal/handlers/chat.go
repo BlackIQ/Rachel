@@ -67,6 +67,27 @@ func OneChat(ctx *gin.Context) {
 		return
 	}
 
+	var messages []*models.Message
+
+	result = db.Where("chat_id = ?", chatID).Order("created_at ASC").Find(&messages)
+
+	if result.Error != nil {
+		ctx.AbortWithStatusJSON(
+			http.StatusInternalServerError,
+			gin.H{"message": "Database error"},
+		)
+		return
+	}
+
+	// response := models.Chat{
+	// 	ID: chat.ID,
+	// 	Title: chat.Title,
+	// 	Messages: messages,
+
+	// }
+
+	chat.Messages = messages
+
 	ctx.JSON(
 		http.StatusOK,
 		chat,
