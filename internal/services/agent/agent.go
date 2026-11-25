@@ -10,11 +10,11 @@ import (
 	mcpsdk "github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/ollama/ollama/api"
 
-	"github.com/BlackIQ/Rachel/backend/internal/config"
-	"github.com/BlackIQ/Rachel/backend/internal/enums"
-	"github.com/BlackIQ/Rachel/backend/internal/mcp"
-	"github.com/BlackIQ/Rachel/backend/internal/models"
-	"github.com/BlackIQ/Rachel/backend/internal/ollama"
+	"github.com/BlackIQ/Rachel/internal/config"
+	"github.com/BlackIQ/Rachel/internal/enums"
+	"github.com/BlackIQ/Rachel/internal/mcp"
+	"github.com/BlackIQ/Rachel/internal/models"
+	"github.com/BlackIQ/Rachel/internal/ollama"
 )
 
 func Run(parent context.Context, history []models.Message) ([]models.Message, error) {

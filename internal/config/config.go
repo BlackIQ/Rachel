@@ -5,7 +5,7 @@ import (
 
 	"github.com/ollama/ollama/api"
 
-	"github.com/BlackIQ/Rachel/backend/internal/enums"
+	"github.com/BlackIQ/Rachel/internal/enums"
 )
 
 type Config struct {

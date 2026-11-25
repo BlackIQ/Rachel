@@ -5,7 +5,7 @@ import (
 
 	"github.com/joho/godotenv"
 
-	"github.com/BlackIQ/Rachel/backend/internal/config"
+	"github.com/BlackIQ/Rachel/internal/config"
 )
 
 func InitDotenv() (err error) {

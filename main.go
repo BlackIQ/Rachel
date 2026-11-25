@@ -5,10 +5,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/BlackIQ/Rachel/backend/internal/config"
-	"github.com/BlackIQ/Rachel/backend/internal/enums"
-	"github.com/BlackIQ/Rachel/backend/internal/inits"
-	"github.com/BlackIQ/Rachel/backend/internal/router"
+	"github.com/BlackIQ/Rachel/internal/config"
+	"github.com/BlackIQ/Rachel/internal/enums"
+	"github.com/BlackIQ/Rachel/internal/inits"
+	"github.com/BlackIQ/Rachel/internal/router"
 )
 
 func init() {

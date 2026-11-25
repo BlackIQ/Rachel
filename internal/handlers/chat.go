@@ -8,9 +8,9 @@ import (
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 
-	"github.com/BlackIQ/Rachel/backend/internal/database"
-	"github.com/BlackIQ/Rachel/backend/internal/models"
-	"github.com/BlackIQ/Rachel/backend/internal/schemas"
+	"github.com/BlackIQ/Rachel/internal/database"
+	"github.com/BlackIQ/Rachel/internal/models"
+	"github.com/BlackIQ/Rachel/internal/schemas"
 )
 
 func AllChats(ctx *gin.Context) {

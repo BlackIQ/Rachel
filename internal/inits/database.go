@@ -3,7 +3,7 @@ package inits
 import (
 	"errors"
 
-	"github.com/BlackIQ/Rachel/backend/internal/database"
+	"github.com/BlackIQ/Rachel/internal/database"
 )
 
 func InitDB() (err error) {

@@ -3,7 +3,7 @@ package inits
 import (
 	"errors"
 
-	"github.com/BlackIQ/Rachel/backend/internal/ollama"
+	"github.com/BlackIQ/Rachel/internal/ollama"
 )
 
 func InitOllama() (err error) {

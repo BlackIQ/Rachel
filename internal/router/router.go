@@ -6,7 +6,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
-	"github.com/BlackIQ/Rachel/backend/internal/handlers"
+	"github.com/BlackIQ/Rachel/internal/handlers"
 )
 
 func SetupRouter() *gin.Engine {

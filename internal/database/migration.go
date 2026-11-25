@@ -5,7 +5,7 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/BlackIQ/Rachel/backend/internal/models"
+	"github.com/BlackIQ/Rachel/internal/models"
 )
 
 func Migration(db *gorm.DB) (err error) {
