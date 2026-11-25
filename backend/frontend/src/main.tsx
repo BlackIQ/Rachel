@@ -1,10 +1,19 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
-createRoot(document.getElementById('root')!).render(
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+
+import ThemeRegistry from "./components/ThemeRegistry";
+import App from "./App.tsx";
+
+import "./styles/globals.css";
+
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <AppRouterCacheProvider>
+      <ThemeRegistry>
+        <App />
+      </ThemeRegistry>
+    </AppRouterCacheProvider>
   </StrictMode>,
-)
+);
