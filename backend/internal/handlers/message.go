@@ -138,10 +138,7 @@ func CreateMessage(ctx *gin.Context) {
 		return
 	}
 
-	assistantMessage, err := agent.Run(
-		ctx.Request.Context(),
-		dbMessages,
-	)
+	newMessages, err := agent.Run(ctx.Request.Context(), dbMessages)
 
 	if err != nil {
 		ctx.AbortWithStatusJSON(
@@ -151,30 +148,39 @@ func CreateMessage(ctx *gin.Context) {
 		return
 	}
 
-	newMessage := models.Message{
-		ID:       uuid.New(),
-		ChatID:   chat.ID,
-		Role:     assistantMessage.Role,
-		Content:  assistantMessage.Content,
-		Thinking: assistantMessage.Thinking,
+	var lastAssistant *models.Message
+
+	for i := range newMessages {
+		newMessages[i].ID = uuid.New()
+		newMessages[i].ChatID = chat.ID
+
+		if err := db.Create(&newMessages[i]).Error; err != nil {
+			ctx.AbortWithStatusJSON(
+				http.StatusInternalServerError,
+				gin.H{"message": "Database error"},
+			)
+
+			return
+		}
+
+		if newMessages[i].Role == enums.Assistant {
+			lastAssistant = &newMessages[i]
+		}
 	}
 
-	if err := db.Create(&newMessage).Error; err != nil {
-		ctx.AbortWithStatusJSON(
-			http.StatusInternalServerError,
-			gin.H{"message": "Database error"},
-		)
-		return
-	}
-
-	result = db.Model(&chat).Update("updated_at", time.Now())
+	db.Model(&chat).Update("updated_at", time.Now())
 
 	if result.Error != nil {
 		log.Printf("Error saving time %v\n", result.Error.Error())
 	}
 
+	if lastAssistant != nil {
+		ctx.JSON(http.StatusCreated, lastAssistant)
+		return
+	}
+
 	ctx.JSON(
 		http.StatusCreated,
-		newMessage,
+		userMessage,
 	)
 }
