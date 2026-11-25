@@ -1,4 +1,4 @@
-module github.com/BlackIQ/Rachel/backend
+module github.com/BlackIQ/Rachel
 
 go 1.27.4
 
