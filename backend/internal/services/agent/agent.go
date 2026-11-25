@@ -63,8 +63,9 @@ func Run(parent context.Context, history []models.Message) (message *models.Mess
 	}
 
 	assistantMsg := models.Message{
-		Content: ollamaResp.Message.Content,
-		Role:    enums.Assistant,
+		Content:  ollamaResp.Message.Content,
+		Thinking: &ollamaResp.Message.Thinking,
+		Role:     enums.Assistant,
 	}
 
 	return &assistantMsg, nil
