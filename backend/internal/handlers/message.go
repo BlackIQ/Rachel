@@ -152,10 +152,11 @@ func CreateMessage(ctx *gin.Context) {
 	}
 
 	newMessage := models.Message{
-		ID:      uuid.New(),
-		ChatID:  chat.ID,
-		Role:    assistantMessage.Role,
-		Content: assistantMessage.Content,
+		ID:       uuid.New(),
+		ChatID:   chat.ID,
+		Role:     assistantMessage.Role,
+		Content:  assistantMessage.Content,
+		Thinking: assistantMessage.Thinking,
 	}
 
 	if err := db.Create(&newMessage).Error; err != nil {
