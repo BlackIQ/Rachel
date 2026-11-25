@@ -12,6 +12,7 @@ import (
 type Message struct {
 	ID        uuid.UUID         `gorm:"column:id; type:uuid; primaryKey" json:"id"`
 	Content   string            `gorm:"column:content; type:text; not null" json:"content"`
+	Thinking  *string           `gorm:"column:thinking; type:text" json:"thinking"`
 	Role      enums.MessageRole `gorm:"column:role; type:varchar(20); not null" json:"role"`
 	ToolName  *string           `gorm:"column:tool_name; type:varchar(100)" json:"toolName"`
 	ChatID    uuid.UUID         `gorm:"column:chat_id; type:uuid; not null;index" json:"chatID"`
