@@ -1,7 +1,4 @@
-// React
 import { useCallback, useEffect, useRef, useState } from "react";
-
-// MUI
 import {
   Alert,
   Box,
@@ -12,17 +9,11 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-
-// MUI Icons
 import { MenuRounded, SmartToyOutlined } from "@mui/icons-material";
-
-// Components
-import Sidebar from "../components/Sidebar";
-import MessageBubble from "../components/MessageBubble";
-import ToolGroup from "../components/ToolGroup";
-import Composer from "../components/Composer";
-
-// Libs
+import Sidebar from "./Sidebar";
+import MessageBubble from "./MessageBubble";
+import ToolGroup from "./ToolGroup";
+import Composer from "./Composer";
 import {
   createChat,
   deleteChat,
@@ -81,6 +72,7 @@ export default function ChatApp() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const bottomRef = useRef<HTMLDivElement | null>(null);
+  const loadSeqRef = useRef(0);
 
   const scrollToBottom = useCallback(() => {
     requestAnimationFrame(() => {
@@ -98,20 +90,34 @@ export default function ChatApp() {
     return sorted;
   }, []);
 
+  const loadChat = useCallback(async (chatId: string) => {
+    const seq = ++loadSeqRef.current;
+    setActiveChatId(chatId);
+    setMessages([]);
+    setLoadingMessages(true);
+
+    try {
+      const chat = await getChat(chatId);
+      if (loadSeqRef.current === seq) {
+        setMessages(chat.messages ?? []);
+      }
+    } catch {
+      if (loadSeqRef.current === seq) {
+        setError("Could not load this conversation.");
+      }
+    } finally {
+      if (loadSeqRef.current === seq) {
+        setLoadingMessages(false);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     let cancelled = false;
 
     async function boot() {
       try {
-        const sorted = await refreshChats();
-        if (cancelled) return;
-
-        if (sorted.length > 0) {
-          setActiveChatId(sorted[0].id);
-          setLoadingMessages(true);
-          const chat = await getChat(sorted[0].id);
-          if (!cancelled) setMessages(chat.messages ?? []);
-        }
+        await refreshChats();
       } catch {
         if (!cancelled) {
           setError("Could not reach Rachel API. Check backend URL and CORS.");
@@ -119,7 +125,6 @@ export default function ChatApp() {
       } finally {
         if (!cancelled) {
           setLoadingChats(false);
-          setLoadingMessages(false);
         }
       }
     }
@@ -134,37 +139,21 @@ export default function ChatApp() {
     scrollToBottom();
   }, [messages, sending, scrollToBottom]);
 
-  async function selectChat(chatId: string) {
+  function selectChat(chatId: string) {
     setMobileOpen(false);
-    if (chatId === activeChatId) return;
-
-    setActiveChatId(chatId);
-    setMessages([]);
     setError(null);
-    setLoadingMessages(true);
-
-    try {
-      const chat = await getChat(chatId);
-      setMessages(chat.messages ?? []);
-    } catch {
-      setError("Could not load this conversation.");
-    } finally {
-      setLoadingMessages(false);
-    }
+    if (chatId === activeChatId) return;
+    void loadChat(chatId);
   }
 
-  async function handleNewChat() {
+  function handleNewChat() {
+    loadSeqRef.current += 1;
     setError(null);
     setMobileOpen(false);
-    try {
-      const chat = await createChat({ title: "New chat" });
-      await refreshChats();
-      setActiveChatId(chat.id);
-      setMessages([]);
-      setInput("");
-    } catch {
-      setError("Could not create a conversation.");
-    }
+    setActiveChatId(null);
+    setMessages([]);
+    setInput("");
+    setLoadingMessages(false);
   }
 
   async function handleDelete(chatId: string) {
@@ -175,17 +164,9 @@ export default function ChatApp() {
 
       if (activeChatId === chatId) {
         if (remaining.length > 0) {
-          setActiveChatId(remaining[0].id);
-          setLoadingMessages(true);
-          try {
-            const chat = await getChat(remaining[0].id);
-            setMessages(chat.messages ?? []);
-          } finally {
-            setLoadingMessages(false);
-          }
+          await loadChat(remaining[0].id);
         } else {
-          setActiveChatId(null);
-          setMessages([]);
+          handleNewChat();
         }
       }
     } catch {
@@ -212,14 +193,15 @@ export default function ChatApp() {
     setInput("");
 
     const tempId = `temp-${Date.now()}`;
+    const now = new Date().toISOString();
     const optimistic: Message = {
       id: tempId,
       chat_id: activeChatId ?? "",
       content,
       role: "user",
       tool_name: null,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
+      created_at: now,
+      updated_at: now,
     };
     setMessages((prev) => [...prev, optimistic]);
 
@@ -232,6 +214,9 @@ export default function ChatApp() {
         });
         chatId = chat.id;
         setActiveChatId(chatId);
+        setMessages((prev) =>
+          prev.map((m) => (m.id === tempId ? { ...m, chat_id: chatId! } : m)),
+        );
       }
 
       const newMessages = await sendMessage(chatId, { content });
@@ -261,8 +246,8 @@ export default function ChatApp() {
       chats={chats}
       activeChatId={activeChatId}
       loading={loadingChats}
-      onSelect={(id) => void selectChat(id)}
-      onNew={() => void handleNewChat()}
+      onSelect={selectChat}
+      onNew={handleNewChat}
       onDelete={(id) => void handleDelete(id)}
       onRename={(id, title) => void handleRename(id, title)}
     />
@@ -278,7 +263,6 @@ export default function ChatApp() {
         bgcolor: "background.default",
       }}
     >
-      {/* Desktop sidebar */}
       {isDesktop && (
         <Box
           sx={{
@@ -293,7 +277,6 @@ export default function ChatApp() {
         </Box>
       )}
 
-      {/* Mobile drawer */}
       {!isDesktop && (
         <Drawer
           variant="temporary"
@@ -311,7 +294,6 @@ export default function ChatApp() {
         </Drawer>
       )}
 
-      {/* Chat column */}
       <Box
         sx={{
           flex: 1,
@@ -321,7 +303,6 @@ export default function ChatApp() {
           height: "100%",
         }}
       >
-        {/* Mobile top bar only */}
         {!isDesktop && (
           <Box
             sx={{

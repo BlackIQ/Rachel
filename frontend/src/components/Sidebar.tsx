@@ -1,7 +1,4 @@
-// React
 import { useState } from "react";
-
-// MUI
 import {
   Box,
   Button,
@@ -16,19 +13,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-
-// MUI Icons
 import {
   AddRounded,
   MoreHorizRounded,
   SmartToyOutlined,
 } from "@mui/icons-material";
-
-type Chat = {
-  id: string;
-  title: string;
-  updated_at: string;
-};
+import type { Chat } from "../lib/types";
 
 type Props = {
   chats: Chat[];
@@ -78,7 +68,9 @@ export default function Sidebar({
 
   function confirmRename() {
     const title = renameValue.trim();
-    if (renameId && title) onRename(renameId, title);
+    if (renameId && title) {
+      onRename(renameId, title);
+    }
     setRenameOpen(false);
     setRenameId(null);
     setRenameValue("");
