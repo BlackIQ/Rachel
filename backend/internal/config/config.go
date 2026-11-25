@@ -36,7 +36,7 @@ func InitConfig() error {
 		Model:  "rachel:test-1",
 		Stream: false,
 		Think: api.ThinkValue{
-			Value: false,
+			Value: true,
 		},
 	}
 
