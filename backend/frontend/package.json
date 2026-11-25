@@ -1,7 +1,8 @@
 {
-  "name": "frontend",
+  "name": "rachel_frontend",
+  "description": "Rachel Agent (Assistant) Frontend",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
